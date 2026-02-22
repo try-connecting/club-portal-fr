@@ -54,7 +54,7 @@
         }
 
         /* Header */
-        .header {
+        #quiz-engine-container .quiz-header-REMOVED {
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -69,7 +69,7 @@
             width: auto;
         }
 
-        .back-to-portal {
+        #quiz-engine-container .back-to-portal-REMOVED {
             display: flex;
             align-items: center;
             color: #e74c6f;
@@ -78,12 +78,12 @@
             transition: all 0.3s ease;
         }
 
-        .back-to-portal:hover {
+        #quiz-engine-container .back-to-portal-hover-REMOVED {
             color: #ff6b8a;
             transform: translateX(-5px);
         }
 
-        .back-to-portal::before {
+        #quiz-engine-container .back-to-portal-before-REMOVED {
             content: '←';
             margin-right: 0.5rem;
             font-size: 1.2rem;
@@ -625,7 +625,7 @@
         }
 
         /* Footer */
-        .footer {
+        #quiz-engine-container .quiz-footer-REMOVED {
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
@@ -677,7 +677,7 @@
         }
 
         @media (max-width: 480px) {
-            .header {
+            #quiz-engine-container .quiz-header-REMOVED {
                 padding: 1rem;
                 flex-direction: column;
                 gap: 1rem;
@@ -4587,20 +4587,11 @@
   <div class="tab-content" id="quizzes">
     <div id="quiz-engine-container">
       
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <img src="https://tryconnecting.com/cdn/shop/files/Connecting_red_logo_rights.png?v=1736502003&width=500" alt="Connecting™ Logo">
-        </div>
-        <a href="index.html" class="back-to-portal">Back to Portal</a>
-    </header>
-
-    <!-- Main Container -->
     <div class="container">
         <!-- Quiz Selection Screen -->
         <div class="quiz-selection" id="quizSelection">
-            <h1>Relationship Quiz Engine</h1>
-            <p>Discover deeper insights about your relationship with our research-backed assessment tools. Take these quizzes together to strengthen your connection.</p>
+            <h2 class="tab-description">Discover deeper insights about your relationship 🎡</h2>
+            <p>Take these research-backed quizzes together to strengthen your connection.</p>
             
             <div class="quiz-cards">
                 <div class="quiz-card" onclick="startQuiz('love-language')">
@@ -4678,10 +4669,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2026 Connecting™ — The Connection Club™</p>
-    </footer>
+    
 
     <script>
         // Global Quiz Data
