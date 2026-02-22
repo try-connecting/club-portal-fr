@@ -50,6 +50,9 @@
   <div class="portal-wrap" id="portalContent">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<div style="background:#e74c6f;color:white;text-align:center;padding:10px;font-family:Poppins,sans-serif;font-weight:600;font-size:14px;position:sticky;top:0;z-index:9999;">
+⚠️ REVIEW COPY — This is NOT live. New feature: 🎡 Quizzes tab (scroll right in tabs)
+</div>
 <div class="date-club-portal">
   <div class="custom-header">
  <a href="https://tryconnecting.com" class="back-link">&#8592; Back to Shop</a>
@@ -96,6 +99,9 @@
  </button>
  <button class="tab-button" data-tab="growth">
   &#x1F393; Growth <span class="content-count">118 Videos</span>
+ </button>
+ <button class="tab-button" data-tab="quizzes">
+  🎡 Quizzes <span class="content-count">3 Quizzes</span>
  </button>
   </div>
   <div class="tab-content active" id="trending">
@@ -3879,6 +3885,16 @@
 </div>
 </div>
 </div>
+
+  <!-- QUIZZES TAB -->
+  <div class="tab-content" id="quizzes" style="display:none;">
+    <div style="text-align:center; padding: 20px 0;">
+      <h2 style="color:#e74c6f; font-size:2rem; margin-bottom:10px;">🎡 Interactive Couples Quizzes</h2>
+      <p style="color:rgba(255,255,255,0.7); margin-bottom:30px;">Take research-backed quizzes together and discover your relationship strengths</p>
+    </div>
+    <iframe src="quiz.html" style="width:100%; min-height:800px; border:none; border-radius:16px;" id="quizFrame"></iframe>
+  </div>
+
 <script src="js/app.js"></script>
   </div>
   <script>
