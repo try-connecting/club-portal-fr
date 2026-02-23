@@ -4500,14 +4500,38 @@
         title: '💪 Relationship Health Score',
         description: 'Comprehensive evaluation of your relationship across key areas',
         dualPartner: false,
-        categories: ['Communication', 'Intimacy', 'Trust', 'Fun & Adventure', 'Emotional Support'],
+        categories: ['Communication', 'Intimacy', 'Trust', 'Fun & Adventure', 'Emotional Support', 'Conflict Resolution'],
         questions: [
           { question: "We communicate openly about our feelings and concerns", category: "Communication" },
           { question: "We listen to each other without interrupting or getting defensive", category: "Communication" },
+          { question: "We express our needs clearly and respectfully", category: "Communication" },
+          { question: "We have meaningful conversations about our relationship regularly", category: "Communication" },
+          { question: "We can discuss difficult topics without shutting down", category: "Communication" },
           { question: "We maintain physical affection and intimacy that satisfies both of us", category: "Intimacy" },
+          { question: "We are comfortable being vulnerable with each other", category: "Intimacy" },
+          { question: "We make time for romantic connection regularly", category: "Intimacy" },
+          { question: "We feel emotionally close and connected most of the time", category: "Intimacy" },
+          { question: "We maintain healthy intimacy despite busy schedules", category: "Intimacy" },
           { question: "We trust each other completely and feel secure in our relationship", category: "Trust" },
+          { question: "We keep our promises and commitments to each other", category: "Trust" },
+          { question: "We feel safe being ourselves around each other", category: "Trust" },
+          { question: "We handle each other's vulnerabilities with care", category: "Trust" },
+          { question: "We're honest with each other even when it's difficult", category: "Trust" },
           { question: "We regularly have fun together and enjoy each other's company", category: "Fun & Adventure" },
-          { question: "We provide comfort and support during difficult times", category: "Emotional Support" }
+          { question: "We try new experiences and activities together", category: "Fun & Adventure" },
+          { question: "We laugh together frequently and share inside jokes", category: "Fun & Adventure" },
+          { question: "We make time for playfulness in our relationship", category: "Fun & Adventure" },
+          { question: "We create positive memories together regularly", category: "Fun & Adventure" },
+          { question: "We provide comfort and support during difficult times", category: "Emotional Support" },
+          { question: "We celebrate each other's successes and achievements", category: "Emotional Support" },
+          { question: "We encourage each other to pursue our goals and dreams", category: "Emotional Support" },
+          { question: "We offer reassurance when the other is feeling insecure", category: "Emotional Support" },
+          { question: "We're there for each other through life's challenges", category: "Emotional Support" },
+          { question: "We handle disagreements constructively without name-calling or insults", category: "Conflict Resolution" },
+          { question: "We can apologize sincerely when we've made mistakes", category: "Conflict Resolution" },
+          { question: "We work together to find solutions to our problems", category: "Conflict Resolution" },
+          { question: "We can discuss issues without them escalating into big fights", category: "Conflict Resolution" },
+          { question: "We forgive each other and move forward after conflicts", category: "Conflict Resolution" }
         ]
       },
       'conflict-style': {
@@ -4540,6 +4564,114 @@
               { text: "Explain what hurt you and ask for what you need going forward", type: "compromiser" },
               { text: "Tell them directly how their actions affected you", type: "fighter" },
               { text: "Try to understand why they acted that way before addressing your hurt", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When discussing money or financial decisions, you tend to:",
+            answers: [
+              { text: "Let your partner handle most financial discussions", type: "avoider" },
+              { text: "Find budget solutions that work for both of your priorities", type: "compromiser" },
+              { text: "Advocate strongly for your financial priorities and concerns", type: "fighter" },
+              { text: "Focus on understanding each other's financial values first", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner criticizes something you did, you usually:",
+            answers: [
+              { text: "Get quiet and withdraw from the conversation", type: "avoider" },
+              { text: "Accept their point but also explain your perspective", type: "compromiser" },
+              { text: "Defend your actions and point out their flaws too", type: "fighter" },
+              { text: "Ask them to help you understand what went wrong", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When you need to discuss a sensitive topic with your partner:",
+            answers: [
+              { text: "You often put it off hoping the issue will resolve itself", type: "avoider" },
+              { text: "You plan what to say to make it fair for both of you", type: "compromiser" },
+              { text: "You bring it up directly and speak your mind clearly", type: "fighter" },
+              { text: "You choose your timing carefully to create a calm environment", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner is upset about something you don't think is a big deal:",
+            answers: [
+              { text: "You hope they'll get over it without you having to discuss it", type: "avoider" },
+              { text: "You try to find a compromise that addresses their concern", type: "compromiser" },
+              { text: "You explain why you think they're overreacting", type: "fighter" },
+              { text: "You listen to understand why it matters so much to them", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When making decisions about social plans or commitments:",
+            answers: [
+              { text: "You usually go along with what your partner wants", type: "avoider" },
+              { text: "You negotiate so you both get some of what you want", type: "compromiser" },
+              { text: "You make your preferences known and stick to them", type: "fighter" },
+              { text: "You discuss what would make you both happiest", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "After an argument is over, you typically:",
+            answers: [
+              { text: "Try to act like nothing happened and move on quickly", type: "avoider" },
+              { text: "Review what you both learned and how to improve next time", type: "compromiser" },
+              { text: "Feel vindicated if you proved your point or frustrated if you didn't", type: "fighter" },
+              { text: "Focus on repairing the emotional connection between you", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When your partner is stressed about work or other life issues:",
+            answers: [
+              { text: "You give them space and try not to add to their stress", type: "avoider" },
+              { text: "You offer practical solutions and ways to help", type: "compromiser" },
+              { text: "You tell them directly what you think they should do", type: "fighter" },
+              { text: "You provide emotional support and listen without judging", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If you disagree about household responsibilities, you:",
+            answers: [
+              { text: "Usually just do things yourself to avoid the conflict", type: "avoider" },
+              { text: "Suggest dividing tasks based on each person's preferences", type: "compromiser" },
+              { text: "Clearly state your expectations and hold your partner accountable", type: "fighter" },
+              { text: "Focus on creating a system that feels fair to both of you", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When your partner brings up a relationship issue you'd rather not discuss:",
+            answers: [
+              { text: "You change the subject or suggest talking about it later", type: "avoider" },
+              { text: "You listen to their concern and offer a practical solution", type: "compromiser" },
+              { text: "You defend yourself and explain why their concern is wrong", type: "fighter" },
+              { text: "You thank them for bringing it up and ask how they're feeling", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner seems angry or upset but won't tell you why:",
+            answers: [
+              { text: "You wait for them to bring it up when they're ready", type: "avoider" },
+              { text: "You ask what's wrong and offer to work on a solution together", type: "compromiser" },
+              { text: "You tell them they need to communicate instead of giving you the silent treatment", type: "fighter" },
+              { text: "You approach them gently and create a safe space for them to open up", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When planning major life decisions (like moving, career changes, etc.):",
+            answers: [
+              { text: "You tend to go along with your partner's preferences to keep peace", type: "avoider" },
+              { text: "You make lists of pros and cons and find solutions that work for both", type: "compromiser" },
+              { text: "You advocate strongly for the choice that makes most sense to you", type: "fighter" },
+              { text: "You focus on making sure both people feel heard and supported", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "Your overall approach to relationship conflict is:",
+            answers: [
+              { text: "Conflict is uncomfortable - it's better to keep things peaceful", type: "avoider" },
+              { text: "Conflict is normal - the key is finding solutions that work for everyone", type: "compromiser" },
+              { text: "Conflict is necessary - important issues need to be addressed directly", type: "fighter" },
+              { text: "Conflict is an opportunity - it can bring us closer if handled with care", type: "peacemaker" }
             ]
           }
         ]
@@ -4612,7 +4744,7 @@
             <span>${getScaleText(i)}</span>
             <div class="scale-number">${i}</div>
           `;
-          answerDiv.onclick = () => selectAnswer(i);
+          answerDiv.onclick = (e) => selectAnswer(e.currentTarget, i);
           answersContainer.appendChild(answerDiv);
         }
       } else {
@@ -4621,7 +4753,7 @@
           const answerDiv = document.createElement('div');
           answerDiv.className = 'answer-option';
           answerDiv.textContent = answer.text;
-          answerDiv.onclick = () => selectAnswer(index);
+          answerDiv.onclick = (e) => selectAnswer(e.currentTarget, index);
           answersContainer.appendChild(answerDiv);
         });
       }
@@ -4642,14 +4774,14 @@
       return scaleTexts[value];
     }
 
-    function selectAnswer(answerIndex) {
+    function selectAnswer(clickedElement, answerIndex) {
       // Remove previous selection
       document.querySelectorAll('.answer-option').forEach(answer => {
         answer.classList.remove('selected');
       });
 
-      // Mark new selection
-      document.querySelectorAll('.answer-option')[answerIndex].classList.add('selected');
+      // Mark new selection using the clicked element directly
+      clickedElement.classList.add('selected');
       selectedAnswer = answerIndex;
 
       // Enable next button
