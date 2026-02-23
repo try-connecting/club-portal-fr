@@ -15,17 +15,26 @@
     var countrySelect = document.querySelector('select[data-type="country"]');
     function setCountry(code) {
       if (!countrySelect) return;
-      // Set via Alpine data (Funnelish uses Alpine.js)
+      var countryName = '';
+      for (var i = 0; i < countrySelect.options.length; i++) {
+        if (countrySelect.options[i].value === code) {
+          countryName = countrySelect.options[i].text;
+          countrySelect.selectedIndex = i;
+          countrySelect.options[i].selected = true;
+          break;
+        }
+      }
+      // Update placeholder text to show selected country (iOS Safari fix)
+      if (countrySelect.options[0] && countrySelect.options[0].disabled) {
+        countrySelect.options[0].text = countryName || code;
+        countrySelect.options[0].value = code;
+        countrySelect.options[0].disabled = false;
+        countrySelect.selectedIndex = 0;
+      }
+      // Set via Alpine data
       var alpineEl = countrySelect.closest('[x-data]');
       if (alpineEl && alpineEl._x_dataStack && alpineEl._x_dataStack[0]) {
         alpineEl._x_dataStack[0].customer.country = code;
-      }
-      // Also set native select
-      for (var i = 0; i < countrySelect.options.length; i++) {
-        if (countrySelect.options[i].value === code) {
-          countrySelect.selectedIndex = i;
-          break;
-        }
       }
       countrySelect.dispatchEvent(new Event('input', { bubbles: true }));
       countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
