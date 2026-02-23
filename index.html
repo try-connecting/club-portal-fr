@@ -896,6 +896,353 @@
       transform: translateY(-2px);
       transition: all 0.3s ease;
     }
+
+    /* Game Arena Styles */
+    .game-interface {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #1a1a2e;
+      z-index: 10000;
+      padding: 2rem;
+      box-sizing: border-box;
+      overflow-y: auto;
+      font-family: 'Poppins', sans-serif;
+      -webkit-overflow-scrolling: touch;
+      display: none;
+    }
+    
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid rgba(231, 76, 111, 0.3);
+      padding-bottom: 1rem;
+    }
+    
+    .game-header h2 {
+      color: #e74c6f;
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    
+    .close-btn {
+      background: rgba(231, 76, 111, 0.2);
+      border: 2px solid #e74c6f;
+      border-radius: 50%;
+      color: #e74c6f;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .close-btn:hover {
+      background: #e74c6f;
+      color: white;
+    }
+    
+    .game-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .difficulty-selector h3, .turn-indicator, .wyr-question h3, .story-display h3, .trivia-question h4, .battle-turn h3 {
+      color: #b0b8d4;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      line-height: 1.5;
+    }
+    
+    .difficulty-buttons, .choice-buttons, .wyr-controls, .story-controls, .trivia-controls, .battle-controls, .roulette-categories, .age-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .diff-btn, .choice-btn, .wyr-btn, .next-btn, .add-btn, .start-btn, .roulette-btn, .spin-btn, .new-btn, .pass-btn, .age-button {
+      background: rgba(231, 76, 111, 0.1);
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 12px;
+      color: #b0b8d4;
+      padding: 12px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .diff-btn:hover, .choice-btn:hover, .wyr-btn:hover, .next-btn:hover, .add-btn:hover, .start-btn:hover, .roulette-btn:hover, .spin-btn:hover, .new-btn:hover, .pass-btn:hover, .age-button:hover {
+      background: rgba(231, 76, 111, 0.3);
+      border-color: #e74c6f;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .choice-btn.truth {
+      background: rgba(76, 175, 80, 0.1);
+      border-color: rgba(76, 175, 80, 0.3);
+    }
+    
+    .choice-btn.dare {
+      background: rgba(255, 152, 0, 0.1);
+      border-color: rgba(255, 152, 0, 0.3);
+    }
+    
+    .question-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem 0;
+      border: 1px solid rgba(231, 76, 111, 0.2);
+    }
+    
+    .question-card p {
+      color: #b0b8d4;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .wyr-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .wyr-option {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      border: 2px solid rgba(231, 76, 111, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .wyr-option:hover, .wyr-option.selected {
+      border-color: #e74c6f;
+      background: rgba(231, 76, 111, 0.1);
+    }
+    
+    .wyr-option p {
+      color: #b0b8d4;
+      margin-top: 1rem;
+    }
+    
+    .story-content {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      min-height: 100px;
+      color: #b0b8d4;
+      line-height: 1.6;
+    }
+    
+    .story-prompt {
+      background: rgba(231, 76, 111, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .story-prompt h4 {
+      color: #e74c6f;
+      margin-bottom: 1rem;
+    }
+    
+    .story-prompt p {
+      color: #b0b8d4;
+      margin-bottom: 1rem;
+    }
+    
+    #story-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 10px;
+      color: white;
+      padding: 1rem;
+      font-family: 'Poppins', sans-serif;
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    .trivia-setup input, #battle-p1-name, #battle-p2-name {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 10px;
+      color: white;
+      padding: 1rem;
+      margin: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+      width: 200px;
+    }
+    
+    .trivia-score {
+      text-align: center;
+      font-size: 2rem;
+      color: #e74c6f;
+      margin-bottom: 2rem;
+    }
+    
+    .roulette-display {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .wheel-container {
+      position: relative;
+      margin: 2rem auto;
+      width: 300px;
+      height: 300px;
+    }
+    
+    .spinner {
+      width: 300px;
+      height: 300px;
+      border: 3px solid #e74c6f;
+      border-radius: 50%;
+      position: relative;
+      background: conic-gradient(
+        #e74c6f 0deg 45deg,
+        #16213e 45deg 90deg,
+        #e74c6f 90deg 135deg,
+        #16213e 135deg 180deg,
+        #e74c6f 180deg 225deg,
+        #16213e 225deg 270deg,
+        #e74c6f 270deg 315deg,
+        #16213e 315deg 360deg
+      );
+    }
+    
+    .wheel-pointer {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #e74c6f;
+    }
+    
+    .roulette-result {
+      margin: 2rem 0;
+    }
+    
+    .roulette-result h3 {
+      color: #e74c6f;
+      margin-bottom: 1rem;
+    }
+    
+    .roulette-result p {
+      color: #b0b8d4;
+      font-size: 1.2rem;
+    }
+    
+    .custom-options {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .custom-option-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #b0b8d4;
+    }
+    
+    .add-option {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    
+    .add-option input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 10px;
+      color: white;
+      padding: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .battle-categories {
+      margin: 2rem 0;
+    }
+    
+    .battle-categories label {
+      display: block;
+      color: #b0b8d4;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+    
+    .battle-categories input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    
+    .compliment-prompt {
+      background: rgba(231, 76, 111, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+      color: #b0b8d4;
+      font-size: 1.1rem;
+    }
+    
+    .battle-stats {
+      text-align: center;
+      color: #b0b8d4;
+      margin-top: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .game-interface {
+        padding: 1rem;
+      }
+      
+      .wyr-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .wheel-container {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .spinner {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .difficulty-buttons, .choice-buttons, .roulette-categories {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .diff-btn, .choice-btn, .roulette-btn {
+        width: 200px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -979,6 +1326,9 @@
  </button>
  <button class="tab-button" data-tab="growth">
   &#x1F393; Growth <span class="content-count">118 Videos</span>
+ </button>
+ <button class="tab-button" data-tab="game-arena">
+  🎲 Game Arena <span class="content-count">6 Games</span>
  </button>
  <button class="tab-button" data-tab="adults-only">
   🔞 Adults Only <span class="content-count">6 Experiences</span>
@@ -4841,6 +5191,290 @@
   </div>
 </div>
   <!-- Adults Only Tab Content -->
+  <!-- Game Arena Tab Content -->
+  <div class="tab-content" id="game-arena" style="display: none;">
+    <h2 class="tab-description">🎲 Interactive Couples Game Arena — Play Together Online</h2>
+    <div class="pro-tip">
+      <span class="pro-tip-label">🎮 Game Night</span>
+      Interactive games designed for couples. Play together on one device — no apps needed!
+    </div>
+    
+    <!-- 6 Game Cards -->
+    <div class="intimate-grid">
+      <!-- Truth or Dare Deluxe -->
+      <div class="intimate-card" onclick="openGame('truth-or-dare')">
+        <div class="intimate-icon">🎯</div>
+        <h3>Truth or Dare Deluxe</h3>
+        <p>Choose your intensity level: Funny, Romantic, Spicy, or Deep conversations.</p>
+        <div class="intimate-stats">Categories: 4 • Questions: 80+</div>
+      </div>
+      
+      <!-- Would You Rather -->
+      <div class="intimate-card" onclick="openGame('would-you-rather')">
+        <div class="intimate-icon">🤔</div>
+        <h3>Would You Rather</h3>
+        <p>Playful dilemmas to spark conversation and reveal preferences.</p>
+        <div class="intimate-stats">Categories: 3 • Scenarios: 60+</div>
+      </div>
+      
+      <!-- Story Time -->
+      <div class="intimate-card" onclick="openGame('story-time')">
+        <div class="intimate-icon">📚</div>
+        <h3>Story Time</h3>
+        <p>Create stories together with guided prompts. Build a fantasy!</p>
+        <div class="intimate-stats">Themes: 4 • Prompts: 50+</div>
+      </div>
+      
+      <!-- Couple Trivia -->
+      <div class="intimate-card" onclick="openGame('couple-trivia')">
+        <div class="intimate-icon">🧠</div>
+        <h3>Couple Trivia</h3>
+        <p>Test how well you know each other with fun questions.</p>
+        <div class="intimate-stats">Categories: 5 • Questions: 100+</div>
+      </div>
+      
+      <!-- Decision Roulette -->
+      <div class="intimate-card" onclick="openGame('decision-roulette')">
+        <div class="intimate-icon">🎡</div>
+        <h3>Decision Roulette</h3>
+        <p>Can't decide on dinner, activities, or date ideas? Spin the wheel!</p>
+        <div class="intimate-stats">Categories: 6 • Options: Endless</div>
+      </div>
+      
+      <!-- Compliment Battle -->
+      <div class="intimate-card" onclick="openGame('compliment-battle')">
+        <div class="intimate-icon">💝</div>
+        <h3>Compliment Battle</h3>
+        <p>Take turns giving each other creative compliments. Who runs out first?</p>
+        <div class="intimate-stats">Categories: 4 • Prompts: 40+</div>
+      </div>
+    </div>
+
+    <!-- Truth or Dare Game Interface -->
+    <div id="truth-or-dare-interface" class="game-interface">
+      <div class="game-header">
+        <h2>Truth or Dare Deluxe 🎯</h2>
+        <button onclick="closeGame()" class="close-btn">×</button>
+      </div>
+      
+      <div class="difficulty-selector">
+        <h3>Choose Your Style</h3>
+        <div class="difficulty-buttons">
+          <button onclick="selectDifficulty('funny')" class="diff-btn">😄 Funny</button>
+          <button onclick="selectDifficulty('romantic')" class="diff-btn">💕 Romantic</button>
+          <button onclick="selectDifficulty('spicy')" class="diff-btn">🌶️ Spicy</button>
+          <button onclick="selectDifficulty('deep')" class="diff-btn">🤯 Deep</button>
+        </div>
+      </div>
+      
+      <div id="truth-dare-game" class="game-content" style="display: none;">
+        <div class="turn-indicator">
+          <span id="current-player">Player 1</span>'s Turn
+        </div>
+        
+        <div class="choice-buttons">
+          <button onclick="getQuestion('truth')" class="choice-btn truth">Truth</button>
+          <button onclick="getQuestion('dare')" class="choice-btn dare">Dare</button>
+        </div>
+        
+        <div id="question-display" class="question-card">
+          <p id="question-text">Click Truth or Dare to start!</p>
+          <button onclick="nextPlayer()" id="done-btn" class="next-btn" style="display: none;">Done! Next Player</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Would You Rather Game Interface -->
+    <div id="would-you-rather-interface" class="game-interface">
+      <div class="game-header">
+        <h2>Would You Rather 🤔</h2>
+        <button onclick="closeGame()" class="close-btn">×</button>
+      </div>
+      
+      <div class="difficulty-selector">
+        <h3>Choose Your Category</h3>
+        <div class="difficulty-buttons">
+          <button onclick="selectWYRCategory('romantic')" class="diff-btn">💕 Romantic</button>
+          <button onclick="selectWYRCategory('lifestyle')" class="diff-btn">🏠 Lifestyle</button>
+          <button onclick="selectWYRCategory('adventure')" class="diff-btn">⚡ Adventure</button>
+        </div>
+      </div>
+      
+      <div id="wyr-game" class="game-content" style="display: none;">
+        <div class="wyr-question">
+          <h3>Would You Rather...</h3>
+          <div class="wyr-options">
+            <div class="wyr-option" id="option-a">
+              <button onclick="chooseOption('a')" class="wyr-btn">A</button>
+              <p id="option-a-text"></p>
+            </div>
+            <div class="wyr-option" id="option-b">
+              <button onclick="chooseOption('b')" class="wyr-btn">B</button>
+              <p id="option-b-text"></p>
+            </div>
+          </div>
+        </div>
+        <div class="wyr-controls">
+          <button onclick="newWYRQuestion()" class="next-btn">New Question</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Story Time Game Interface -->
+    <div id="story-time-interface" class="game-interface">
+      <div class="game-header">
+        <h2>Story Time 📚</h2>
+        <button onclick="closeGame()" class="close-btn">×</button>
+      </div>
+      
+      <div class="difficulty-selector">
+        <h3>Choose Your Theme</h3>
+        <div class="difficulty-buttons">
+          <button onclick="selectStoryTheme('adventure')" class="diff-btn">⚔️ Adventure</button>
+          <button onclick="selectStoryTheme('romance')" class="diff-btn">💕 Romance</button>
+          <button onclick="selectStoryTheme('fantasy')" class="diff-btn">🧙 Fantasy</button>
+          <button onclick="selectStoryTheme('modern')" class="diff-btn">🏙️ Modern</button>
+        </div>
+      </div>
+      
+      <div id="story-game" class="game-content" style="display: none;">
+        <div class="story-display">
+          <h3>Your Story</h3>
+          <div id="story-text" class="story-content"></div>
+        </div>
+        
+        <div class="story-prompt">
+          <h4>Next Line:</h4>
+          <p id="story-prompt-text"></p>
+          <textarea id="story-input" placeholder="Add your sentence..."></textarea>
+          <button onclick="addToStory()" class="add-btn">Add to Story</button>
+        </div>
+        
+        <div class="story-controls">
+          <button onclick="newStory()" class="restart-btn">New Story</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Couple Trivia Game Interface -->
+    <div id="couple-trivia-interface" class="game-interface">
+      <div class="game-header">
+        <h2>Couple Trivia 🧠</h2>
+        <button onclick="closeGame()" class="close-btn">×</button>
+      </div>
+      
+      <div class="trivia-setup" id="trivia-setup">
+        <h3>Enter Your Names</h3>
+        <input type="text" id="player1-name" placeholder="Partner 1 Name" />
+        <input type="text" id="player2-name" placeholder="Partner 2 Name" />
+        <button onclick="startTrivia()" class="start-btn">Start Game</button>
+      </div>
+      
+      <div id="trivia-game" class="game-content" style="display: none;">
+        <div class="trivia-score">
+          <span id="p1-score">0</span> - <span id="p2-score">0</span>
+        </div>
+        
+        <div class="trivia-question">
+          <h4 id="trivia-about">About <span id="trivia-target"></span>:</h4>
+          <p id="trivia-question-text"></p>
+          <div class="trivia-choices" id="trivia-choices"></div>
+        </div>
+        
+        <div class="trivia-controls">
+          <button onclick="nextTriviaQuestion()" id="next-trivia" class="next-btn" style="display: none;">Next Question</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision Roulette Game Interface -->
+    <div id="decision-roulette-interface" class="game-interface">
+      <div class="game-header">
+        <h2>Decision Roulette 🎡</h2>
+        <button onclick="closeGame()" class="close-btn">×</button>
+      </div>
+      
+      <div class="roulette-selector">
+        <h3>What Do You Need Help Deciding?</h3>
+        <div class="roulette-categories">
+          <button onclick="spinRoulette('dinner')" class="roulette-btn">🍽️ Dinner Plans</button>
+          <button onclick="spinRoulette('date')" class="roulette-btn">💕 Date Ideas</button>
+          <button onclick="spinRoulette('movie')" class="roulette-btn">🎬 Movie Night</button>
+          <button onclick="spinRoulette('activity')" class="roulette-btn">🎯 Activities</button>
+          <button onclick="spinRoulette('travel')" class="roulette-btn">✈️ Travel Spots</button>
+          <button onclick="spinRoulette('custom')" class="roulette-btn">⚙️ Custom Options</button>
+        </div>
+      </div>
+      
+      <div id="roulette-wheel" class="roulette-display" style="display: none;">
+        <div class="wheel-container">
+          <div id="spinner" class="spinner"></div>
+          <div class="wheel-pointer">🔽</div>
+        </div>
+        <div class="roulette-result">
+          <h3>The Decision Is...</h3>
+          <p id="roulette-result-text">Spin the wheel!</p>
+        </div>
+        <div class="roulette-controls">
+          <button onclick="spinWheel()" id="spin-btn" class="spin-btn">🎡 Spin!</button>
+          <button onclick="newRoulette()" class="new-btn">New Category</button>
+        </div>
+      </div>
+      
+      <div id="custom-roulette" class="custom-options" style="display: none;">
+        <h3>Add Your Options</h3>
+        <div id="custom-options-list"></div>
+        <div class="add-option">
+          <input type="text" id="custom-option" placeholder="Add an option..." />
+          <button onclick="addCustomOption()" class="add-btn">Add</button>
+        </div>
+        <button onclick="startCustomRoulette()" id="start-custom" class="start-btn" style="display: none;">Start Spinning!</button>
+      </div>
+    </div>
+
+    <!-- Compliment Battle Game Interface -->
+    <div id="compliment-battle-interface" class="game-interface">
+      <div class="game-header">
+        <h2>Compliment Battle 💝</h2>
+        <button onclick="closeGame()" class="close-btn">×</button>
+      </div>
+      
+      <div class="battle-setup" id="battle-setup">
+        <h3>Setup Your Battle</h3>
+        <input type="text" id="battle-p1-name" placeholder="Partner 1 Name" />
+        <input type="text" id="battle-p2-name" placeholder="Partner 2 Name" />
+        
+        <div class="battle-categories">
+          <h4>Pick Categories (or use all):</h4>
+          <label><input type="checkbox" value="appearance" checked> Appearance</label>
+          <label><input type="checkbox" value="personality" checked> Personality</label>
+          <label><input type="checkbox" value="achievements" checked> Achievements</label>
+          <label><input type="checkbox" value="random" checked> Random/Creative</label>
+        </div>
+        
+        <button onclick="startComplimentBattle()" class="start-btn">Start Battle!</button>
+      </div>
+      
+      <div id="battle-game" class="game-content" style="display: none;">
+        <div class="battle-turn">
+          <h3><span id="battle-current">Player 1</span>'s Turn</h3>
+          <p>Give <span id="battle-target">Partner</span> a compliment about:</p>
+          <div class="compliment-prompt" id="compliment-prompt">Category will appear here</div>
+        </div>
+        
+        <div class="battle-controls">
+          <button onclick="nextCompliment()" class="next-btn">Done! Next Turn</button>
+          <button onclick="passCompliment()" class="pass-btn">Pass (can't think of one)</button>
+        </div>
+        
+        <div class="battle-stats">
+          <p>Compliments Given: <span id="compliment-count">0</span></p>
+          <p>Passes Used: <span id="pass-count">0</span>/3</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="tab-content" id="adults-only" style="display: none;">
     <h2 class="tab-description">🔞 Intimate Playground — Premium experiences for couples 21+</h2>
     <div class="pro-tip">
@@ -6723,6 +7357,625 @@
         </div>
       `;
       document.getElementById('massageGuideContent').style.display = 'block';
+    }
+
+    // Game Arena JavaScript Functions
+    let currentGame = '';
+    let gameState = {};
+    
+    function openGame(gameType) {
+      currentGame = gameType;
+      var grid = document.querySelector('.intimate-grid');
+      if (grid) grid.style.display = 'none';
+      var iface = document.getElementById(gameType + '-interface');
+      document.body.appendChild(iface);
+      iface.style.display = 'block';
+      iface.scrollTop = 0;
+      initializeGame(gameType);
+    }
+    
+    function closeGame() {
+      if (currentGame) {
+        document.getElementById(currentGame + '-interface').style.display = 'none';
+        currentGame = '';
+        gameState = {};
+      }
+      var grid = document.querySelector('.intimate-grid');
+      if (grid) grid.style.display = 'grid';
+    }
+    
+    function initializeGame(gameType) {
+      switch(gameType) {
+        case 'truth-or-dare':
+          initTruthOrDare();
+          break;
+        case 'would-you-rather':
+          initWouldYouRather();
+          break;
+        case 'story-time':
+          initStoryTime();
+          break;
+        case 'couple-trivia':
+          initCoupleTrivia();
+          break;
+        case 'decision-roulette':
+          initDecisionRoulette();
+          break;
+        case 'compliment-battle':
+          initComplimentBattle();
+          break;
+      }
+    }
+
+    // Truth or Dare Game
+    function initTruthOrDare() {
+      gameState.truthDare = {
+        currentPlayer: 1,
+        difficulty: '',
+        questions: {
+          funny: {
+            truth: [
+              "What's the weirdest food combination you secretly love?",
+              "What's your most embarrassing childhood memory?",
+              "If you could only communicate in movie quotes for a day, which movie would you choose?",
+              "What's the most ridiculous fear you had as a child?",
+              "What's your weirdest habit that you think no one knows about?",
+              "If you had to wear a warning label, what would it say?",
+              "What's the funniest thing you believed as a child?",
+              "What's your most irrational pet peeve?",
+              "If animals could talk, which species would be the rudest?",
+              "What's the most embarrassing thing in your search history?"
+            ],
+            dare: [
+              "Do your best impression of me ordering food",
+              "Sing the chorus of our song in a funny voice",
+              "Do 10 jumping jacks while reciting the alphabet backwards",
+              "Text your mom 'I just saw a unicorn'",
+              "Do your best animal impression for 30 seconds",
+              "Speak in an accent for the next 3 rounds",
+              "Do a silly dance for 1 minute",
+              "Let me post a funny photo of you on your social media",
+              "Eat a spoonful of a condiment of my choice",
+              "Call a random contact and sing 'Happy Birthday'"
+            ]
+          },
+          romantic: {
+            truth: [
+              "What was the exact moment you knew you loved me?",
+              "What's your favorite memory of us together?",
+              "What's one thing I do that makes you feel most loved?",
+              "If you could relive one day with me, which would it be?",
+              "What initially attracted you to me?",
+              "What's your favorite thing about our relationship?",
+              "What's one thing you hope we'll do together in the future?",
+              "What's the sweetest thing I've ever done for you?",
+              "How do you feel when we're apart?",
+              "What's your favorite way to show me you love me?"
+            ],
+            dare: [
+              "Give me a 2-minute massage",
+              "Write me a short love poem and read it aloud",
+              "Tell me 5 things you love about me while looking into my eyes",
+              "Recreate our first kiss",
+              "Plan our next date night out loud right now",
+              "Slow dance with me to a song you pick",
+              "Give me three different types of kisses",
+              "Tell me your favorite thing about my personality",
+              "Describe what you want our life to look like in 5 years",
+              "Create a couples handshake with me"
+            ]
+          },
+          spicy: {
+            truth: [
+              "What's your biggest fantasy involving us?",
+              "Where's the most adventurous place you'd want to be intimate?",
+              "What's something you've always wanted to try with me?",
+              "What's your favorite thing about our physical relationship?",
+              "What's the sexiest thing I've ever worn?",
+              "What turns you on most about me?",
+              "What's your favorite time of day to be intimate and why?",
+              "What's something you find irresistibly attractive about me?",
+              "What's a romantic fantasy you've had about us?",
+              "What's the most romantic setting you can imagine for us?"
+            ],
+            dare: [
+              "Give me a sensual kiss that lasts at least 10 seconds",
+              "Whisper something sexy in my ear",
+              "Give me a massage focusing on my shoulders and neck",
+              "Tell me what you want to do with me later tonight",
+              "Kiss me in three different places (keep it appropriate for your setting!)",
+              "Describe your ideal romantic evening with me",
+              "Give me a compliment about my physical appearance",
+              "Hold me close and tell me how I make you feel",
+              "Plan a romantic surprise for me (and follow through!)",
+              "Tell me your favorite physical feature of mine and why"
+            ]
+          },
+          deep: {
+            truth: [
+              "What's your biggest fear about our relationship?",
+              "How have I changed you as a person?",
+              "What's something you've learned about love from being with me?",
+              "What do you think is our biggest strength as a couple?",
+              "What's one challenge you think we should work on together?",
+              "How do you see our relationship evolving?",
+              "What's the most important thing you want me to know about you?",
+              "What's something you admire about the way I handle difficult situations?",
+              "How do you think we complement each other?",
+              "What's one thing you hope never changes about us?"
+            ],
+            dare: [
+              "Share a vulnerable moment or fear with me",
+              "Tell me about a time when I helped you through something difficult",
+              "Describe what home means to you, using our relationship as context",
+              "Share a goal you have for us as a couple",
+              "Tell me about a moment when you felt incredibly proud of me",
+              "Explain how you see me in your future",
+              "Share something you've never told anyone else",
+              "Describe what makes our relationship unique",
+              "Tell me about a time when I surprised you",
+              "Share your honest feelings about our communication"
+            ]
+          }
+        }
+      };
+    }
+    
+    function selectDifficulty(level) {
+      gameState.truthDare.difficulty = level;
+      document.querySelector('.difficulty-selector').style.display = 'none';
+      document.getElementById('truth-dare-game').style.display = 'block';
+      updateTurnDisplay();
+    }
+    
+    function getQuestion(type) {
+      const { difficulty } = gameState.truthDare;
+      const questions = gameState.truthDare.questions[difficulty][type];
+      const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+      
+      document.getElementById('question-text').textContent = randomQuestion;
+      document.getElementById('done-btn').style.display = 'block';
+    }
+    
+    function nextPlayer() {
+      gameState.truthDare.currentPlayer = gameState.truthDare.currentPlayer === 1 ? 2 : 1;
+      updateTurnDisplay();
+      document.getElementById('question-text').textContent = "Click Truth or Dare to continue!";
+      document.getElementById('done-btn').style.display = 'none';
+    }
+    
+    function updateTurnDisplay() {
+      document.getElementById('current-player').textContent = `Player ${gameState.truthDare.currentPlayer}`;
+    }
+
+    // Would You Rather Game
+    function initWouldYouRather() {
+      gameState.wyr = {
+        category: '',
+        questions: {
+          romantic: [
+            { a: "Have a candlelit dinner at home", b: "Go out to a fancy restaurant" },
+            { a: "Receive love letters", b: "Receive surprise gifts" },
+            { a: "Dance in the rain", b: "Watch the sunrise together" },
+            { a: "Have a weekend getaway in the mountains", b: "Have a weekend getaway at the beach" },
+            { a: "Cook dinner together", b: "Have dinner cooked for you" },
+            { a: "Get surprise flowers once a week", b: "Get surprise date nights once a month" },
+            { a: "Hold hands everywhere you go", b: "Kiss goodbye every time you part" },
+            { a: "Share one ice cream cone", b: "Each have your own dessert" }
+          ],
+          lifestyle: [
+            { a: "Live in a cozy apartment in the city", b: "Live in a house in the suburbs" },
+            { a: "Have unlimited travel money", b: "Have unlimited shopping money" },
+            { a: "Always have to wake up early", b: "Always have to stay up late" },
+            { a: "Never use social media again", b: "Never watch TV again" },
+            { a: "Only eat your favorite meal forever", b: "Never eat your favorite meal again" },
+            { a: "Have the ability to fly", b: "Have the ability to read minds" },
+            { a: "Be able to speak every language", b: "Be able to play every instrument" },
+            { a: "Always be 10 minutes late", b: "Always be 20 minutes early" }
+          ],
+          adventure: [
+            { a: "Go bungee jumping together", b: "Go skydiving together" },
+            { a: "Explore a haunted house", b: "Go camping in the wilderness" },
+            { a: "Take a spontaneous road trip", b: "Take a planned luxury vacation" },
+            { a: "Learn to salsa dance", b: "Learn to rock climb" },
+            { a: "Go on a food tour in Tokyo", b: "Go on a wine tour in Italy" },
+            { a: "Swim with dolphins", b: "Go on a safari" },
+            { a: "Take a hot air balloon ride", b: "Go on a scenic helicopter tour" },
+            { a: "Try extreme sports together", b: "Try new cuisines together" }
+          ]
+        }
+      };
+    }
+    
+    function selectWYRCategory(category) {
+      gameState.wyr.category = category;
+      document.querySelector('.difficulty-selector').style.display = 'none';
+      document.getElementById('wyr-game').style.display = 'block';
+      newWYRQuestion();
+    }
+    
+    function newWYRQuestion() {
+      const questions = gameState.wyr.questions[gameState.wyr.category];
+      const question = questions[Math.floor(Math.random() * questions.length)];
+      
+      document.getElementById('option-a-text').textContent = question.a;
+      document.getElementById('option-b-text').textContent = question.b;
+      
+      // Reset option styles
+      document.getElementById('option-a').classList.remove('selected');
+      document.getElementById('option-b').classList.remove('selected');
+    }
+    
+    function chooseOption(option) {
+      // Highlight selected option
+      document.getElementById('option-a').classList.remove('selected');
+      document.getElementById('option-b').classList.remove('selected');
+      document.getElementById(`option-${option}`).classList.add('selected');
+    }
+
+    // Story Time Game
+    function initStoryTime() {
+      gameState.story = {
+        theme: '',
+        currentStory: '',
+        prompts: {
+          adventure: [
+            "Our heroes find themselves at the edge of a mysterious forest...",
+            "Suddenly, they discover an ancient map hidden in...",
+            "A strange creature approaches them and offers to...",
+            "They must choose between two dangerous paths...",
+            "In the distance, they hear the sound of...",
+            "A treasure chest appears before them, but...",
+            "The ground begins to shake as...",
+            "A wise old wizard emerges and warns them about..."
+          ],
+          romance: [
+            "On a perfect evening, two souls meet at...",
+            "Their eyes lock across a crowded room and...",
+            "A handwritten letter arrives with the words...",
+            "Under the starlight, they promise to...",
+            "A flower petal falls, carrying with it the memory of...",
+            "In a quiet café, one whispers to the other...",
+            "The music plays softly as they...",
+            "A photograph captures the moment when..."
+          ],
+          fantasy: [
+            "In a realm where magic flows like rivers...",
+            "The enchanted mirror shows them a vision of...",
+            "A dragon's egg begins to crack, revealing...",
+            "The spell requires two hearts to...",
+            "Fairy dust shimmers in the air as...",
+            "The magic portal opens to reveal...",
+            "A unicorn grants them one wish, but...",
+            "The crystal ball shows their destiny involves..."
+          ],
+          modern: [
+            "In the bustling city, two paths cross when...",
+            "The notification pings with a message that changes everything...",
+            "During the morning coffee run, they realize...",
+            "The Uber driver looks in the mirror and says...",
+            "A viral video shows them doing...",
+            "The weather app was wrong, and now they're...",
+            "At the rooftop party, the music stops and...",
+            "The elevator breaks down, trapping them with..."
+          ]
+        }
+      };
+    }
+    
+    function selectStoryTheme(theme) {
+      gameState.story.theme = theme;
+      gameState.story.currentStory = '';
+      document.querySelector('.difficulty-selector').style.display = 'none';
+      document.getElementById('story-game').style.display = 'block';
+      newStoryPrompt();
+    }
+    
+    function newStoryPrompt() {
+      const prompts = gameState.story.prompts[gameState.story.theme];
+      const prompt = prompts[Math.floor(Math.random() * prompts.length)];
+      document.getElementById('story-prompt-text').textContent = prompt;
+      document.getElementById('story-input').value = '';
+    }
+    
+    function addToStory() {
+      const input = document.getElementById('story-input').value.trim();
+      if (!input) return;
+      
+      gameState.story.currentStory += (gameState.story.currentStory ? ' ' : '') + input;
+      document.getElementById('story-text').textContent = gameState.story.currentStory;
+      document.getElementById('story-input').value = '';
+      
+      // Generate next prompt
+      setTimeout(() => {
+        newStoryPrompt();
+      }, 500);
+    }
+    
+    function newStory() {
+      gameState.story.currentStory = '';
+      document.getElementById('story-text').textContent = '';
+      newStoryPrompt();
+    }
+
+    // Couple Trivia Game
+    function initCoupleTrivia() {
+      gameState.trivia = {
+        player1: { name: '', score: 0 },
+        player2: { name: '', score: 0 },
+        currentPlayer: 1,
+        questions: [
+          { about: 1, question: "What is [NAME]'s favorite movie?", type: "open" },
+          { about: 2, question: "What is [NAME]'s biggest fear?", type: "open" },
+          { about: 1, question: "What would [NAME] do with a million dollars?", type: "open" },
+          { about: 2, question: "What is [NAME]'s dream vacation destination?", type: "open" },
+          { about: 1, question: "What is [NAME]'s favorite way to relax?", type: "open" },
+          { about: 2, question: "What superpower would [NAME] choose?", type: "open" },
+          { about: 1, question: "What is [NAME]'s favorite childhood memory?", type: "open" },
+          { about: 2, question: "What would [NAME] do on a perfect day off?", type: "open" }
+        ]
+      };
+    }
+    
+    function startTrivia() {
+      const p1Name = document.getElementById('player1-name').value.trim();
+      const p2Name = document.getElementById('player2-name').value.trim();
+      
+      if (!p1Name || !p2Name) {
+        alert('Please enter both names!');
+        return;
+      }
+      
+      gameState.trivia.player1.name = p1Name;
+      gameState.trivia.player2.name = p2Name;
+      
+      document.getElementById('trivia-setup').style.display = 'none';
+      document.getElementById('trivia-game').style.display = 'block';
+      
+      nextTriviaQuestion();
+    }
+    
+    function nextTriviaQuestion() {
+      const { questions, player1, player2, currentPlayer } = gameState.trivia;
+      const question = questions[Math.floor(Math.random() * questions.length)];
+      const aboutPlayer = question.about === 1 ? player1 : player2;
+      const askingPlayer = currentPlayer === 1 ? player1 : player2;
+      
+      document.getElementById('trivia-target').textContent = aboutPlayer.name;
+      document.getElementById('trivia-question-text').textContent = question.question.replace('[NAME]', aboutPlayer.name);
+      
+      // For open questions, create simple answer choices
+      const choices = ['Correct!', 'Close enough!', 'Not quite, but good try!'];
+      const choicesHtml = choices.map((choice, i) => 
+        `<button onclick="triviaAnswer(${i})" class="trivia-choice">${choice}</button>`
+      ).join('');
+      
+      document.getElementById('trivia-choices').innerHTML = choicesHtml;
+      document.getElementById('next-trivia').style.display = 'none';
+    }
+    
+    function triviaAnswer(choice) {
+      if (choice === 0) {
+        if (gameState.trivia.currentPlayer === 1) {
+          gameState.trivia.player1.score++;
+        } else {
+          gameState.trivia.player2.score++;
+        }
+      }
+      
+      document.getElementById('p1-score').textContent = gameState.trivia.player1.score;
+      document.getElementById('p2-score').textContent = gameState.trivia.player2.score;
+      
+      gameState.trivia.currentPlayer = gameState.trivia.currentPlayer === 1 ? 2 : 1;
+      
+      document.getElementById('next-trivia').style.display = 'block';
+    }
+
+    // Decision Roulette Game
+    function initDecisionRoulette() {
+      gameState.roulette = {
+        category: '',
+        options: [],
+        spinning: false,
+        options_lists: {
+          dinner: ['Pizza Night', 'Cooking Together', 'Takeout Thai', 'Homemade Pasta', 'Sushi Date', 'Food Truck Hunt', 'BBQ Time', 'Breakfast for Dinner'],
+          date: ['Movie Night In', 'Sunset Drive', 'Mini Golf', 'Art Gallery', 'Coffee Shop Hopping', 'Hiking Trail', 'Bookstore Browse', 'Dance Class'],
+          movie: ['Romantic Comedy', 'Action Adventure', 'Documentary', 'Classic Film', 'Horror Movie', 'Foreign Film', 'Animation', 'Thriller'],
+          activity: ['Board Games', 'Video Games', 'Puzzle Time', 'Reading Together', 'Music Session', 'Photo Walk', 'Cooking Class', 'Spa Night'],
+          travel: ['Beach Town', 'Mountain Cabin', 'City Break', 'Countryside', 'Desert Adventure', 'Island Getaway', 'European City', 'National Park'],
+          custom: []
+        }
+      };
+    }
+    
+    function spinRoulette(category) {
+      if (category === 'custom') {
+        document.querySelector('.roulette-selector').style.display = 'none';
+        document.getElementById('custom-roulette').style.display = 'block';
+        return;
+      }
+      
+      gameState.roulette.category = category;
+      gameState.roulette.options = [...gameState.roulette.options_lists[category]];
+      
+      document.querySelector('.roulette-selector').style.display = 'none';
+      document.getElementById('roulette-wheel').style.display = 'block';
+      
+      updateSpinnerOptions();
+    }
+    
+    function updateSpinnerOptions() {
+      const spinner = document.getElementById('spinner');
+      const options = gameState.roulette.options;
+      
+      spinner.innerHTML = options.map((option, i) => 
+        `<div class="spinner-option" style="transform: rotate(${i * (360 / options.length)}deg)">${option}</div>`
+      ).join('');
+    }
+    
+    function spinWheel() {
+      if (gameState.roulette.spinning) return;
+      
+      gameState.roulette.spinning = true;
+      const spinner = document.getElementById('spinner');
+      const randomRotation = Math.random() * 360 + 720; // At least 2 full rotations
+      
+      spinner.style.transition = 'transform 3s ease-out';
+      spinner.style.transform = `rotate(${randomRotation}deg)`;
+      
+      setTimeout(() => {
+        const options = gameState.roulette.options;
+        const selectedIndex = Math.floor(Math.random() * options.length);
+        const result = options[selectedIndex];
+        
+        document.getElementById('roulette-result-text').textContent = result;
+        gameState.roulette.spinning = false;
+        spinner.style.transition = 'none';
+      }, 3000);
+    }
+    
+    function addCustomOption() {
+      const input = document.getElementById('custom-option');
+      const option = input.value.trim();
+      
+      if (!option) return;
+      
+      gameState.roulette.options_lists.custom.push(option);
+      input.value = '';
+      
+      updateCustomOptionsList();
+      
+      if (gameState.roulette.options_lists.custom.length >= 2) {
+        document.getElementById('start-custom').style.display = 'block';
+      }
+    }
+    
+    function updateCustomOptionsList() {
+      const list = document.getElementById('custom-options-list');
+      list.innerHTML = gameState.roulette.options_lists.custom.map((option, i) => 
+        `<div class="custom-option-item">${option} <button onclick="removeCustomOption(${i})">×</button></div>`
+      ).join('');
+    }
+    
+    function removeCustomOption(index) {
+      gameState.roulette.options_lists.custom.splice(index, 1);
+      updateCustomOptionsList();
+      
+      if (gameState.roulette.options_lists.custom.length < 2) {
+        document.getElementById('start-custom').style.display = 'none';
+      }
+    }
+    
+    function startCustomRoulette() {
+      gameState.roulette.category = 'custom';
+      gameState.roulette.options = [...gameState.roulette.options_lists.custom];
+      
+      document.getElementById('custom-roulette').style.display = 'none';
+      document.getElementById('roulette-wheel').style.display = 'block';
+      
+      updateSpinnerOptions();
+    }
+    
+    function newRoulette() {
+      document.getElementById('roulette-wheel').style.display = 'none';
+      document.querySelector('.roulette-selector').style.display = 'block';
+      document.getElementById('roulette-result-text').textContent = 'Spin the wheel!';
+    }
+
+    // Compliment Battle Game
+    function initComplimentBattle() {
+      gameState.compliments = {
+        player1: { name: '', compliments: 0 },
+        player2: { name: '', compliments: 0 },
+        currentPlayer: 1,
+        passesUsed: 0,
+        categories: [],
+        prompts: {
+          appearance: [
+            "their smile", "their eyes", "their style", "their hair", "their laugh", 
+            "the way they look in the morning", "their hands", "their voice"
+          ],
+          personality: [
+            "their sense of humor", "their kindness", "their intelligence", "their creativity",
+            "their determination", "their compassion", "their honesty", "their loyalty"
+          ],
+          achievements: [
+            "something they've accomplished", "a skill they have", "their work ethic",
+            "their talents", "their growth", "their courage", "their perseverance"
+          ],
+          random: [
+            "the way they make you feel", "something unique about them", "their energy",
+            "their impact on others", "something they don't know about themselves"
+          ]
+        }
+      };
+    }
+    
+    function startComplimentBattle() {
+      const p1Name = document.getElementById('battle-p1-name').value.trim();
+      const p2Name = document.getElementById('battle-p2-name').value.trim();
+      
+      if (!p1Name || !p2Name) {
+        alert('Please enter both names!');
+        return;
+      }
+      
+      gameState.compliments.player1.name = p1Name;
+      gameState.compliments.player2.name = p2Name;
+      
+      // Get selected categories
+      const checkboxes = document.querySelectorAll('.battle-categories input[type="checkbox"]:checked');
+      gameState.compliments.categories = Array.from(checkboxes).map(cb => cb.value);
+      
+      if (gameState.compliments.categories.length === 0) {
+        alert('Please select at least one category!');
+        return;
+      }
+      
+      document.getElementById('battle-setup').style.display = 'none';
+      document.getElementById('battle-game').style.display = 'block';
+      
+      nextCompliment();
+    }
+    
+    function nextCompliment() {
+      const { player1, player2, currentPlayer, categories, prompts } = gameState.compliments;
+      const currentPlayerObj = currentPlayer === 1 ? player1 : player2;
+      const targetPlayer = currentPlayer === 1 ? player2 : player1;
+      
+      document.getElementById('battle-current').textContent = currentPlayerObj.name;
+      document.getElementById('battle-target').textContent = targetPlayer.name;
+      
+      // Random category and prompt
+      const category = categories[Math.floor(Math.random() * categories.length)];
+      const prompt = prompts[category][Math.floor(Math.random() * prompts[category].length)];
+      
+      document.getElementById('compliment-prompt').innerHTML = `<strong>${category}:</strong> ${prompt}`;
+      
+      // Switch players
+      gameState.compliments.currentPlayer = currentPlayer === 1 ? 2 : 1;
+      
+      // Update stats
+      currentPlayerObj.compliments++;
+      updateComplimentStats();
+    }
+    
+    function passCompliment() {
+      gameState.compliments.passesUsed++;
+      updateComplimentStats();
+      
+      if (gameState.compliments.passesUsed >= 3) {
+        alert('Game Over! You used all your passes. Great job both of you!');
+        return;
+      }
+      
+      nextCompliment();
+    }
+    
+    function updateComplimentStats() {
+      document.getElementById('compliment-count').textContent = 
+        gameState.compliments.player1.compliments + gameState.compliments.player2.compliments;
+      document.getElementById('pass-count').textContent = gameState.compliments.passesUsed;
     }
   </script>
 </body>

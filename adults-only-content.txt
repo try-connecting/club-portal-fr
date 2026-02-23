@@ -1,0 +1,1037 @@
+  <div class="tab-content" id="adults-only" style="display: none;">
+    <h2 class="tab-description">🔞 Intimate Playground — Premium experiences for couples 21+</h2>
+    <div class="pro-tip">
+      <span class="pro-tip-label">✨ Premium Content</span>
+      This curated collection of intimate experiences is designed to deepen your connection through playful exploration, communication, and shared discovery.
+    </div>
+
+    <!-- Adults Only Content Grid -->
+    <div class="adults-content-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0;">
+      
+      <!-- Sex Position Spinner -->
+      <div class="intimate-card" data-category="spinner">
+        <div class="intimate-header">
+          <div class="intimate-icon">🎯</div>
+          <h3>Position Spinner</h3>
+          <p>Interactive wheel with illustrated positions, difficulty ratings, and expert tips</p>
+        </div>
+        <div class="intimate-stats">
+          <span>12+ Positions</span>
+          <span>Difficulty Rated</span>
+          <span>Expert Tips</span>
+        </div>
+        <button class="intimate-btn" onclick="openSection('position-spinner')">Spin the Wheel</button>
+      </div>
+
+      <!-- Bedroom Bucket List -->
+      <div class="intimate-card" data-category="bucketlist">
+        <div class="intimate-header">
+          <div class="intimate-icon">📋</div>
+          <h3>Bedroom Bucket List</h3>
+          <p>50 intimate challenges to check off together, from mild adventures to wild experiences</p>
+        </div>
+        <div class="intimate-stats">
+          <span>50 Challenges</span>
+          <span>Progressive Levels</span>
+          <span>Shared Progress</span>
+        </div>
+        <button class="intimate-btn" onclick="openSection('bucket-list')">View Challenges</button>
+      </div>
+
+      <!-- Desire Discovery Quiz (Solo) -->
+      <div class="intimate-card" data-category="quiz">
+        <div class="intimate-header">
+          <div class="intimate-icon">🔥</div>
+          <h3>Desire Discovery</h3>
+          <p>Solo quiz — explore your deepest desires, turn-ons, and intimate personality</p>
+        </div>
+        <div class="intimate-stats">
+          <span>Personal Assessment</span>
+          <span>Couple Matching</span>
+          <span>Custom Suggestions</span>
+        </div>
+        <button class="intimate-btn" onclick="openSection('desire-discovery')">Take Quiz</button>
+      </div>
+
+      <!-- When & How Guide -->
+      <div class="intimate-card" data-category="timing">
+        <div class="intimate-header">
+          <div class="intimate-icon">⏰</div>
+          <h3>When & How Guide</h3>
+          <p>Perfect timing, mood-setting secrets, and communication scripts for intimacy</p>
+        </div>
+        <div class="intimate-stats">
+          <span>Timing Tips</span>
+          <span>Mood Setting</span>
+          <span>Communication</span>
+        </div>
+        <button class="intimate-btn" onclick="openSection('timing-guide')">Learn More</button>
+      </div>
+
+      <!-- Fantasy Explorer -->
+      <div class="intimate-card" data-category="fantasy">
+        <div class="intimate-header">
+          <div class="intimate-icon">💭</div>
+          <h3>Fantasy Explorer</h3>
+          <p>Anonymous card-swap game for gradually sharing fantasies in comfort tiers</p>
+        </div>
+        <div class="intimate-stats">
+          <span>Anonymous Cards</span>
+          <span>Comfort Tiers</span>
+          <span>Safe Exploration</span>
+        </div>
+        <button class="intimate-btn" onclick="openSection('fantasy-explorer')">Explore Together</button>
+      </div>
+
+      <!-- Sensual Massage Tutorial -->
+      <div class="intimate-card" data-category="massage">
+        <div class="intimate-header">
+          <div class="intimate-icon">🫴</div>
+          <h3>Massage Tutorials</h3>
+          <p>Step-by-step illustrated guides with curated music playlists for the perfect ambiance</p>
+        </div>
+        <div class="intimate-stats">
+          <span>Step-by-Step</span>
+          <span>Music Playlists</span>
+          <span>Illustrated Guide</span>
+        </div>
+        <button class="intimate-btn" onclick="openSection('massage-guide')">Start Learning</button>
+      </div>
+    </div>
+
+    <!-- Individual Section Content -->
+    <div id="section-content" style="display: none; margin-top: 3rem;">
+      <!-- Content will be dynamically loaded here -->
+    </div>
+  </div>
+  
+ <div class="portal-footer">
+ <div class="footer-content">
+  <div class="footer-contact">
+  Got a question or need to manage your subscription? We&#8217;re just an email away &#8212; <a href="mailto:hey@tryconnecting.com">hey@tryconnecting.com</a>
+  </div>
+  <div class="footer-copyright">
+  &#169; 2026 Connecting&#8482; &#8212; All rights reserved
+  </div>
+ </div>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+<script src="js/app.js"></script>
+  </div>
+  <script>
+    // Simple hash-based access check (not bank-level security, but good enough for member gating)
+    async function hashCode(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+    // Default code: "connecting2026" — change the hash below to update
+    const VALID_HASH = '7e5db6a67a0f0caed63a8670d4e7b2f0c8f2e5a7d1c3b4a6f8e0d2c4b6a8f0e2';
+    let accessGranted = false;
+
+    async function checkAccess() {
+      const code = document.getElementById('accessCode').value.trim();
+      if (!code) return;
+      // For now, simple plaintext check (replace with hash in production)
+      const validCodes = ['connecting2026', 'club2026', 'dareordare'];
+      if (validCodes.includes(code.toLowerCase())) {
+        accessGranted = true;
+        document.getElementById('accessGate').style.display = 'none';
+        document.getElementById('portalContent').style.display = 'block';
+        sessionStorage.setItem('clubAccess', 'granted');
+      } else {
+        document.getElementById('accessError').style.display = 'block';
+        document.getElementById('accessCode').style.borderColor = '#ff6b6b';
+      }
+    }
+    // Check if already authenticated in this session
+    if (sessionStorage.getItem('clubAccess') === 'granted') {
+      document.getElementById('accessGate').style.display = 'none';
+      document.getElementById('portalContent').style.display = 'block';
+    }
+
+    // Quiz Engine JavaScript
+    const quizData = {
+      'love-language': {
+        title: '💕 Love Language Assessment',
+        description: 'Discover how you and your partner prefer to give and receive love',
+        dualPartner: true,
+        questions: [
+          {
+            question: "When your partner does something special for you, what means the most?",
+            answers: [
+              { text: "They tell you how much they love and appreciate you", type: "words" },
+              { text: "They help you with something you've been putting off", type: "service" },
+              { text: "They surprise you with a thoughtful gift", type: "gifts" },
+              { text: "They plan quality time together doing something you enjoy", type: "time" },
+              { text: "They give you a long, loving hug or hold your hand", type: "touch" }
+            ]
+          },
+          {
+            question: "What makes you feel most loved in your relationship?",
+            answers: [
+              { text: "Hearing 'I love you' and other affirming words regularly", type: "words" },
+              { text: "Your partner helping with chores or tasks without being asked", type: "service" },
+              { text: "Receiving surprise gifts or tokens of love", type: "gifts" },
+              { text: "Having your partner's full attention during conversations", type: "time" },
+              { text: "Physical closeness, cuddling, and intimate touch", type: "touch" }
+            ]
+          },
+          {
+            question: "When you want to show love to your partner, you're most likely to:",
+            answers: [
+              { text: "Write them a heartfelt note or give genuine compliments", type: "words" },
+              { text: "Do something helpful that makes their day easier", type: "service" },
+              { text: "Pick up something you know they'd love", type: "gifts" },
+              { text: "Plan a special date or set aside uninterrupted time together", type: "time" },
+              { text: "Give them a massage or be physically affectionate", type: "touch" }
+            ]
+          },
+          {
+            question: "What would hurt your feelings most in a relationship?",
+            answers: [
+              { text: "Your partner rarely says loving or encouraging words", type: "words" },
+              { text: "Your partner never offers to help when you're overwhelmed", type: "service" },
+              { text: "Your partner forgets important occasions and never gives gifts", type: "gifts" },
+              { text: "Your partner is always distracted when you're together", type: "time" },
+              { text: "Your partner avoids physical affection and intimacy", type: "touch" }
+            ]
+          },
+          {
+            question: "During a difficult time, what would comfort you most?",
+            answers: [
+              { text: "Your partner telling you they believe in you and offering encouragement", type: "words" },
+              { text: "Your partner taking care of practical things so you can focus on healing", type: "service" },
+              { text: "Your partner bringing you something thoughtful to cheer you up", type: "gifts" },
+              { text: "Your partner clearing their schedule to be with you", type: "time" },
+              { text: "Your partner holding you close and offering physical comfort", type: "touch" }
+            ]
+          },
+          {
+            question: "Which of these gestures would make you feel most appreciated?",
+            answers: [
+              { text: "Your partner publicly praising you or bragging about your accomplishments", type: "words" },
+              { text: "Your partner taking over a task you dislike without being asked", type: "service" },
+              { text: "Your partner surprising you with something you've wanted", type: "gifts" },
+              { text: "Your partner planning an entire day around your interests", type: "time" },
+              { text: "Your partner giving you a spontaneous back rub or holding your hand", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're feeling disconnected from your partner, what would help most?",
+            answers: [
+              { text: "Having a heart-to-heart conversation about your feelings", type: "words" },
+              { text: "Working together on a project or shared task", type: "service" },
+              { text: "Receiving an unexpected small gift or token of love", type: "gifts" },
+              { text: "Spending uninterrupted, focused time together", type: "time" },
+              { text: "Increased physical closeness and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What type of anniversary celebration would mean the most to you?",
+            answers: [
+              { text: "Your partner writing you a beautiful letter about your journey together", type: "words" },
+              { text: "Your partner organizing everything so you can just enjoy the day", type: "service" },
+              { text: "Your partner giving you a meaningful, thoughtful gift", type: "gifts" },
+              { text: "Spending the whole day together doing things you both love", type: "time" },
+              { text: "A romantic, intimate evening with lots of physical closeness", type: "touch" }
+            ]
+          },
+          {
+            question: "When your partner wants to apologize after an argument, what works best?",
+            answers: [
+              { text: "A sincere verbal apology explaining what they'll do differently", type: "words" },
+              { text: "Actions that show they're trying to fix the problem", type: "service" },
+              { text: "A peace offering or gesture to show they care", type: "gifts" },
+              { text: "Sitting down together to really talk things through", type: "time" },
+              { text: "A hug and physical reconciliation", type: "touch" }
+            ]
+          },
+          {
+            question: "What makes you feel most secure in your relationship?",
+            answers: [
+              { text: "Regular verbal reassurance and expressions of love", type: "words" },
+              { text: "Your partner consistently following through on their promises", type: "service" },
+              { text: "Receiving thoughtful gestures that show you're in their thoughts", type: "gifts" },
+              { text: "Knowing you're a priority in your partner's schedule", type: "time" },
+              { text: "Frequent physical affection and intimacy", type: "touch" }
+            ]
+          },
+          {
+            question: "How do you prefer to receive encouragement when facing a challenge?",
+            answers: [
+              { text: "Verbal support and motivational words", type: "words" },
+              { text: "Practical help to reduce your stress and workload", type: "service" },
+              { text: "A thoughtful gift to boost your spirits", type: "gifts" },
+              { text: "Your partner's presence and undivided attention", type: "time" },
+              { text: "Physical comfort like hugs or hand-holding", type: "touch" }
+            ]
+          },
+          {
+            question: "Which surprise from your partner would make your day?",
+            answers: [
+              { text: "A surprise text message telling you why they love you", type: "words" },
+              { text: "Coming home to find your partner has done all your chores", type: "service" },
+              { text: "Finding a small gift on your pillow or desk", type: "gifts" },
+              { text: "Your partner canceling other plans to spend time with you", type: "time" },
+              { text: "Your partner greeting you with extra affection when you get home", type: "touch" }
+            ]
+          },
+          {
+            question: "What would make you feel most loved on a random Tuesday?",
+            answers: [
+              { text: "Your partner telling you something specific they appreciate about you", type: "words" },
+              { text: "Your partner handling something you've been dreading", type: "service" },
+              { text: "Your partner bringing you coffee or a small treat", type: "gifts" },
+              { text: "Your partner suggesting you do something fun together", type: "time" },
+              { text: "Extra hugs, kisses, or cuddles throughout the day", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're proud of an achievement, how do you want your partner to respond?",
+            answers: [
+              { text: "With enthusiastic verbal praise and recognition", type: "words" },
+              { text: "By taking care of details so you can celebrate", type: "service" },
+              { text: "With a congratulatory gift or gesture", type: "gifts" },
+              { text: "By dedicating time to hear all about it and celebrate together", type: "time" },
+              { text: "With physical celebration - hugs, kisses, and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What type of daily gesture would mean the most to you?",
+            answers: [
+              { text: "Good morning and goodnight messages with loving words", type: "words" },
+              { text: "Your partner handling one small task to make your day easier", type: "service" },
+              { text: "Small, thoughtful surprises left for you to find", type: "gifts" },
+              { text: "A few minutes of undivided attention during your day", type: "time" },
+              { text: "Physical affection woven throughout your daily routine", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're stressed, what would help you feel most supported?",
+            answers: [
+              { text: "Your partner verbally acknowledging your stress and offering encouragement", type: "words" },
+              { text: "Your partner taking tasks off your plate without being asked", type: "service" },
+              { text: "Your partner bringing you something to help you relax", type: "gifts" },
+              { text: "Your partner making time to just be present with you", type: "time" },
+              { text: "Your partner offering physical comfort and stress relief", type: "touch" }
+            ]
+          },
+          {
+            question: "How do you best connect with your partner after time apart?",
+            answers: [
+              { text: "Sharing what happened and expressing how much you missed each other", type: "words" },
+              { text: "Working together on something that needs to be done", type: "service" },
+              { text: "Exchanging small gifts or tokens from your time apart", type: "gifts" },
+              { text: "Dedicating focused time to catch up and reconnect", type: "time" },
+              { text: "Physical reunification with lots of hugs and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What would make you feel most cherished in your relationship?",
+            answers: [
+              { text: "Hearing regularly about your partner's love and appreciation for you", type: "words" },
+              { text: "Seeing your partner anticipate your needs and care for you", type: "service" },
+              { text: "Receiving meaningful gifts that show your partner thinks of you", type: "gifts" },
+              { text: "Knowing you're the priority when your partner makes their schedule", type: "time" },
+              { text: "Experiencing constant physical connection and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "Which romantic gesture would touch your heart most deeply?",
+            answers: [
+              { text: "A handwritten love letter or poem", type: "words" },
+              { text: "Your partner planning and executing a perfect romantic evening", type: "service" },
+              { text: "A carefully chosen gift that shows deep understanding of you", type: "gifts" },
+              { text: "A romantic getaway focused entirely on being together", type: "time" },
+              { text: "An evening of intimate physical connection and closeness", type: "touch" }
+            ]
+          },
+          {
+            question: "In your ideal relationship, which of these would happen most frequently?",
+            answers: [
+              { text: "Daily expressions of love and appreciation through words", type: "words" },
+              { text: "Regular acts of service that make life easier for both of you", type: "service" },
+              { text: "Frequent small gifts and thoughtful surprises", type: "gifts" },
+              { text: "Consistent quality time and undivided attention", type: "time" },
+              { text: "Ongoing physical affection and touch throughout each day", type: "touch" }
+            ]
+          }
+        ]
+      },
+      'health-score': {
+        title: '💪 Relationship Health Score',
+        description: 'Comprehensive evaluation of your relationship across key areas',
+        dualPartner: false,
+        categories: ['Communication', 'Intimacy', 'Trust', 'Fun & Adventure', 'Emotional Support', 'Conflict Resolution'],
+        questions: [
+          { question: "We communicate openly about our feelings and concerns", category: "Communication" },
+          { question: "We listen to each other without interrupting or getting defensive", category: "Communication" },
+          { question: "We express our needs clearly and respectfully", category: "Communication" },
+          { question: "We have meaningful conversations about our relationship regularly", category: "Communication" },
+          { question: "We can discuss difficult topics without shutting down", category: "Communication" },
+          { question: "We maintain physical affection and intimacy that satisfies both of us", category: "Intimacy" },
+          { question: "We are comfortable being vulnerable with each other", category: "Intimacy" },
+          { question: "We make time for romantic connection regularly", category: "Intimacy" },
+          { question: "We feel emotionally close and connected most of the time", category: "Intimacy" },
+          { question: "We maintain healthy intimacy despite busy schedules", category: "Intimacy" },
+          { question: "We trust each other completely and feel secure in our relationship", category: "Trust" },
+          { question: "We keep our promises and commitments to each other", category: "Trust" },
+          { question: "We feel safe being ourselves around each other", category: "Trust" },
+          { question: "We handle each other's vulnerabilities with care", category: "Trust" },
+          { question: "We're honest with each other even when it's difficult", category: "Trust" },
+          { question: "We regularly have fun together and enjoy each other's company", category: "Fun & Adventure" },
+          { question: "We try new experiences and activities together", category: "Fun & Adventure" },
+          { question: "We laugh together frequently and share inside jokes", category: "Fun & Adventure" },
+          { question: "We make time for playfulness in our relationship", category: "Fun & Adventure" },
+          { question: "We create positive memories together regularly", category: "Fun & Adventure" },
+          { question: "We provide comfort and support during difficult times", category: "Emotional Support" },
+          { question: "We celebrate each other's successes and achievements", category: "Emotional Support" },
+          { question: "We encourage each other to pursue our goals and dreams", category: "Emotional Support" },
+          { question: "We offer reassurance when the other is feeling insecure", category: "Emotional Support" },
+          { question: "We're there for each other through life's challenges", category: "Emotional Support" },
+          { question: "We handle disagreements constructively without name-calling or insults", category: "Conflict Resolution" },
+          { question: "We can apologize sincerely when we've made mistakes", category: "Conflict Resolution" },
+          { question: "We work together to find solutions to our problems", category: "Conflict Resolution" },
+          { question: "We can discuss issues without them escalating into big fights", category: "Conflict Resolution" },
+          { question: "We forgive each other and move forward after conflicts", category: "Conflict Resolution" }
+        ]
+      },
+      'conflict-style': {
+        title: '⚖️ Conflict Style Finder',
+        description: 'Learn how you and your partner handle disagreements',
+        dualPartner: true,
+        questions: [
+          {
+            question: "When you and your partner disagree about something important, you typically:",
+            answers: [
+              { text: "Try to avoid the conflict and hope it resolves itself", type: "avoider" },
+              { text: "Look for a middle ground that both of you can accept", type: "compromiser" },
+              { text: "Stand firm on your position and argue your point strongly", type: "fighter" },
+              { text: "Focus on understanding their perspective and finding harmony", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "During a heated argument, your first instinct is to:",
+            answers: [
+              { text: "Walk away or suggest talking about it later", type: "avoider" },
+              { text: "Propose a solution that gives both of you something you want", type: "compromiser" },
+              { text: "Present your evidence and reasons why you're right", type: "fighter" },
+              { text: "Acknowledge their feelings and try to calm the situation", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When you feel hurt by your partner's actions, you:",
+            answers: [
+              { text: "Keep it to yourself to avoid creating more problems", type: "avoider" },
+              { text: "Explain what hurt you and ask for what you need going forward", type: "compromiser" },
+              { text: "Tell them directly how their actions affected you", type: "fighter" },
+              { text: "Try to understand why they acted that way before addressing your hurt", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When discussing money or financial decisions, you tend to:",
+            answers: [
+              { text: "Let your partner handle most financial discussions", type: "avoider" },
+              { text: "Find budget solutions that work for both of your priorities", type: "compromiser" },
+              { text: "Advocate strongly for your financial priorities and concerns", type: "fighter" },
+              { text: "Focus on understanding each other's financial values first", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner criticizes something you did, you usually:",
+            answers: [
+              { text: "Get quiet and withdraw from the conversation", type: "avoider" },
+              { text: "Accept their point but also explain your perspective", type: "compromiser" },
+              { text: "Defend your actions and point out their flaws too", type: "fighter" },
+              { text: "Ask them to help you understand what went wrong", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When you need to discuss a sensitive topic with your partner:",
+            answers: [
+              { text: "You often put it off hoping the issue will resolve itself", type: "avoider" },
+              { text: "You plan what to say to make it fair for both of you", type: "compromiser" },
+              { text: "You bring it up directly and speak your mind clearly", type: "fighter" },
+              { text: "You choose your timing carefully to create a calm environment", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner is upset about something you don't think is a big deal:",
+            answers: [
+              { text: "You hope they'll get over it without you having to discuss it", type: "avoider" },
+              { text: "You try to find a compromise that addresses their concern", type: "compromiser" },
+              { text: "You explain why you think they're overreacting", type: "fighter" },
+              { text: "You listen to understand why it matters so much to them", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When making decisions about social plans or commitments:",
+            answers: [
+              { text: "You usually go along with what your partner wants", type: "avoider" },
+              { text: "You negotiate so you both get some of what you want", type: "compromiser" },
+              { text: "You make your preferences known and stick to them", type: "fighter" },
+              { text: "You discuss what would make you both happiest", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "After an argument is over, you typically:",
+            answers: [
+              { text: "Try to act like nothing happened and move on quickly", type: "avoider" },
+              { text: "Review what you both learned and how to improve next time", type: "compromiser" },
+              { text: "Feel vindicated if you proved your point or frustrated if you didn't", type: "fighter" },
+              { text: "Focus on repairing the emotional connection between you", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When your partner is stressed about work or other life issues:",
+            answers: [
+              { text: "You give them space and try not to add to their stress", type: "avoider" },
+              { text: "You offer practical solutions and ways to help", type: "compromiser" },
+              { text: "You tell them directly what you think they should do", type: "fighter" },
+              { text: "You provide emotional support and listen without judging", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If you disagree about household responsibilities, you:",
+            answers: [
+              { text: "Usually just do things yourself to avoid the conflict", type: "avoider" },
+              { text: "Suggest dividing tasks based on each person's preferences", type: "compromiser" },
+              { text: "Clearly state your expectations and hold your partner accountable", type: "fighter" },
+              { text: "Focus on creating a system that feels fair to both of you", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When your partner brings up a relationship issue you'd rather not discuss:",
+            answers: [
+              { text: "You change the subject or suggest talking about it later", type: "avoider" },
+              { text: "You listen to their concern and offer a practical solution", type: "compromiser" },
+              { text: "You defend yourself and explain why their concern is wrong", type: "fighter" },
+              { text: "You thank them for bringing it up and ask how they're feeling", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner seems angry or upset but won't tell you why:",
+            answers: [
+              { text: "You wait for them to bring it up when they're ready", type: "avoider" },
+              { text: "You ask what's wrong and offer to work on a solution together", type: "compromiser" },
+              { text: "You tell them they need to communicate instead of giving you the silent treatment", type: "fighter" },
+              { text: "You approach them gently and create a safe space for them to open up", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When planning major life decisions (like moving, career changes, etc.):",
+            answers: [
+              { text: "You tend to go along with your partner's preferences to keep peace", type: "avoider" },
+              { text: "You make lists of pros and cons and find solutions that work for both", type: "compromiser" },
+              { text: "You advocate strongly for the choice that makes most sense to you", type: "fighter" },
+              { text: "You focus on making sure both people feel heard and supported", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "Your overall approach to relationship conflict is:",
+            answers: [
+              { text: "Conflict is uncomfortable - it's better to keep things peaceful", type: "avoider" },
+              { text: "Conflict is normal - the key is finding solutions that work for everyone", type: "compromiser" },
+              { text: "Conflict is necessary - important issues need to be addressed directly", type: "fighter" },
+              { text: "Conflict is an opportunity - it can bring us closer if handled with care", type: "peacemaker" }
+            ]
+          },
+          // Additional 15 questions for Partner B (Questions 15-29)
+          {
+            question: "When you and your partner have different opinions about family obligations:",
+            answers: [
+              { text: "You usually go along with whatever keeps everyone happy", type: "avoider" },
+              { text: "You discuss how to balance both families' needs fairly", type: "compromiser" },
+              { text: "You clearly state your boundaries and expectations", type: "fighter" },
+              { text: "You explore what family means to each of you", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner interrupts you during an important conversation:",
+            answers: [
+              { text: "You stop talking and let them lead the conversation", type: "avoider" },
+              { text: "You ask if you can finish your thought and then hear theirs", type: "compromiser" },
+              { text: "You tell them directly that they interrupted you", type: "fighter" },
+              { text: "You pause and ask if something urgent came up for them", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When discussing future goals and dreams as a couple:",
+            answers: [
+              { text: "You tend to support your partner's dreams over your own", type: "avoider" },
+              { text: "You create plans that incorporate both of your aspirations", type: "compromiser" },
+              { text: "You advocate strongly for the goals that matter most to you", type: "fighter" },
+              { text: "You focus on understanding each other's deeper motivations", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner forgets something important to you:",
+            answers: [
+              { text: "You don't mention it to avoid making them feel bad", type: "avoider" },
+              { text: "You tell them it hurt and ask them to set reminders going forward", type: "compromiser" },
+              { text: "You let them know you're disappointed and expect better", type: "fighter" },
+              { text: "You ask if something is stressing them and offer support", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When you and your partner disagree about parenting approaches:",
+            answers: [
+              { text: "You usually defer to your partner's judgment", type: "avoider" },
+              { text: "You discuss different strategies and find middle ground", type: "compromiser" },
+              { text: "You stand firm on the approaches you believe are right", type: "fighter" },
+              { text: "You focus on your shared values and what's best for the children", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If you feel like your partner isn't listening to you:",
+            answers: [
+              { text: "You usually just stop trying to communicate", type: "avoider" },
+              { text: "You ask for their attention and find a better time to talk", type: "compromiser" },
+              { text: "You tell them they're not listening and demand they focus", type: "fighter" },
+              { text: "You approach them with curiosity about what's on their mind", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When making decisions about where to spend holidays:",
+            answers: [
+              { text: "You let others make the plans to avoid conflict", type: "avoider" },
+              { text: "You work out a rotation or schedule that's fair to all families", type: "compromiser" },
+              { text: "You advocate for what's most important to you and your immediate family", type: "fighter" },
+              { text: "You discuss what would make the holidays most meaningful for everyone", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner seems to be pulling away emotionally:",
+            answers: [
+              { text: "You give them space and hope they come back when ready", type: "avoider" },
+              { text: "You ask what they need and offer specific ways to help", type: "compromiser" },
+              { text: "You tell them they're being distant and ask them to communicate", type: "fighter" },
+              { text: "You create opportunities for connection without pressure", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When you disagree about how much time to spend with friends versus alone:",
+            answers: [
+              { text: "You usually go along with your partner's social preferences", type: "avoider" },
+              { text: "You schedule both social time and alone time to meet both needs", type: "compromiser" },
+              { text: "You make your need for social/alone time clearly known", type: "fighter" },
+              { text: "You explore what each of you gets from social versus quiet time", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner brings up an old issue you thought was resolved:",
+            answers: [
+              { text: "You get frustrated that they can't let things go", type: "avoider" },
+              { text: "You ask what still bothers them and work on a better solution", type: "compromiser" },
+              { text: "You remind them that you already discussed and resolved this", type: "fighter" },
+              { text: "You thank them for being honest about their ongoing feelings", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When you need more intimacy or connection in your relationship:",
+            answers: [
+              { text: "You hope your partner will notice and initiate more connection", type: "avoider" },
+              { text: "You suggest specific activities or changes that would help you feel closer", type: "compromiser" },
+              { text: "You directly tell your partner what you need from them", type: "fighter" },
+              { text: "You create romantic gestures and see how your partner responds", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If you and your partner have different communication styles during conflict:",
+            answers: [
+              { text: "You try to avoid topics that bring out your differences", type: "avoider" },
+              { text: "You establish ground rules that work for both communication styles", type: "compromiser" },
+              { text: "You insist that your partner learn to communicate more like you do", type: "fighter" },
+              { text: "You adapt your style to create safety for your partner to open up", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When you feel overwhelmed by relationship demands:",
+            answers: [
+              { text: "You withdraw and try to handle everything yourself", type: "avoider" },
+              { text: "You ask your partner to help with specific tasks or decisions", type: "compromiser" },
+              { text: "You tell your partner they need to step up and take more responsibility", type: "fighter" },
+              { text: "You share your feelings and ask for emotional support", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "If your partner has a different conflict resolution style than you:",
+            answers: [
+              { text: "You try to avoid situations where your styles clash", type: "avoider" },
+              { text: "You find ways to blend your approaches for better results", type: "compromiser" },
+              { text: "You believe your approach is more effective and try to convince them", type: "fighter" },
+              { text: "You appreciate how your different styles can complement each other", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "Your ideal outcome for any relationship conflict is:",
+            answers: [
+              { text: "The conflict goes away with minimal disruption to your peace", type: "avoider" },
+              { text: "Both people get their most important needs met through the solution", type: "compromiser" },
+              { text: "The underlying issue gets resolved clearly and definitively", type: "fighter" },
+              { text: "You both feel more understood and connected than before", type: "peacemaker" }
+            ]
+          }
+        ]
+      }
+    };
+
+    let currentQuiz = null;
+    let currentQuestionIndex = 0;
+    let currentPartner = 'A';
+    let answers = { A: {}, B: {} };
+    let selectedAnswer = null;
+
+    function startQuiz(quizType) {
+      currentQuiz = quizData[quizType];
+      currentQuestionIndex = 0;
+      currentPartner = 'A';
+      answers = { A: {}, B: {} };
+      selectedAnswer = null;
+
+      // Hide quiz selection
+      document.getElementById('quizSelection').style.display = 'none';
+      document.getElementById('quizInterface').style.display = 'block';
+      document.getElementById('resultsScreen').style.display = 'none';
+
+      // Set quiz title
+      document.getElementById('quizTitle').textContent = currentQuiz.title;
+
+      // Show/hide partner selection
+      const partnerSelection = document.getElementById('partnerSelection');
+      if (currentQuiz.dualPartner) {
+        partnerSelection.classList.remove('hidden');
+      } else {
+        partnerSelection.classList.add('hidden');
+      }
+
+      displayQuestion();
+    }
+
+    function displayQuestion() {
+      // For dual-partner quizzes, calculate actual question index based on partner
+      let actualQuestionIndex = currentQuestionIndex;
+      let totalQuestionsForPartner = currentQuiz.questions.length;
+      
+      if (currentQuiz.title.includes('Love Language')) {
+        totalQuestionsForPartner = 10; // Each partner gets 10 questions
+        if (currentPartner === 'B') {
+          actualQuestionIndex = currentQuestionIndex + 10; // Partner B gets questions 10-19
+        }
+        // Partner A gets questions 0-9 (currentQuestionIndex stays the same)
+      } else if (currentQuiz.title.includes('Conflict Style')) {
+        totalQuestionsForPartner = 15; // Each partner gets 15 questions
+        if (currentPartner === 'B') {
+          actualQuestionIndex = currentQuestionIndex + 15; // Partner B gets questions 15-29
+        }
+        // Partner A gets questions 0-14 (currentQuestionIndex stays the same)
+      }
+      
+      const question = currentQuiz.questions[actualQuestionIndex];
+      document.getElementById('questionText').textContent = question.question;
+
+      // Update progress
+      const progress = ((currentQuestionIndex + 1) / totalQuestionsForPartner) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+      document.getElementById('progressText').textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestionsForPartner}`;
+
+      // Clear and populate answers
+      const answersContainer = document.getElementById('answersContainer');
+      answersContainer.innerHTML = '';
+
+      if (currentQuiz.title.includes('Health Score')) {
+        // Scale answers for health score quiz
+        for (let i = 1; i <= 5; i++) {
+          const answerDiv = document.createElement('div');
+          answerDiv.className = 'answer-option';
+          answerDiv.innerHTML = `
+            <span>${getScaleText(i)}</span>
+            <div class="scale-number">${i}</div>
+          `;
+          answerDiv.onclick = (e) => selectAnswer(e.currentTarget, i);
+          answersContainer.appendChild(answerDiv);
+        }
+      } else {
+        // Multiple choice answers
+        question.answers.forEach((answer, index) => {
+          const answerDiv = document.createElement('div');
+          answerDiv.className = 'answer-option';
+          answerDiv.textContent = answer.text;
+          answerDiv.onclick = (e) => selectAnswer(e.currentTarget, index);
+          answersContainer.appendChild(answerDiv);
+        });
+      }
+
+      // Update navigation buttons
+      document.getElementById('backBtn').style.display = currentQuestionIndex > 0 ? 'inline-flex' : 'none';
+      document.getElementById('nextBtn').disabled = true;
+    }
+
+    function getScaleText(value) {
+      const scaleTexts = {
+        1: 'Strongly Disagree',
+        2: 'Disagree',
+        3: 'Neutral',
+        4: 'Agree',
+        5: 'Strongly Agree'
+      };
+      return scaleTexts[value];
+    }
+
+    function selectAnswer(clickedElement, answerIndex) {
+      // Remove previous selection
+      document.querySelectorAll('.answer-option').forEach(answer => {
+        answer.classList.remove('selected');
+      });
+
+      // Mark new selection using the clicked element directly
+      clickedElement.classList.add('selected');
+      selectedAnswer = answerIndex;
+
+      // Enable next button
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextQuestion() {
+      if (selectedAnswer === null) return;
+
+      // Store answer with actual question index
+      let actualQuestionIndex = currentQuestionIndex;
+      if (currentQuiz.title.includes('Love Language') && currentPartner === 'B') {
+        actualQuestionIndex = currentQuestionIndex + 10; // Partner B answers questions 10-19
+      } else if (currentQuiz.title.includes('Conflict Style') && currentPartner === 'B') {
+        actualQuestionIndex = currentQuestionIndex + 15; // Partner B answers questions 15-29
+      }
+
+      if (currentQuiz.dualPartner) {
+        if (!answers[currentPartner][actualQuestionIndex]) {
+          answers[currentPartner][actualQuestionIndex] = selectedAnswer;
+        }
+      } else {
+        answers.A[currentQuestionIndex] = selectedAnswer;
+      }
+
+      selectedAnswer = null;
+
+      // Determine max questions for current partner
+      let maxQuestionsForPartner = currentQuiz.questions.length;
+      if (currentQuiz.title.includes('Love Language')) {
+        maxQuestionsForPartner = 10; // Each partner gets 10 questions
+      } else if (currentQuiz.title.includes('Conflict Style')) {
+        maxQuestionsForPartner = 15; // Each partner gets 15 questions
+      }
+
+      if (currentQuestionIndex < maxQuestionsForPartner - 1) {
+        currentQuestionIndex++;
+        displayQuestion();
+      } else {
+        // Quiz complete for this partner
+        if (currentQuiz.dualPartner && currentPartner === 'A') {
+          // Switch to partner B
+          currentPartner = 'B';
+          currentQuestionIndex = 0;
+          document.querySelector('[data-partner="B"]').classList.add('active');
+          document.querySelector('[data-partner="A"]').classList.remove('active');
+          displayQuestion();
+        } else {
+          // Show results
+          showResults();
+        }
+      }
+    }
+
+    function previousQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        displayQuestion();
+      }
+    }
+
+    function showResults() {
+      document.getElementById('quizInterface').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+      document.getElementById('resultsTitle').textContent = 'Your Results';
+
+      const resultsContent = document.getElementById('resultsContent');
+      resultsContent.innerHTML = generateResults();
+    }
+
+    function generateResults() {
+      if (currentQuiz.title.includes('Love Language')) {
+        return generateLoveLanguageResults();
+      } else if (currentQuiz.title.includes('Health Score')) {
+        return generateHealthScoreResults();
+      } else if (currentQuiz.title.includes('Conflict Style')) {
+        return generateConflictStyleResults();
+      }
+    }
+
+    function generateLoveLanguageResults() {
+      const partnerA = { words: 0, service: 0, gifts: 0, time: 0, touch: 0 };
+      const partnerB = { words: 0, service: 0, gifts: 0, time: 0, touch: 0 };
+
+      // Count answers for Partner A (questions 0-9)
+      Object.entries(answers.A).forEach(([questionIndex, answerIndex]) => {
+        const question = currentQuiz.questions[parseInt(questionIndex)];
+        const answer = question.answers[answerIndex];
+        partnerA[answer.type]++;
+      });
+
+      // Count answers for Partner B (questions 10-19)  
+      Object.entries(answers.B).forEach(([questionIndex, answerIndex]) => {
+        const question = currentQuiz.questions[parseInt(questionIndex)];
+        const answer = question.answers[answerIndex];
+        partnerB[answer.type]++;
+      });
+
+      // Get primary love languages
+      const primaryA = Object.keys(partnerA).reduce((a, b) => partnerA[a] > partnerA[b] ? a : b);
+      const primaryB = Object.keys(partnerB).reduce((a, b) => partnerB[a] > partnerB[b] ? a : b);
+
+      const languageNames = {
+        words: 'Words of Affirmation',
+        service: 'Acts of Service',
+        gifts: 'Receiving Gifts',
+        time: 'Quality Time',
+        touch: 'Physical Touch'
+      };
+
+      return `
+        <div class="partner-results">
+          <div class="love-language-result">
+            <h3>Partner A</h3>
+            <div class="score">${languageNames[primaryA]}</div>
+            <p class="description">Your primary love language is ${languageNames[primaryA].toLowerCase()}. You feel most loved when your partner expresses affection this way.</p>
+          </div>
+          <div class="love-language-result">
+            <h3>Partner B</h3>
+            <div class="score">${languageNames[primaryB]}</div>
+            <p class="description">Your primary love language is ${languageNames[primaryB].toLowerCase()}. You feel most loved when your partner expresses affection this way.</p>
+          </div>
+        </div>
+        <div class="love-language-result">
+          <h3>Understanding Each Other</h3>
+          <p class="description">Now that you know each other's love languages, focus on expressing love in the way your partner receives it best. This understanding can transform your relationship!</p>
+        </div>
+      `;
+    }
+
+    function generateHealthScoreResults() {
+      const categories = currentQuiz.categories;
+      const scores = {};
+      let totalScore = 0;
+
+      categories.forEach(category => {
+        scores[category] = 0;
+      });
+
+      Object.values(answers.A).forEach((score, index) => {
+        const question = currentQuiz.questions[index];
+        scores[question.category] += score + 1; // Convert 0-4 to 1-5 scale
+        totalScore += score + 1;
+      });
+
+      const overallScore = Math.round((totalScore / (currentQuiz.questions.length * 5)) * 100);
+
+      return `
+        <div class="love-language-result">
+          <h3>Overall Relationship Health: ${overallScore}%</h3>
+          <p class="description">Your relationship shows ${overallScore >= 80 ? 'excellent' : overallScore >= 60 ? 'good' : 'room for improvement'} health across key areas. Focus on communication, trust, and quality time together to strengthen your bond.</p>
+        </div>
+      `;
+    }
+
+    function generateConflictStyleResults() {
+      const partnerA = { avoider: 0, compromiser: 0, fighter: 0, peacemaker: 0 };
+      const partnerB = { avoider: 0, compromiser: 0, fighter: 0, peacemaker: 0 };
+
+      // Count answers for each partner
+      Object.values(answers.A).forEach((answerIndex, questionIndex) => {
+        const answer = currentQuiz.questions[questionIndex].answers[answerIndex];
+        partnerA[answer.type]++;
+      });
+
+      Object.values(answers.B).forEach((answerIndex, questionIndex) => {
+        const answer = currentQuiz.questions[questionIndex].answers[answerIndex];
+        partnerB[answer.type]++;
+      });
+
+      // Get primary conflict styles
+      const primaryA = Object.keys(partnerA).reduce((a, b) => partnerA[a] > partnerA[b] ? a : b);
+      const primaryB = Object.keys(partnerB).reduce((a, b) => partnerB[a] > partnerB[b] ? a : b);
+
+      const styleNames = {
+        avoider: 'The Avoider',
+        compromiser: 'The Compromiser',
+        fighter: 'The Fighter',
+        peacemaker: 'The Peacemaker'
+      };
+
+      const styleDescriptions = {
+        avoider: 'You tend to avoid conflicts and hope they resolve themselves.',
+        compromiser: 'You look for middle ground and win-win solutions.',
+        fighter: 'You address conflicts head-on and stand firm on your positions.',
+        peacemaker: 'You prioritize harmony and understanding in conflicts.'
+      };
+
+      return `
+        <div class="partner-results">
+          <div class="love-language-result">
+            <h3>Partner A</h3>
+            <div class="score">${styleNames[primaryA]}</div>
+            <p class="description">${styleDescriptions[primaryA]}</p>
+          </div>
+          <div class="love-language-result">
+            <h3>Partner B</h3>
+            <div class="score">${styleNames[primaryB]}</div>
+            <p class="description">${styleDescriptions[primaryB]}</p>
+          </div>
+        </div>
+        <div class="love-language-result">
+          <h3>Working Together</h3>
+          <p class="description">Understanding your conflict styles helps you approach disagreements more effectively. Each style has strengths—the key is knowing when and how to use them together.</p>
+        </div>
+      `;
+    }
+
+    function showQuizSelection() {
+      document.getElementById('quizSelection').style.display = 'block';
+      document.getElementById('quizInterface').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'none';
+      
+      // Reset quiz state
+      currentQuiz = null;
+      currentQuestionIndex = 0;
+      currentPartner = 'A';
+      answers = { A: {}, B: {} };
+      selectedAnswer = null;
+    }
+
+    function exitQuiz() {
+      if (confirm('Are you sure you want to exit this quiz? Your progress will be lost.')) {
+        showQuizSelection();
+      }
+    }
+
+    // Partner tab switching
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('partner-tab')) {
+        const newPartner = e.target.dataset.partner;
+        if (newPartner !== currentPartner) {
+          // Save current progress and switch
+          currentPartner = newPartner;
+          document.querySelectorAll('.partner-tab').forEach(tab => {
+            tab.classList.remove('active');
+          });
+          e.target.classList.add('active');
+          currentQuestionIndex = 0;
+          selectedAnswer = null;
+          displayQuestion();
+        }
+      }
+    });
+

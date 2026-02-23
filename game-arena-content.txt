@@ -1,0 +1,224 @@
+  <!-- Game Arena Tab Content -->
+  <div class="tab-content" id="game-arena" style="display: none;">
+    <h2 class="tab-description">🎲 Interactive Couples Game Arena — Play Together Online</h2>
+    <div class="pro-tip">
+      <span class="pro-tip-label">🎮 Game Night</span>
+      Interactive games designed for couples. Play together on one device — no apps needed!
+    </div>
+    
+    <!-- 6 Game Cards -->
+    <div class="intimate-grid">
+      <!-- Truth or Dare Deluxe -->
+      <div class="intimate-card" onclick="openGame('truth-or-dare')">
+        <div class="intimate-icon">🎯</div>
+        <h3>Truth or Dare Deluxe</h3>
+        <p>Choose your intensity level: Funny, Romantic, Spicy, or Deep conversations.</p>
+        <div class="intimate-stats">Categories: 4 • Questions: 80+</div>
+      </div>
+      
+      <!-- Would You Rather -->
+      <div class="intimate-card" onclick="openGame('would-you-rather')">
+        <div class="intimate-icon">🤔</div>
+        <h3>Would You Rather</h3>
+        <p>Discover each other's preferences with fun and revealing dilemmas.</p>
+        <div class="intimate-stats">Scenarios: 30+ • Decision Time</div>
+      </div>
+      
+      <!-- 2-Minute Story -->
+      <div class="intimate-card" onclick="openGame('story-time')">
+        <div class="intimate-icon">📚</div>
+        <h3>2-Minute Story</h3>
+        <p>Creative storytelling with your partner. Take turns, build stories together.</p>
+        <div class="intimate-stats">Timer: 60s each • Creative fun</div>
+      </div>
+      
+      <!-- Couple Trivia -->
+      <div class="intimate-card" onclick="openGame('couple-trivia')">
+        <div class="intimate-icon">🧠</div>
+        <h3>Couple Trivia</h3>
+        <p>Test how well you know each other with relationship-focused questions.</p>
+        <div class="intimate-stats">Questions: 15+ • Score tracking</div>
+      </div>
+      
+      <!-- Decision Roulette -->
+      <div class="intimate-card" onclick="openGame('decision-roulette')">
+        <div class="intimate-icon">🎡</div>
+        <h3>Decision Roulette</h3>
+        <p>Can't decide? Create a custom wheel and let fate choose for you!</p>
+        <div class="intimate-stats">Customizable • Spin to decide</div>
+      </div>
+      
+      <!-- Compliment Battle -->
+      <div class="intimate-card" onclick="openGame('compliment-battle')">
+        <div class="intimate-icon">💝</div>
+        <h3>Compliment Battle</h3>
+        <p>30-second rounds of giving each other genuine compliments. Ready to win?</p>
+        <div class="intimate-stats">Timer: 30s • Love competition</div>
+      </div>
+    </div>
+    
+    <!-- Game Interfaces (Hidden by default) -->
+    
+    <!-- Truth or Dare Deluxe Interface -->
+    <div id="truth-or-dare-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>🎯 Truth or Dare Deluxe</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
+      </div>
+      <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> Pick an intensity level, then take turns choosing <strong>Truth</strong> or <strong>Dare</strong>. Be honest, be brave — no chickening out! Use <strong>Skip</strong> if it's too much, or <strong>Next</strong> for a new prompt.
+        </div>
+        <div class="category-selector">
+          <h3>Choose Your Adventure Level:</h3>
+          <div class="category-buttons">
+            <button class="category-btn" onclick="selectTruthDareCategory('funny')">😄 Funny</button>
+            <button class="category-btn" onclick="selectTruthDareCategory('romantic')">💕 Romantic</button>
+            <button class="category-btn" onclick="selectTruthDareCategory('spicy')">🌶️ Spicy</button>
+            <button class="category-btn" onclick="selectTruthDareCategory('deep')">🧠 Deep</button>
+          </div>
+        </div>
+        <div id="truth-dare-game" style="display: none;">
+          <div class="current-prompt">
+            <h3 id="truth-dare-prompt">Select a category to start playing!</h3>
+          </div>
+          <div class="game-actions">
+            <button class="game-btn truth-btn" onclick="nextTruthDare('truth')">Truth</button>
+            <button class="game-btn dare-btn" onclick="nextTruthDare('dare')">Dare</button>
+            <button class="game-btn skip-btn" onclick="nextTruthDare('skip')">Skip</button>
+            <button class="game-btn next-btn" onclick="nextTruthDare('next')">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Would You Rather Interface -->
+    <div id="would-you-rather-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>🤔 Would You Rather</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
+      </div>
+      <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> Read the scenario, then each partner picks their choice <strong>without peeking</strong>. Reveal together and discuss — you might be surprised what your partner chooses! 😏
+        </div>
+        <div class="scenario-display">
+          <h3 id="wyr-question">Loading scenario...</h3>
+          <div class="wyr-options">
+            <button class="wyr-option" id="wyr-option-a" onclick="selectWYROption('a')">Option A</button>
+            <button class="wyr-option" id="wyr-option-b" onclick="selectWYROption('b')">Option B</button>
+          </div>
+          <div id="wyr-result" style="display: none;">
+            <p>Reveal your choices!</p>
+            <button class="game-btn" onclick="revealWYRChoices()">Show Results</button>
+            <button class="game-btn" onclick="nextWYRScenario()">Next Scenario</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 2-Minute Story Interface -->
+    <div id="story-time-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>📚 2-Minute Story</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
+      </div>
+      <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> One partner starts telling a story based on the prompt for <strong>60 seconds</strong>. When the timer runs out, the other partner takes over and continues the story. Get creative — the weirder, the better! 🎭
+        </div>
+        <div class="story-prompt">
+          <h3 id="story-prompt">Your story prompt will appear here!</h3>
+        </div>
+        <div class="story-timer">
+          <div class="timer-display" id="story-timer">60</div>
+          <div class="current-player">Player 1's Turn</div>
+        </div>
+        <div class="story-controls">
+          <button class="game-btn" onclick="startStoryRound()">Start Round</button>
+          <button class="game-btn" onclick="switchStoryPlayer()">Switch Player</button>
+          <button class="game-btn" onclick="newStoryPrompt()">New Prompt</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Couple Trivia Interface -->
+    <div id="couple-trivia-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>🧠 Couple Trivia</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
+      </div>
+      <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> Answer questions about your relationship together. Pick the answer you both agree on. See how well you really know each other — aim for a perfect <strong>15/15</strong>! 🏆
+        </div>
+        <div class="trivia-score">
+          <span>Score: <span id="trivia-score">0</span>/15</span>
+        </div>
+        <div class="trivia-question">
+          <h3 id="trivia-q">Loading question...</h3>
+          <div class="trivia-options">
+            <button class="trivia-option" onclick="selectTriviaAnswer(0)">A</button>
+            <button class="trivia-option" onclick="selectTriviaAnswer(1)">B</button>
+            <button class="trivia-option" onclick="selectTriviaAnswer(2)">C</button>
+          </div>
+        </div>
+        <div class="trivia-controls">
+          <button class="game-btn" onclick="nextTriviaQuestion()">Next Question</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Decision Roulette Interface -->
+    <div id="decision-roulette-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>🎡 Decision Roulette</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
+      </div>
+      <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> Can't decide on something? Type in your options (dinner spots, date ideas, movies...), add them to the wheel, then <strong>spin</strong> and let fate decide! No take-backs. 🎲
+        </div>
+        <div class="roulette-setup">
+          <h3>Add Your Options:</h3>
+          <input type="text" id="roulette-input" placeholder="Enter an option...">
+          <button class="game-btn" onclick="addRouletteOption()">Add Option</button>
+        </div>
+        <div class="roulette-options">
+          <ul id="roulette-list"></ul>
+        </div>
+        <div class="roulette-wheel">
+          <div class="wheel-result" id="wheel-result">Add options and spin!</div>
+          <button class="game-btn spin-btn" onclick="spinRoulette()" disabled>🎡 Spin!</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Compliment Battle Interface -->
+    <div id="compliment-battle-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>💝 Compliment Battle</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
+      </div>
+      <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> You have <strong>30 seconds</strong> each to shower your partner with genuine compliments. Hit "Give Compliment" for each one. Most compliments wins — but really, you both win. 💕
+        </div>
+        <div class="battle-score">
+          <div class="player-score">Player 1: <span id="p1-compliments">0</span></div>
+          <div class="player-score">Player 2: <span id="p2-compliments">0</span></div>
+        </div>
+        <div class="battle-timer">
+          <div class="timer-display" id="compliment-timer">30</div>
+          <div class="current-player" id="compliment-current">Player 1's Turn</div>
+        </div>
+        <div class="battle-controls">
+          <button class="game-btn" onclick="startComplimentRound()">Start Round</button>
+          <button class="game-btn" onclick="addCompliment()">Give Compliment</button>
+          <button class="game-btn" onclick="switchComplimentPlayer()">Switch Player</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adults Only Tab Content -->

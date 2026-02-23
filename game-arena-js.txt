@@ -1,0 +1,610 @@
+    // Game Arena JavaScript Functions
+    let currentGame = '';
+    let gameState = {};
+    
+    function openGame(gameType) {
+      currentGame = gameType;
+      var grid = document.querySelector('.intimate-grid');
+      if (grid) grid.style.display = 'none';
+      var iface = document.getElementById(gameType + '-interface');
+      document.body.appendChild(iface);
+      iface.style.display = 'block';
+      iface.scrollTop = 0;
+      initializeGame(gameType);
+    }
+    
+    function closeGame() {
+      if (currentGame) {
+        document.getElementById(currentGame + '-interface').style.display = 'none';
+        currentGame = '';
+        gameState = {};
+      }
+      var grid = document.querySelector('.intimate-grid');
+      if (grid) grid.style.display = 'grid';
+    }
+    
+    function initializeGame(gameType) {
+      switch(gameType) {
+        case 'truth-or-dare':
+          initTruthOrDare();
+          break;
+        case 'would-you-rather':
+          initWouldYouRather();
+          break;
+        case 'story-time':
+          initStoryTime();
+          break;
+        case 'couple-trivia':
+          initCoupleTrivia();
+          break;
+        case 'decision-roulette':
+          initDecisionRoulette();
+          break;
+        case 'compliment-battle':
+          initComplimentBattle();
+          break;
+      }
+    }
+    
+    // Truth or Dare Game
+    const truthDareData = {
+      funny: {
+        truth: [
+          "What's the weirdest thing you've done when you thought nobody was watching?",
+          "If you had to wear one outfit for the rest of your life, what would it be?",
+          "What's your most embarrassing childhood memory?",
+          "What's the strangest food combination you actually enjoy?",
+          "If you could be any animal for a day, what would you choose and why?",
+          "What's the most ridiculous fear you have?",
+          "What's your weirdest habit that you think nobody knows about?",
+          "If you had to choose a theme song that plays every time you enter a room, what would it be?",
+          "What's the most embarrassing thing in your search history?",
+          "What's your secret talent that you never show anyone?",
+          "If you were a superhero, what would your super embarrassing weakness be?",
+          "What's the weirdest dream you've ever had?",
+          "If you could only communicate using movie quotes for a day, which movie would you choose?",
+          "What's your most irrational pet peeve?",
+          "If you had to eat one food for every meal for a month, what would it be?",
+          "What's the most ridiculous thing you believed as a child?",
+          "If you could switch lives with any cartoon character, who would it be?",
+          "What's your weirdest 'comfort' activity when you're stressed?",
+          "If aliens visited Earth, what human behavior would confuse them most?",
+          "What's the most embarrassing thing you've done to get someone's attention?"
+        ],
+        dare: [
+          "Do your best impression of your partner for 30 seconds",
+          "Sing 'Happy Birthday' in the style of your favorite singer",
+          "Do 10 jumping jacks while reciting the alphabet backwards",
+          "Act out your morning routine in fast-forward mode",
+          "Do your best runway model walk across the room",
+          "Speak in a funny accent for the next 3 rounds",
+          "Do your best dance moves for 30 seconds",
+          "Try to juggle three random objects for 30 seconds",
+          "Do your best impersonation of a celebrity",
+          "Pretend to be a news reporter describing what you had for breakfast",
+          "Do 5 push-ups while humming your favorite song",
+          "Act like a robot for the next 60 seconds",
+          "Do your best animal impression (your partner gets to choose the animal)",
+          "Try to lick your elbow for 30 seconds",
+          "Dance like nobody's watching (even though your partner is)",
+          "Do your best superhero pose and make up a superhero name for yourself",
+          "Pretend you're a cooking show host and 'cook' an imaginary meal",
+          "Do your best mime impression for 60 seconds",
+          "Try to do a cartwheel (attempt counts even if you fail!)",
+          "Act out your favorite movie scene without using words"
+        ]
+      },
+      romantic: {
+        truth: [
+          "What was your first impression of me when we met?",
+          "What's your favorite memory of us together?",
+          "When did you first realize you loved me?",
+          "What's something I do that makes you feel most loved?",
+          "What's your favorite thing about our relationship?",
+          "What's a small gesture I do that means the world to you?",
+          "What's your favorite way I show affection?",
+          "What's something you love about me that I might not know?",
+          "What's our best date night memory?",
+          "What made you want to be in a relationship with me?",
+          "What's something about me that always makes you smile?",
+          "What's your favorite way we spend time together?",
+          "What's something I've done that made you feel incredibly proud?",
+          "What's your favorite thing I've said to you?",
+          "What's a moment when you felt most connected to me?",
+          "What's something about our future together that excites you most?",
+          "What's your favorite physical feature of mine?",
+          "What's something I do that makes you feel secure in our relationship?",
+          "What's a song that reminds you of us?",
+          "What's something you're grateful for about our relationship?"
+        ],
+        dare: [
+          "Give your partner a 60-second hand massage",
+          "Write a short love note and read it aloud",
+          "Look into your partner's eyes for 30 seconds without talking",
+          "Give your partner three genuine compliments",
+          "Slow dance together for one full song",
+          "Feed your partner a small snack or treat",
+          "Give your partner a gentle scalp massage",
+          "Share three things you're grateful for about your partner",
+          "Take a selfie together making heart hands",
+          "Whisper something sweet in your partner's ear",
+          "Give your partner a foot rub for 2 minutes",
+          "Create a handshake that's unique to your relationship",
+          "Tell your partner your favorite thing about each of their physical features",
+          "Give your partner a 30-second back rub",
+          "Look at old photos together and share your favorite memory from each",
+          "Plan out your ideal date night together",
+          "Share three things you want to experience together in the future",
+          "Give your partner butterfly kisses for 30 seconds",
+          "Write your initials on your partner's hand and let them guess what you wrote",
+          "Share what you love most about your partner's personality"
+        ]
+      },
+      spicy: {
+        truth: [
+          "What's your favorite way to be kissed?",
+          "What's something you've always wanted to try together?",
+          "What's your biggest turn-on about your partner?",
+          "What's the most romantic thing your partner has ever done?",
+          "What's your favorite thing about your partner's body?",
+          "What's something that instantly makes you think of your partner?",
+          "What's your favorite memory of being intimate together?",
+          "What's something your partner wears that drives you wild?",
+          "What's your favorite way your partner touches you?",
+          "What's something you find irresistibly attractive about your partner?",
+          "What's your favorite time of day to be romantic with your partner?",
+          "What's something your partner does that makes you melt?",
+          "What's your ideal romantic evening together?",
+          "What's something you love about the way your partner looks at you?",
+          "What's your favorite way to show your partner you desire them?",
+          "What's something about your partner that makes you feel butterflies?",
+          "What's your favorite place to be romantic together?",
+          "What's something your partner does that makes you feel sexy?",
+          "What's your favorite way your partner makes you feel wanted?",
+          "What's something you love about being physically close to your partner?"
+        ],
+        dare: [
+          "Give your partner a passionate kiss for 10 seconds",
+          "Give your partner a sensual neck massage",
+          "Whisper something seductive in your partner's ear",
+          "Give your partner a trail of gentle kisses along their neck",
+          "Tell your partner exactly what you find sexiest about them",
+          "Give your partner a sensual back massage for 2 minutes",
+          "Look deep into your partner's eyes and tell them you love them",
+          "Give your partner soft kisses on their hands and wrists",
+          "Describe your perfect romantic evening with your partner",
+          "Give your partner gentle kisses along their jawline",
+          "Tell your partner three things that make them irresistible to you",
+          "Give your partner a slow, romantic dance",
+          "Trace the outline of your partner's face with your fingertips",
+          "Give your partner butterfly kisses on their eyelids",
+          "Tell your partner how they make you feel when they touch you",
+          "Give your partner a gentle shoulder and neck massage",
+          "Share your favorite fantasy involving your partner",
+          "Give your partner soft kisses on their forehead and cheeks",
+          "Tell your partner what you love most about their kisses",
+          "Give your partner a romantic compliment about their body"
+        ]
+      },
+      deep: {
+        truth: [
+          "What's something about yourself you've never told anyone?",
+          "What's your biggest fear in our relationship?",
+          "What's something you're still learning about yourself?",
+          "What's a childhood experience that shaped who you are today?",
+          "What's something you wish you could change about your past?",
+          "What's your biggest insecurity?",
+          "What's something you're most proud of about yourself?",
+          "What's a goal you have that scares you?",
+          "What's something you've always wanted to tell me but haven't?",
+          "What's your biggest regret in life?",
+          "What's something about the future that worries you?",
+          "What's a lesson you learned the hard way?",
+          "What's something you wish others understood about you?",
+          "What's your biggest hope for our relationship?",
+          "What's something that makes you feel most vulnerable?",
+          "What's a belief you hold that might surprise me?",
+          "What's something you're still trying to forgive yourself for?",
+          "What's your deepest wish for your life?",
+          "What's something you've never said out loud but always thought?",
+          "What's a moment in your life when you felt most authentic?"
+        ],
+        dare: [
+          "Share something you've never told anyone else",
+          "Describe a moment when you felt most proud of your partner",
+          "Share a goal you have that you've been afraid to pursue",
+          "Talk about a time when your partner helped you grow as a person",
+          "Describe what you think your partner's greatest strength is",
+          "Share something you're working on improving about yourself",
+          "Tell your partner about a moment when you felt most connected to them",
+          "Describe how your partner has changed your perspective on something",
+          "Share something you're grateful your partner taught you",
+          "Talk about a challenge you'd like to overcome together",
+          "Describe what you think makes your relationship special",
+          "Share something you admire about your partner's character",
+          "Talk about a dream you have for your future together",
+          "Describe a moment when your partner surprised you in a meaningful way",
+          "Share something you've learned about love from your relationship",
+          "Talk about how you've grown as a person since being together",
+          "Describe what you think your partner needs to hear right now",
+          "Share something you want to work on in your relationship",
+          "Talk about what you think your greatest accomplishment is as a couple",
+          "Describe how you want to support your partner's dreams"
+        ]
+      }
+    };
+    
+    function initTruthOrDare() {
+      gameState.truthDare = { currentCategory: null, usedPrompts: [] };
+    }
+    
+    function selectTruthDareCategory(category) {
+      gameState.truthDare.currentCategory = category;
+      gameState.truthDare.usedPrompts = [];
+      document.querySelector('.category-selector').style.display = 'none';
+      document.getElementById('truth-dare-game').style.display = 'block';
+      document.getElementById('truth-dare-prompt').textContent = `Category: ${category.charAt(0).toUpperCase() + category.slice(1)} - Choose Truth or Dare!`;
+    }
+    
+    function nextTruthDare(choice) {
+      const category = gameState.truthDare.currentCategory;
+      if (!category) return;
+      
+      if (choice === 'skip' || choice === 'next') {
+        document.getElementById('truth-dare-prompt').textContent = 'Choose Truth or Dare for the next round!';
+        return;
+      }
+      
+      const prompts = truthDareData[category][choice] || [];
+      if (prompts.length === 0) return;
+      
+      let availablePrompts = prompts.filter((_, index) => !gameState.truthDare.usedPrompts.includes(index));
+      if (availablePrompts.length === 0) {
+        gameState.truthDare.usedPrompts = [];
+        availablePrompts = prompts;
+      }
+      
+      const randomIndex = Math.floor(Math.random() * availablePrompts.length);
+      const selectedPrompt = availablePrompts[randomIndex];
+      const originalIndex = prompts.indexOf(selectedPrompt);
+      gameState.truthDare.usedPrompts.push(originalIndex);
+      
+      document.getElementById('truth-dare-prompt').textContent = selectedPrompt;
+    }
+    
+    // Would You Rather Game
+    const wouldYouRatherData = [
+      { question: "Would you rather...", optionA: "Always know what your partner is thinking", optionB: "Never know what your partner is thinking" },
+      { question: "Would you rather...", optionA: "Have a romantic dinner at home", optionB: "Have an adventure date outdoors" },
+      { question: "Would you rather...", optionA: "Receive a handwritten love letter", optionB: "Receive a surprise visit from your partner" },
+      { question: "Would you rather...", optionA: "Travel the world together", optionB: "Build a perfect home together" },
+      { question: "Would you rather...", optionA: "Have the ability to read your partner's mind", optionB: "Have your partner always understand your feelings without words" },
+      { question: "Would you rather...", optionA: "Have date night once a week", optionB: "Have a weekend getaway once a month" },
+      { question: "Would you rather...", optionA: "Always have to tell the truth to each other", optionB: "Always have perfect communication" },
+      { question: "Would you rather...", optionA: "Cook dinner together every night", optionB: "Never have to cook and eat out every night" },
+      { question: "Would you rather...", optionA: "Dance in the rain together", optionB: "Watch the sunset together" },
+      { question: "Would you rather...", optionA: "Have your partner surprise you with gifts", optionB: "Have your partner surprise you with experiences" },
+      { question: "Would you rather...", optionA: "Spend a day at the beach together", optionB: "Spend a day in the mountains together" },
+      { question: "Would you rather...", optionA: "Have breakfast in bed every Sunday", optionB: "Have a massage every Sunday" },
+      { question: "Would you rather...", optionA: "Always laugh together", optionB: "Always cry together when needed" },
+      { question: "Would you rather...", optionA: "Have a library of inside jokes", optionB: "Have a collection of shared hobbies" },
+      { question: "Would you rather...", optionA: "Slow dance in the kitchen", optionB: "Sing karaoke together" },
+      { question: "Would you rather...", optionA: "Have your partner write you poetry", optionB: "Have your partner sing to you" },
+      { question: "Would you rather...", optionA: "Always have exciting adventures", optionB: "Always have peaceful moments" },
+      { question: "Would you rather...", optionA: "Share all the same interests", optionB: "Have completely different interests to share with each other" },
+      { question: "Would you rather...", optionA: "Have a partner who's always punctual", optionB: "Have a partner who's always spontaneous" },
+      { question: "Would you rather...", optionA: "Grow old together gracefully", optionB: "Stay young together forever" },
+      { question: "Would you rather...", optionA: "Have movie nights every week", optionB: "Have game nights every week" },
+      { question: "Would you rather...", optionA: "Always have perfect weather on dates", optionB: "Always have perfect food on dates" },
+      { question: "Would you rather...", optionA: "Receive flowers every month", optionB: "Receive chocolates every month" },
+      { question: "Would you rather...", optionA: "Have your partner always make you laugh", optionB: "Have your partner always make you feel beautiful" },
+      { question: "Would you rather...", optionA: "Share everything with each other", optionB: "Have some personal mysteries to keep things interesting" },
+      { question: "Would you rather...", optionA: "Have a partner who's great at giving advice", optionB: "Have a partner who's great at just listening" },
+      { question: "Would you rather...", optionA: "Always have comfortable silences", optionB: "Always have engaging conversations" },
+      { question: "Would you rather...", optionA: "Take photos of every moment together", optionB: "Live fully in each moment without documenting" },
+      { question: "Would you rather...", optionA: "Have matching tattoos", optionB: "Have matching jewelry" },
+      { question: "Would you rather...", optionA: "Always have your partner's undivided attention", optionB: "Always have your own personal space when needed" }
+    ];
+    
+    function initWouldYouRather() {
+      gameState.wyr = { currentIndex: 0, usedQuestions: [], playerAChoice: null, playerBChoice: null };
+      loadWYRQuestion();
+    }
+    
+    function loadWYRQuestion() {
+      let availableQuestions = wouldYouRatherData.filter((_, index) => !gameState.wyr.usedQuestions.includes(index));
+      if (availableQuestions.length === 0) {
+        gameState.wyr.usedQuestions = [];
+        availableQuestions = wouldYouRatherData;
+      }
+      
+      const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+      const question = availableQuestions[randomIndex];
+      gameState.wyr.currentIndex = wouldYouRatherData.indexOf(question);
+      gameState.wyr.usedQuestions.push(gameState.wyr.currentIndex);
+      
+      document.getElementById('wyr-question').textContent = question.question;
+      document.getElementById('wyr-option-a').textContent = question.optionA;
+      document.getElementById('wyr-option-b').textContent = question.optionB;
+      
+      document.getElementById('wyr-result').style.display = 'none';
+      document.querySelectorAll('.wyr-option').forEach(btn => {
+        btn.style.backgroundColor = '';
+        btn.disabled = false;
+      });
+      gameState.wyr.playerAChoice = null;
+      gameState.wyr.playerBChoice = null;
+    }
+    
+    function selectWYROption(option) {
+      // This is simplified - in real implementation, you'd have separate selection for each player
+      if (!gameState.wyr.playerAChoice) {
+        gameState.wyr.playerAChoice = option;
+        document.getElementById('wyr-option-' + option).style.backgroundColor = '#e74c6f';
+      } else if (!gameState.wyr.playerBChoice && option !== gameState.wyr.playerAChoice) {
+        gameState.wyr.playerBChoice = option;
+        document.getElementById('wyr-option-' + option).style.backgroundColor = '#4CAF50';
+        document.getElementById('wyr-result').style.display = 'block';
+      }
+    }
+    
+    function revealWYRChoices() {
+      const resultText = `Player 1 chose: ${gameState.wyr.playerAChoice.toUpperCase()}\nPlayer 2 chose: ${gameState.wyr.playerBChoice.toUpperCase()}`;
+      alert(resultText);
+    }
+    
+    function nextWYRScenario() {
+      loadWYRQuestion();
+    }
+    
+    // Story Time Game
+    const storyPrompts = [
+      "You wake up and discover you can understand what animals are thinking...",
+      "A mysterious package arrives at your door with no return address...",
+      "You find a diary from 100 years ago that mentions your name...",
+      "During a walk in the forest, you discover a door in a tree trunk...",
+      "You receive a text message from yourself from the future...",
+      "A stranger hands you a key and says 'You'll know what to do with this'...",
+      "You find a map in an old book that shows your house with an X marked on it...",
+      "Every mirror in your house starts showing different reflections...",
+      "You discover you can pause time for exactly 60 seconds once per day...",
+      "A time capsule you buried as a child is found, but it contains things you never put in it...",
+      "You wake up with a superpower, but it only works when you're with your partner...",
+      "A restaurant meal comes with a note that says 'Your life is about to change'...",
+      "You find a room in your house that wasn't there yesterday...",
+      "Every song on the radio seems to contain a personal message for you...",
+      "You discover an old photo of yourself in a place you've never been...",
+      "A fortune teller approaches you and says they have an urgent message...",
+      "You find a notebook that writes back to you when you write in it...",
+      "Your pet starts leaving you mysterious objects every morning...",
+      "You receive a phone call from someone claiming to be your descendant from the future...",
+      "A shooting star lands in your backyard, and it's not what you expected..."
+    ];
+    
+    function initStoryTime() {
+      gameState.story = { currentPlayer: 1, timeLeft: 60, timer: null };
+      loadNewStoryPrompt();
+    }
+    
+    function loadNewStoryPrompt() {
+      const randomPrompt = storyPrompts[Math.floor(Math.random() * storyPrompts.length)];
+      document.getElementById('story-prompt').textContent = randomPrompt;
+    }
+    
+    function startStoryRound() {
+      if (gameState.story.timer) clearInterval(gameState.story.timer);
+      gameState.story.timeLeft = 60;
+      document.getElementById('story-timer').textContent = gameState.story.timeLeft;
+      
+      gameState.story.timer = setInterval(() => {
+        gameState.story.timeLeft--;
+        document.getElementById('story-timer').textContent = gameState.story.timeLeft;
+        
+        if (gameState.story.timeLeft <= 0) {
+          clearInterval(gameState.story.timer);
+          alert(`Time's up for Player ${gameState.story.currentPlayer}!`);
+        }
+      }, 1000);
+    }
+    
+    function switchStoryPlayer() {
+      if (gameState.story.timer) clearInterval(gameState.story.timer);
+      gameState.story.currentPlayer = gameState.story.currentPlayer === 1 ? 2 : 1;
+      gameState.story.timeLeft = 60;
+      document.querySelector('.current-player').textContent = `Player ${gameState.story.currentPlayer}'s Turn`;
+      document.getElementById('story-timer').textContent = gameState.story.timeLeft;
+    }
+    
+    function newStoryPrompt() {
+      if (gameState.story.timer) clearInterval(gameState.story.timer);
+      loadNewStoryPrompt();
+      gameState.story.currentPlayer = 1;
+      gameState.story.timeLeft = 60;
+      document.querySelector('.current-player').textContent = `Player ${gameState.story.currentPlayer}'s Turn`;
+      document.getElementById('story-timer').textContent = gameState.story.timeLeft;
+    }
+    
+    // Couple Trivia Game
+    const triviaQuestions = [
+      { question: "What's your partner's favorite movie?", answers: ["Action/Adventure", "Romantic Comedy", "Drama/Thriller"], correct: 0 },
+      { question: "What's your partner's biggest pet peeve?", answers: ["Loud chewing", "Being late", "Messy spaces"], correct: 1 },
+      { question: "What's your partner's dream vacation destination?", answers: ["Beach resort", "European cities", "Adventure/nature"], correct: 2 },
+      { question: "What's your partner's favorite way to relax?", answers: ["Reading a book", "Watching TV/movies", "Taking a bath"], correct: 0 },
+      { question: "What's your partner's ideal date night?", answers: ["Fancy dinner out", "Cozy night at home", "Fun activity together"], correct: 1 },
+      { question: "What's your partner's favorite season?", answers: ["Spring", "Summer", "Fall"], correct: 2 },
+      { question: "What's your partner's biggest fear?", answers: ["Heights", "Spiders/bugs", "Public speaking"], correct: 0 },
+      { question: "What's your partner's favorite way to exercise?", answers: ["Gym/weights", "Yoga/pilates", "Outdoor activities"], correct: 1 },
+      { question: "What's your partner's favorite type of music?", answers: ["Pop/mainstream", "Rock/alternative", "Classical/jazz"], correct: 2 },
+      { question: "What's your partner's ideal Sunday morning?", answers: ["Sleeping in", "Early workout", "Breakfast together"], correct: 0 },
+      { question: "What's your partner's favorite way to show love?", answers: ["Physical touch", "Words of affirmation", "Acts of service"], correct: 1 },
+      { question: "What's your partner's biggest goal this year?", answers: ["Career advancement", "Health/fitness", "Personal growth"], correct: 2 },
+      { question: "What's your partner's favorite comfort food?", answers: ["Pizza", "Ice cream", "Chocolate"], correct: 0 },
+      { question: "What's your partner's ideal Friday night?", answers: ["Going out with friends", "Date night together", "Relaxing at home"], correct: 1 },
+      { question: "What's your partner's favorite holiday?", answers: ["Christmas", "Birthday", "Valentine's Day"], correct: 2 }
+    ];
+    
+    function initCoupleTrivia() {
+      gameState.trivia = { currentQuestion: 0, score: 0, usedQuestions: [] };
+      loadTriviaQuestion();
+    }
+    
+    function loadTriviaQuestion() {
+      if (gameState.trivia.currentQuestion >= 15) {
+        alert(`Game Over! Final Score: ${gameState.trivia.score}/15`);
+        return;
+      }
+      
+      let availableQuestions = triviaQuestions.filter((_, index) => !gameState.trivia.usedQuestions.includes(index));
+      if (availableQuestions.length === 0) {
+        gameState.trivia.usedQuestions = [];
+        availableQuestions = triviaQuestions;
+      }
+      
+      const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+      const question = availableQuestions[randomIndex];
+      gameState.trivia.currentQuestionData = question;
+      gameState.trivia.usedQuestions.push(triviaQuestions.indexOf(question));
+      
+      document.getElementById('trivia-q').textContent = question.question;
+      const options = document.querySelectorAll('.trivia-option');
+      question.answers.forEach((answer, index) => {
+        if (options[index]) {
+          options[index].textContent = answer;
+          options[index].style.backgroundColor = '';
+          options[index].disabled = false;
+        }
+      });
+    }
+    
+    function selectTriviaAnswer(answerIndex) {
+      const correct = gameState.trivia.currentQuestionData.correct;
+      const options = document.querySelectorAll('.trivia-option');
+      
+      if (answerIndex === correct) {
+        gameState.trivia.score++;
+        options[answerIndex].style.backgroundColor = '#4CAF50';
+        setTimeout(() => alert('Correct!'), 100);
+      } else {
+        options[answerIndex].style.backgroundColor = '#f44336';
+        options[correct].style.backgroundColor = '#4CAF50';
+        setTimeout(() => alert('Incorrect! The right answer was highlighted.'), 100);
+      }
+      
+      options.forEach(option => option.disabled = true);
+      document.getElementById('trivia-score').textContent = gameState.trivia.score;
+    }
+    
+    function nextTriviaQuestion() {
+      gameState.trivia.currentQuestion++;
+      setTimeout(() => loadTriviaQuestion(), 500);
+    }
+    
+    // Decision Roulette Game
+    function initDecisionRoulette() {
+      gameState.roulette = { options: [] };
+      document.getElementById('roulette-list').innerHTML = '';
+      document.querySelector('.spin-btn').disabled = true;
+      document.getElementById('wheel-result').textContent = 'Add options and spin!';
+    }
+    
+    function addRouletteOption() {
+      const input = document.getElementById('roulette-input');
+      const option = input.value.trim();
+      
+      if (option && !gameState.roulette.options.includes(option)) {
+        gameState.roulette.options.push(option);
+        
+        const li = document.createElement('li');
+        li.textContent = option;
+        li.style.cssText = 'color: #b0b8d4; margin: 5px 0; padding: 5px; background: rgba(255,255,255,0.1); border-radius: 5px;';
+        document.getElementById('roulette-list').appendChild(li);
+        
+        input.value = '';
+        
+        if (gameState.roulette.options.length >= 2) {
+          document.querySelector('.spin-btn').disabled = false;
+        }
+      }
+    }
+    
+    // Add keyboard support for roulette input
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add enter key support for roulette input
+      document.addEventListener('keypress', function(e) {
+        if (e.target && e.target.id === 'roulette-input' && e.key === 'Enter') {
+          e.preventDefault();
+          addRouletteOption();
+        }
+      });
+    });
+    
+    function spinRoulette() {
+      if (gameState.roulette.options.length < 2) return;
+      
+      document.getElementById('wheel-result').textContent = 'Spinning...';
+      
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * gameState.roulette.options.length);
+        const winner = gameState.roulette.options[randomIndex];
+        document.getElementById('wheel-result').textContent = `🎉 ${winner} 🎉`;
+      }, 2000);
+    }
+    
+    // Compliment Battle Game
+    function initComplimentBattle() {
+      gameState.compliments = { 
+        currentPlayer: 1, 
+        timeLeft: 30, 
+        timer: null,
+        p1Score: 0,
+        p2Score: 0,
+        roundActive: false
+      };
+      document.getElementById('p1-compliments').textContent = '0';
+      document.getElementById('p2-compliments').textContent = '0';
+      document.getElementById('compliment-timer').textContent = '30';
+      document.getElementById('compliment-current').textContent = "Player 1's Turn";
+    }
+    
+    function startComplimentRound() {
+      if (gameState.compliments.timer) clearInterval(gameState.compliments.timer);
+      
+      gameState.compliments.timeLeft = 30;
+      gameState.compliments.roundActive = true;
+      document.getElementById('compliment-timer').textContent = gameState.compliments.timeLeft;
+      
+      gameState.compliments.timer = setInterval(() => {
+        gameState.compliments.timeLeft--;
+        document.getElementById('compliment-timer').textContent = gameState.compliments.timeLeft;
+        
+        if (gameState.compliments.timeLeft <= 0) {
+          clearInterval(gameState.compliments.timer);
+          gameState.compliments.roundActive = false;
+          alert(`Time's up for Player ${gameState.compliments.currentPlayer}!`);
+        }
+      }, 1000);
+    }
+    
+    function addCompliment() {
+      if (!gameState.compliments.roundActive) return;
+      
+      if (gameState.compliments.currentPlayer === 1) {
+        gameState.compliments.p1Score++;
+        document.getElementById('p1-compliments').textContent = gameState.compliments.p1Score;
+      } else {
+        gameState.compliments.p2Score++;
+        document.getElementById('p2-compliments').textContent = gameState.compliments.p2Score;
+      }
+    }
+    
+    function switchComplimentPlayer() {
+      if (gameState.compliments.timer) clearInterval(gameState.compliments.timer);
+      
+      gameState.compliments.currentPlayer = gameState.compliments.currentPlayer === 1 ? 2 : 1;
+      gameState.compliments.timeLeft = 30;
+      gameState.compliments.roundActive = false;
+      
+      document.getElementById('compliment-current').textContent = `Player ${gameState.compliments.currentPlayer}'s Turn`;
+      document.getElementById('compliment-timer').textContent = gameState.compliments.timeLeft;
+    }
+  </script>

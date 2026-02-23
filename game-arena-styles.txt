@@ -1,0 +1,443 @@
+    /* Game Arena Styles */
+    .game-interface {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #1a1a2e;
+      z-index: 10000;
+      padding: 2rem;
+      box-sizing: border-box;
+      overflow-y: auto;
+      font-family: 'Poppins', sans-serif;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .game-instructions {
+      background: rgba(231, 76, 111, 0.1);
+      border: 1px solid rgba(231, 76, 111, 0.25);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .game-instructions strong {
+      color: #e74c6f;
+    }
+    
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid rgba(231, 76, 111, 0.3);
+      padding-bottom: 1rem;
+    }
+    
+    .game-header h2 {
+      color: #e74c6f;
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    
+    .close-game {
+      background: rgba(231, 76, 111, 0.2);
+      border: 2px solid #e74c6f;
+      border-radius: 50%;
+      color: #e74c6f;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .close-game:hover {
+      background: #e74c6f;
+      color: white;
+    }
+    
+    .game-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .category-selector h3, .scenario-display h3, .story-prompt h3, .trivia-question h3 {
+      color: #b0b8d4;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      line-height: 1.5;
+    }
+    
+    .category-buttons, .game-actions, .story-controls, .trivia-controls, .battle-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .category-btn, .game-btn, .wyr-option, .trivia-option {
+      background: rgba(231, 76, 111, 0.1);
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 12px;
+      color: #b0b8d4;
+      padding: 12px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .category-btn:hover, .game-btn:hover, .wyr-option:hover, .trivia-option:hover {
+      background: rgba(231, 76, 111, 0.3);
+      border-color: #e74c6f;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .current-prompt {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .current-prompt h3 {
+      color: #b0b8d4;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .wyr-options {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      justify-content: center;
+      min-height: 40vh;
+      align-items: stretch;
+    }
+    
+    .wyr-option {
+      flex: 1;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .story-timer, .battle-timer {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    
+    .timer-display {
+      font-size: 3rem;
+      color: #e74c6f;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .current-player {
+      color: #b0b8d4;
+      font-size: 1.2rem;
+    }
+    
+    .trivia-score, .battle-score {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #b0b8d4;
+      font-size: 1.2rem;
+    }
+    
+    .player-score {
+      display: inline-block;
+      margin: 0 1rem;
+      color: #e74c6f;
+      font-weight: bold;
+    }
+    
+    .trivia-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .trivia-option {
+      width: 100%;
+      text-align: left;
+      padding: 1rem 1.5rem;
+    }
+    
+    .roulette-setup {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .roulette-setup h3 {
+      color: #b0b8d4;
+    }
+    
+    .roulette-setup input {
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: #b0b8d4;
+      margin-right: 1rem;
+      font-family: 'Poppins', sans-serif;
+      width: 250px;
+    }
+    
+    .roulette-setup input:focus {
+      outline: none;
+      border-color: #e74c6f;
+    }
+    
+    .roulette-options {
+      margin: 2rem 0;
+    }
+    
+    .roulette-options ul {
+      list-style: none;
+      padding: 0;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .roulette-wheel {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    .wheel-result {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      color: #e74c6f;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .spin-btn {
+      font-size: 1.2rem !important;
+      padding: 15px 30px !important;
+      background: linear-gradient(135deg, #e74c6f, #c0392b) !important;
+      border: none !important;
+      color: white !important;
+    }
+    
+    .spin-btn:disabled {
+      background: rgba(255, 255, 255, 0.2) !important;
+      color: rgba(255, 255, 255, 0.5) !important;
+      cursor: not-allowed !important;
+    }
+    
+    .spin-btn:hover:not(:disabled) {
+      transform: scale(1.05) !important;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .game-interface {
+        padding: 1rem 0.75rem;
+      }
+      
+      .game-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+      }
+      
+      .game-header h2 {
+        font-size: 1.3rem;
+      }
+      
+      .game-instructions {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        margin-bottom: 1.25rem;
+      }
+      
+      .game-content {
+        padding: 0 0.25rem;
+      }
+      
+      .category-selector h3, .scenario-display h3, .story-prompt h3, .trivia-question h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.25rem;
+      }
+      
+      .category-buttons, .game-actions, .story-controls, .trivia-controls, .battle-controls {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      
+      .category-btn, .game-btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 1rem;
+      }
+      
+      .wyr-options {
+        flex-direction: row;
+        gap: 0.5rem;
+        min-height: 50vh;
+      }
+      
+      .wyr-option {
+        flex: 1;
+        padding: 1rem;
+        font-size: 0.95rem;
+      }
+      
+      .trivia-option {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+      }
+      
+      .timer-display {
+        font-size: 2.5rem;
+      }
+      
+      .battle-score {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+      
+      .roulette-setup {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      
+      .roulette-setup input {
+        width: 100%;
+        margin-right: 0;
+      }
+      
+      .roulette-setup .game-btn {
+        width: 100%;
+      }
+      
+      .close-game {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+    }
+    
+    /* Adults Only Result Cards */
+    .result-card {
+      background: rgba(231, 76, 111, 0.1);
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+    
+    .result-card h3 {
+      color: #e74c6f;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .difficulty-rating {
+      background: rgba(255, 255, 255, 0.1);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      color: #ff9aa2;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .position-tips {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+    
+    .answer-btn:hover {
+      background: rgba(231, 76, 111, 0.2) !important;
+      border-color: rgba(231, 76, 111, 0.5) !important;
+      color: white !important;
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="access-gate" id="accessGate">
+    <img src="https://tryconnecting.com/cdn/shop/files/Connecting_red_logo_rights.png?v=1736502003&width=500" alt="Connecting™" class="gate-logo">
+    <h1>The Connection Club™</h1>
+    <p>Enter your member access code</p>
+    <input type="password" id="accessCode" placeholder="Access Code" onkeydown="if(event.key==='Enter')checkAccess()">
+    <button onclick="checkAccess()">Enter Portal</button>
+    <p class="error" id="accessError">Invalid access code. Please try again.</p>
+  </div>
+  
+  <!-- Adults Only Age Verification Gate -->
+  <div class="age-verification-gate" id="ageVerificationGate">
+    <img src="https://tryconnecting.com/cdn/shop/files/Connecting_red_logo_rights.png?v=1736502003&width=500" alt="Connecting" class="gate-logo">
+    <h1>🔞 Adults Only Section</h1>
+    <p class="subtitle">This section contains mature content designed for couples 21+ seeking to enhance their intimate connection.</p>
+    
+    <div class="age-notice">
+      <h3>Age Verification Required</h3>
+      <p>You must be at least 21 years old to access this content. The following section contains adult themes, intimate guidance, and mature relationship content intended for consenting adults only.</p>
+    </div>
+    
+    <div class="age-buttons">
+      <button class="age-button confirm" onclick="confirmAge()">I am 21+ years old</button>
+      <button class="age-button deny" onclick="denyAge()">I am under 21</button>
+    </div>
+    
+    <p class="age-warning">By clicking "I am 21+ years old," you confirm that you meet the age requirement and consent to viewing mature content.</p>
+  </div>
+  
+  <div class="portal-wrap" id="portalContent">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<div class="date-club-portal">
+  <div class="custom-header">
+ <a href="https://tryconnecting.com" class="back-link">&#8592; Back to Shop</a>
+ <img src="https://tryconnecting.com/cdn/shop/files/Connecting_red_logo_rights.png?v=1736502003&width=500" alt="Connecting" class="logo">
+  </div>
+  <div class="portal-hero">
+ <div class="premium-badge">&#x1F48E; Premium Member</div>
+ <h1 class="portal-title">The Connection Club&#x2122;</h1>
+ <p class="portal-subtitle">Your exclusive access to relationship mastery</p>
+ <div class="stats-bar">
+  <div class="stat-item">251+ Expert Videos</div>
+  <div class="stat-item">150+ PDF Resources</div>
+  <div class="stat-item">24+ Couple Movies</div>
+  <div class="stat-item">Updated Daily</div>
+ </div>
+ <div class="welcome-message">
+  As a The Connection Club&#x2122; member, you get unlimited access to our growing library of relationship resources. From expert-led videos to evidence-based PDF guides, everything you need to build the relationship of your dreams is right here.
+ </div>
+  </div>
+  <div class="tab-navigation">
