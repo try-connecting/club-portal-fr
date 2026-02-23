@@ -6414,9 +6414,9 @@
 
     function showSpinResult(position) {
       const resultDiv = document.getElementById('spinResult');
-      const svgHtml = position.svg ? '<div style="text-align:center;margin:1rem 0;background:rgba(0,0,0,0.3);border-radius:12px;padding:1.5rem;display:inline-block;">' + position.svg + '</div>' : '';
+      const imageHtml = position.image ? '<div style="text-align:center;margin:1rem 0;"><img src="' + position.image + '" style="max-width:200px;max-height:200px;filter:invert(1);opacity:0.85;" /></div>' : '';
       resultDiv.innerHTML = '<div class="result-card" style="background:rgba(255,255,255,0.08);border:1px solid rgba(231,76,111,0.3);border-radius:16px;padding:2rem;text-align:center;">' +
-        svgHtml +
+        imageHtml +
         '<h3 style="color:#e74c6f;font-size:1.5rem;margin:0.5rem 0;">' + position.name + '</h3>' +
         '<div style="color:#ff9a9e;margin:0.5rem 0;">Difficulty: ' + position.difficulty + '</div>' +
         '<p style="color:rgba(255,255,255,0.8);margin:1rem 0;line-height:1.6;">' + position.description + '</p>' +
