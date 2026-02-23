@@ -13,15 +13,17 @@
 
     var countrySelect = document.querySelector('select[data-type="country"]');
 
-    // Find the direct wrapper around the address input and make it relative
-    var inputWrapper = addressInput.closest('.form-element') || addressInput.parentElement;
-    inputWrapper.style.position = 'relative';
+    // Wrap the address input in a relative container so dropdown sits directly below it
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'position:relative;width:100%;flex:1 1 100%;';
+    addressInput.parentNode.insertBefore(wrap, addressInput);
+    wrap.appendChild(addressInput);
 
-    // Create dropdown INSIDE the input wrapper, positioned absolute below the input
+    // Create dropdown INSIDE the wrapper, positioned absolute below the input
     var dd = document.createElement('div');
     dd.id = 'gac-dropdown';
     dd.style.cssText = 'position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ddd;border-top:none;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;margin-top:0;width:100%;box-sizing:border-box;';
-    inputWrapper.appendChild(dd);
+    wrap.appendChild(dd);
 
     // Styles
     var style = document.createElement('style');
