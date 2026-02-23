@@ -25,23 +25,20 @@
         }).catch(function() {});
     }
 
-    // Create dropdown
+    // Make the input wrapper relative so dropdown can be absolute inside it
+    var inputWrapper = addressInput.closest('.form-element') || addressInput.parentElement;
+    inputWrapper.style.position = 'relative';
+
+    // Create dropdown as a sibling, positioned absolute below input
     var dd = document.createElement('div');
     dd.id = 'gac-dropdown';
-    dd.style.cssText = 'position:fixed;background:#fff;border:1px solid #ddd;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;';
-    document.body.appendChild(dd);
+    dd.style.cssText = 'position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ddd;border-top:none;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;';
+    inputWrapper.appendChild(dd);
 
     // Mobile-friendly styles
     var style = document.createElement('style');
-    style.textContent = '#gac-dropdown div{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f0f0f0;-webkit-tap-highlight-color:transparent;}#gac-dropdown div:active{background:#e8e8e8 !important;}@media(max-width:600px){#gac-dropdown{max-height:180px;border-radius:0 0 6px 6px;}#gac-dropdown div{padding:14px;font-size:15px;}#gac-dropdown div span{font-size:13px !important;}}';
+    style.textContent = '#gac-dropdown div{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f0f0f0;-webkit-tap-highlight-color:transparent;}#gac-dropdown div:active{background:#e8e8e8 !important;}@media(max-width:600px){#gac-dropdown{max-height:150px;border-radius:0 0 6px 6px;}#gac-dropdown div{padding:14px;font-size:15px;}#gac-dropdown div span{font-size:13px !important;}}';
     document.head.appendChild(style);
-
-    function positionDD() {
-      var rect = addressInput.getBoundingClientRect();
-      dd.style.top = rect.bottom + 'px';
-      dd.style.left = rect.left + 'px';
-      dd.style.width = rect.width + 'px';
-    }
 
     var service = new google.maps.places.AutocompleteService();
     var placesService = new google.maps.places.PlacesService(document.createElement('div'));
@@ -55,7 +52,6 @@
         service.getPlacePredictions({ input: val, types: ['address'] }, function(predictions, status) {
           dd.innerHTML = '';
           if (status !== 'OK' || !predictions) { dd.style.display = 'none'; return; }
-          positionDD();
           predictions.forEach(function(p) {
             var item = document.createElement('div');
             item.innerHTML = '<strong>' + p.structured_formatting.main_text + '</strong><br><span style="color:#888;font-size:12px">' + (p.structured_formatting.secondary_text || '') + '</span>';
@@ -125,10 +121,6 @@
     document.addEventListener('click', function(e) {
       if (!addressInput.contains(e.target) && !dd.contains(e.target)) dd.style.display = 'none';
     });
-
-    // Reposition on scroll/resize
-    window.addEventListener('scroll', function() { if (dd.style.display === 'block') positionDD(); }, true);
-    window.addEventListener('resize', function() { if (dd.style.display === 'block') positionDD(); });
   }
 
   // Start polling - works regardless of load timing
