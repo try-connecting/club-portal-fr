@@ -33,6 +33,7 @@
     var service = new google.maps.places.AutocompleteService();
     var placesService = new google.maps.places.PlacesService(document.createElement('div'));
     var debounce;
+    var justSelected = false; // flag to suppress dropdown after selecting an address
 
     // Get selected country code for biasing results
     function getSelectedCountry() {
@@ -42,15 +43,15 @@
 
     addressInput.addEventListener('input', function() {
       clearTimeout(debounce);
+      // If user just selected an address, don't reopen dropdown
+      if (justSelected) { justSelected = false; return; }
       var val = this.value;
       if (val.length < 3) { dd.style.display = 'none'; return; }
 
-      // Only activate if a country is already selected
-      var country = getSelectedCountry();
-      if (!country) { dd.style.display = 'none'; return; }
-
       debounce = setTimeout(function() {
-        var opts = { input: val, types: ['address'], componentRestrictions: { country: country } };
+        var opts = { input: val, types: ['address'] };
+        var country = getSelectedCountry();
+        if (country) { opts.componentRestrictions = { country: country }; }
         service.getPlacePredictions(opts, function(predictions, status) {
           dd.innerHTML = '';
           if (status !== 'OK' || !predictions) { dd.style.display = 'none'; return; }
@@ -59,6 +60,7 @@
             item.className = 'gac-item';
             item.innerHTML = '<strong>' + p.structured_formatting.main_text + '</strong><br><span style="color:#888;font-size:12px">' + (p.structured_formatting.secondary_text || '') + '</span>';
             item.onclick = function() {
+              justSelected = true;
               addressInput.value = p.structured_formatting.main_text;
               addressInput.dispatchEvent(new Event('input', { bubbles: true }));
               dd.style.display = 'none';
