@@ -36,6 +36,290 @@
     .access-gate button:hover { transform: scale(1.05); }
     .access-gate .error { color: #ff6b6b; margin-top: 10px; display: none; }
     .portal-wrap { display: none; }
+    
+    /* Quiz Engine Styles */
+    .quiz-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(231, 76, 111, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(231, 76, 111, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s ease;
+      opacity: 0;
+    }
+
+    .quiz-card:hover::before {
+      opacity: 1;
+      animation: shimmer 1.5s ease-in-out;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .quiz-card:hover {
+      transform: translateY(-10px);
+      border-color: #e74c6f;
+      box-shadow: 0 20px 40px rgba(231, 76, 111, 0.2);
+    }
+
+    .quiz-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #e74c6f;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-card p {
+      color: #b0b8d4;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-stats span {
+      background: rgba(231, 76, 111, 0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #ff9aa2;
+      border: 1px solid rgba(231, 76, 111, 0.3);
+    }
+
+    .quiz-interface {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-header h2 {
+      color: #e74c6f;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-progress {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      height: 8px;
+      width: 100%;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+
+    .quiz-progress-bar {
+      background: linear-gradient(135deg, #e74c6f, #ff9aa2);
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .progress-text {
+      color: #b0b8d4;
+      font-size: 0.9rem;
+    }
+
+    .partner-selection {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .partner-tab {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 0.7rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #b0b8d4;
+      font-weight: 500;
+    }
+
+    .partner-tab.active {
+      background: linear-gradient(135deg, #e74c6f, #c0392b);
+      border-color: #e74c6f;
+      color: white;
+    }
+
+    .question-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .question {
+      font-size: 1.3rem;
+      color: white;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .answers {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .answer-option {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      color: #b0b8d4;
+    }
+
+    .answer-option:hover {
+      background: rgba(231, 76, 111, 0.1);
+      border-color: rgba(231, 76, 111, 0.5);
+      transform: translateX(10px);
+    }
+
+    .answer-option.selected {
+      background: linear-gradient(135deg, rgba(231, 76, 111, 0.2), rgba(192, 57, 43, 0.2));
+      border-color: #e74c6f;
+      color: white;
+    }
+
+    .quiz-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #e74c6f, #c0392b);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(231, 76, 111, 0.3);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #b0b8d4;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .results-screen {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .results-header h2 {
+      color: #e74c6f;
+      margin-bottom: 1rem;
+    }
+
+    .love-language-result {
+      background: linear-gradient(135deg, rgba(231, 76, 111, 0.1), rgba(192, 57, 43, 0.1));
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .love-language-result h3 {
+      color: #e74c6f;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .love-language-result .score {
+      font-size: 1.2rem;
+      color: #ff9aa2;
+      margin-bottom: 1rem;
+    }
+
+    .love-language-result .description {
+      color: #b0b8d4;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .partner-results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .hidden {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -72,6 +356,9 @@
   <div class="tab-navigation">
  <button class="tab-button active" data-tab="trending">
   &#x1F525; Trending <span class="content-count">25+ Picks</span>
+ </button>
+ <button class="tab-button" data-tab="quiz-engine">
+  💕 Quiz Engine <span class="content-count">3 Assessments</span>
  </button>
  <button class="tab-button" data-tab="secrets">
  🎯 Game Secrets <span class="content-count">4 Tips</span>
@@ -383,6 +670,94 @@
   </a>
  </div>
   </div>
+  
+  <!-- Quiz Engine Tab Content -->
+  <div class="tab-content" id="quiz-engine">
+    <h2 class="tab-description">Discover deeper insights about your relationship with research-backed assessment tools.</h2>
+    <div class="pro-tip">
+      <span class="pro-tip-label">💕 Pro Tip</span>
+      Take these quizzes together to strengthen your connection. Understanding each other's styles creates deeper intimacy and better communication.
+    </div>
+    
+    <!-- Quiz Selection Screen -->
+    <div class="quiz-selection" id="quizSelection">
+      <div class="quiz-cards">
+        <div class="quiz-card" onclick="startQuiz('love-language')">
+          <h3>💕 Love Language Assessment</h3>
+          <p>Discover how you and your partner prefer to give and receive love. Understanding each other's primary love language creates deeper intimacy and connection.</p>
+          <div class="quiz-stats">
+            <span>20 Questions</span>
+            <span>Both Partners</span>
+            <span>10 mins</span>
+          </div>
+        </div>
+        
+        <div class="quiz-card" onclick="startQuiz('health-score')">
+          <h3>💪 Relationship Health Score</h3>
+          <p>Get a comprehensive evaluation of your relationship across key areas: communication, intimacy, trust, fun, and emotional support.</p>
+          <div class="quiz-stats">
+            <span>30 Questions</span>
+            <span>Single Quiz</span>
+            <span>8 mins</span>
+          </div>
+        </div>
+        
+        <div class="quiz-card" onclick="startQuiz('conflict-style')">
+          <h3>⚖️ Conflict Style Finder</h3>
+          <p>Learn how you and your partner handle disagreements. Discover your conflict styles and get personalized tips for healthier resolution.</p>
+          <div class="quiz-stats">
+            <span>15 Questions</span>
+            <span>Both Partners</span>
+            <span>6 mins</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Interface -->
+    <div class="quiz-interface" id="quizInterface" style="display: none;">
+      <div class="quiz-header">
+        <h2 id="quizTitle"></h2>
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText"></div>
+      </div>
+
+      <!-- Partner Selection (for dual quizzes) -->
+      <div class="partner-selection hidden" id="partnerSelection">
+        <div class="partner-tab active" data-partner="A">Partner A</div>
+        <div class="partner-tab" data-partner="B">Partner B</div>
+      </div>
+
+      <!-- Question Container -->
+      <div class="question-container" id="questionContainer">
+        <div class="question" id="questionText"></div>
+        <div class="answers" id="answersContainer"></div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="quiz-navigation">
+        <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()">← Previous</button>
+        <button class="btn btn-secondary" onclick="exitQuiz()" style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3);">✕ Exit Quiz</button>
+        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="results-screen" id="resultsScreen" style="display: none;">
+      <div class="results-header">
+        <h2 id="resultsTitle"></h2>
+      </div>
+      <div id="resultsContent"></div>
+      
+      <div class="quiz-navigation">
+        <button class="btn btn-primary" onclick="showQuizSelection()">← Back to Quizzes</button>
+        <button class="btn btn-secondary" onclick="showQuizSelection()">Take Another Quiz</button>
+      </div>
+    </div>
+  </div>
+  
   <div class="tab-content" id="dc-playbooks">
  <h2 class="tab-description">Your comprehensive relationship toolkit &#8212; evidence-based guides from leading universities and clinical centers.</h2>
  <div class="pro-tip">
@@ -3911,6 +4286,610 @@
       document.getElementById('accessGate').style.display = 'none';
       document.getElementById('portalContent').style.display = 'block';
     }
+
+    // Quiz Engine JavaScript
+    const quizData = {
+      'love-language': {
+        title: '💕 Love Language Assessment',
+        description: 'Discover how you and your partner prefer to give and receive love',
+        dualPartner: true,
+        questions: [
+          {
+            question: "When your partner does something special for you, what means the most?",
+            answers: [
+              { text: "They tell you how much they love and appreciate you", type: "words" },
+              { text: "They help you with something you've been putting off", type: "service" },
+              { text: "They surprise you with a thoughtful gift", type: "gifts" },
+              { text: "They plan quality time together doing something you enjoy", type: "time" },
+              { text: "They give you a long, loving hug or hold your hand", type: "touch" }
+            ]
+          },
+          {
+            question: "What makes you feel most loved in your relationship?",
+            answers: [
+              { text: "Hearing 'I love you' and other affirming words regularly", type: "words" },
+              { text: "Your partner helping with chores or tasks without being asked", type: "service" },
+              { text: "Receiving surprise gifts or tokens of love", type: "gifts" },
+              { text: "Having your partner's full attention during conversations", type: "time" },
+              { text: "Physical closeness, cuddling, and intimate touch", type: "touch" }
+            ]
+          },
+          {
+            question: "When you want to show love to your partner, you're most likely to:",
+            answers: [
+              { text: "Write them a heartfelt note or give genuine compliments", type: "words" },
+              { text: "Do something helpful that makes their day easier", type: "service" },
+              { text: "Pick up something you know they'd love", type: "gifts" },
+              { text: "Plan a special date or set aside uninterrupted time together", type: "time" },
+              { text: "Give them a massage or be physically affectionate", type: "touch" }
+            ]
+          },
+          {
+            question: "What would hurt your feelings most in a relationship?",
+            answers: [
+              { text: "Your partner rarely says loving or encouraging words", type: "words" },
+              { text: "Your partner never offers to help when you're overwhelmed", type: "service" },
+              { text: "Your partner forgets important occasions and never gives gifts", type: "gifts" },
+              { text: "Your partner is always distracted when you're together", type: "time" },
+              { text: "Your partner avoids physical affection and intimacy", type: "touch" }
+            ]
+          },
+          {
+            question: "During a difficult time, what would comfort you most?",
+            answers: [
+              { text: "Your partner telling you they believe in you and offering encouragement", type: "words" },
+              { text: "Your partner taking care of practical things so you can focus on healing", type: "service" },
+              { text: "Your partner bringing you something thoughtful to cheer you up", type: "gifts" },
+              { text: "Your partner clearing their schedule to be with you", type: "time" },
+              { text: "Your partner holding you close and offering physical comfort", type: "touch" }
+            ]
+          },
+          {
+            question: "Which of these gestures would make you feel most appreciated?",
+            answers: [
+              { text: "Your partner publicly praising you or bragging about your accomplishments", type: "words" },
+              { text: "Your partner taking over a task you dislike without being asked", type: "service" },
+              { text: "Your partner surprising you with something you've wanted", type: "gifts" },
+              { text: "Your partner planning an entire day around your interests", type: "time" },
+              { text: "Your partner giving you a spontaneous back rub or holding your hand", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're feeling disconnected from your partner, what would help most?",
+            answers: [
+              { text: "Having a heart-to-heart conversation about your feelings", type: "words" },
+              { text: "Working together on a project or shared task", type: "service" },
+              { text: "Receiving an unexpected small gift or token of love", type: "gifts" },
+              { text: "Spending uninterrupted, focused time together", type: "time" },
+              { text: "Increased physical closeness and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What type of anniversary celebration would mean the most to you?",
+            answers: [
+              { text: "Your partner writing you a beautiful letter about your journey together", type: "words" },
+              { text: "Your partner organizing everything so you can just enjoy the day", type: "service" },
+              { text: "Your partner giving you a meaningful, thoughtful gift", type: "gifts" },
+              { text: "Spending the whole day together doing things you both love", type: "time" },
+              { text: "A romantic, intimate evening with lots of physical closeness", type: "touch" }
+            ]
+          },
+          {
+            question: "When your partner wants to apologize after an argument, what works best?",
+            answers: [
+              { text: "A sincere verbal apology explaining what they'll do differently", type: "words" },
+              { text: "Actions that show they're trying to fix the problem", type: "service" },
+              { text: "A peace offering or gesture to show they care", type: "gifts" },
+              { text: "Sitting down together to really talk things through", type: "time" },
+              { text: "A hug and physical reconciliation", type: "touch" }
+            ]
+          },
+          {
+            question: "What makes you feel most secure in your relationship?",
+            answers: [
+              { text: "Regular verbal reassurance and expressions of love", type: "words" },
+              { text: "Your partner consistently following through on their promises", type: "service" },
+              { text: "Receiving thoughtful gestures that show you're in their thoughts", type: "gifts" },
+              { text: "Knowing you're a priority in your partner's schedule", type: "time" },
+              { text: "Frequent physical affection and intimacy", type: "touch" }
+            ]
+          },
+          {
+            question: "How do you prefer to receive encouragement when facing a challenge?",
+            answers: [
+              { text: "Verbal support and motivational words", type: "words" },
+              { text: "Practical help to reduce your stress and workload", type: "service" },
+              { text: "A thoughtful gift to boost your spirits", type: "gifts" },
+              { text: "Your partner's presence and undivided attention", type: "time" },
+              { text: "Physical comfort like hugs or hand-holding", type: "touch" }
+            ]
+          },
+          {
+            question: "Which surprise from your partner would make your day?",
+            answers: [
+              { text: "A surprise text message telling you why they love you", type: "words" },
+              { text: "Coming home to find your partner has done all your chores", type: "service" },
+              { text: "Finding a small gift on your pillow or desk", type: "gifts" },
+              { text: "Your partner canceling other plans to spend time with you", type: "time" },
+              { text: "Your partner greeting you with extra affection when you get home", type: "touch" }
+            ]
+          },
+          {
+            question: "What would make you feel most loved on a random Tuesday?",
+            answers: [
+              { text: "Your partner telling you something specific they appreciate about you", type: "words" },
+              { text: "Your partner handling something you've been dreading", type: "service" },
+              { text: "Your partner bringing you coffee or a small treat", type: "gifts" },
+              { text: "Your partner suggesting you do something fun together", type: "time" },
+              { text: "Extra hugs, kisses, or cuddles throughout the day", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're proud of an achievement, how do you want your partner to respond?",
+            answers: [
+              { text: "With enthusiastic verbal praise and recognition", type: "words" },
+              { text: "By taking care of details so you can celebrate", type: "service" },
+              { text: "With a congratulatory gift or gesture", type: "gifts" },
+              { text: "By dedicating time to hear all about it and celebrate together", type: "time" },
+              { text: "With physical celebration - hugs, kisses, and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What type of daily gesture would mean the most to you?",
+            answers: [
+              { text: "Good morning and goodnight messages with loving words", type: "words" },
+              { text: "Your partner handling one small task to make your day easier", type: "service" },
+              { text: "Small, thoughtful surprises left for you to find", type: "gifts" },
+              { text: "A few minutes of undivided attention during your day", type: "time" },
+              { text: "Physical affection woven throughout your daily routine", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're stressed, what would help you feel most supported?",
+            answers: [
+              { text: "Your partner verbally acknowledging your stress and offering encouragement", type: "words" },
+              { text: "Your partner taking tasks off your plate without being asked", type: "service" },
+              { text: "Your partner bringing you something to help you relax", type: "gifts" },
+              { text: "Your partner making time to just be present with you", type: "time" },
+              { text: "Your partner offering physical comfort and stress relief", type: "touch" }
+            ]
+          },
+          {
+            question: "How do you best connect with your partner after time apart?",
+            answers: [
+              { text: "Sharing what happened and expressing how much you missed each other", type: "words" },
+              { text: "Working together on something that needs to be done", type: "service" },
+              { text: "Exchanging small gifts or tokens from your time apart", type: "gifts" },
+              { text: "Dedicating focused time to catch up and reconnect", type: "time" },
+              { text: "Physical reunification with lots of hugs and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What would make you feel most cherished in your relationship?",
+            answers: [
+              { text: "Hearing regularly about your partner's love and appreciation for you", type: "words" },
+              { text: "Seeing your partner anticipate your needs and care for you", type: "service" },
+              { text: "Receiving meaningful gifts that show your partner thinks of you", type: "gifts" },
+              { text: "Knowing you're the priority when your partner makes their schedule", type: "time" },
+              { text: "Experiencing constant physical connection and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "Which romantic gesture would touch your heart most deeply?",
+            answers: [
+              { text: "A handwritten love letter or poem", type: "words" },
+              { text: "Your partner planning and executing a perfect romantic evening", type: "service" },
+              { text: "A carefully chosen gift that shows deep understanding of you", type: "gifts" },
+              { text: "A romantic getaway focused entirely on being together", type: "time" },
+              { text: "An evening of intimate physical connection and closeness", type: "touch" }
+            ]
+          },
+          {
+            question: "In your ideal relationship, which of these would happen most frequently?",
+            answers: [
+              { text: "Daily expressions of love and appreciation through words", type: "words" },
+              { text: "Regular acts of service that make life easier for both of you", type: "service" },
+              { text: "Frequent small gifts and thoughtful surprises", type: "gifts" },
+              { text: "Consistent quality time and undivided attention", type: "time" },
+              { text: "Ongoing physical affection and touch throughout each day", type: "touch" }
+            ]
+          }
+        ]
+      },
+      'health-score': {
+        title: '💪 Relationship Health Score',
+        description: 'Comprehensive evaluation of your relationship across key areas',
+        dualPartner: false,
+        categories: ['Communication', 'Intimacy', 'Trust', 'Fun & Adventure', 'Emotional Support'],
+        questions: [
+          { question: "We communicate openly about our feelings and concerns", category: "Communication" },
+          { question: "We listen to each other without interrupting or getting defensive", category: "Communication" },
+          { question: "We maintain physical affection and intimacy that satisfies both of us", category: "Intimacy" },
+          { question: "We trust each other completely and feel secure in our relationship", category: "Trust" },
+          { question: "We regularly have fun together and enjoy each other's company", category: "Fun & Adventure" },
+          { question: "We provide comfort and support during difficult times", category: "Emotional Support" }
+        ]
+      },
+      'conflict-style': {
+        title: '⚖️ Conflict Style Finder',
+        description: 'Learn how you and your partner handle disagreements',
+        dualPartner: true,
+        questions: [
+          {
+            question: "When you and your partner disagree about something important, you typically:",
+            answers: [
+              { text: "Try to avoid the conflict and hope it resolves itself", type: "avoider" },
+              { text: "Look for a middle ground that both of you can accept", type: "compromiser" },
+              { text: "Stand firm on your position and argue your point strongly", type: "fighter" },
+              { text: "Focus on understanding their perspective and finding harmony", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "During a heated argument, your first instinct is to:",
+            answers: [
+              { text: "Walk away or suggest talking about it later", type: "avoider" },
+              { text: "Propose a solution that gives both of you something you want", type: "compromiser" },
+              { text: "Present your evidence and reasons why you're right", type: "fighter" },
+              { text: "Acknowledge their feelings and try to calm the situation", type: "peacemaker" }
+            ]
+          },
+          {
+            question: "When you feel hurt by your partner's actions, you:",
+            answers: [
+              { text: "Keep it to yourself to avoid creating more problems", type: "avoider" },
+              { text: "Explain what hurt you and ask for what you need going forward", type: "compromiser" },
+              { text: "Tell them directly how their actions affected you", type: "fighter" },
+              { text: "Try to understand why they acted that way before addressing your hurt", type: "peacemaker" }
+            ]
+          }
+        ]
+      }
+    };
+
+    let currentQuiz = null;
+    let currentQuestionIndex = 0;
+    let currentPartner = 'A';
+    let answers = { A: {}, B: {} };
+    let selectedAnswer = null;
+
+    function startQuiz(quizType) {
+      currentQuiz = quizData[quizType];
+      currentQuestionIndex = 0;
+      currentPartner = 'A';
+      answers = { A: {}, B: {} };
+      selectedAnswer = null;
+
+      // Hide quiz selection
+      document.getElementById('quizSelection').style.display = 'none';
+      document.getElementById('quizInterface').style.display = 'block';
+      document.getElementById('resultsScreen').style.display = 'none';
+
+      // Set quiz title
+      document.getElementById('quizTitle').textContent = currentQuiz.title;
+
+      // Show/hide partner selection
+      const partnerSelection = document.getElementById('partnerSelection');
+      if (currentQuiz.dualPartner) {
+        partnerSelection.classList.remove('hidden');
+      } else {
+        partnerSelection.classList.add('hidden');
+      }
+
+      displayQuestion();
+    }
+
+    function displayQuestion() {
+      // For Love Language Assessment, calculate actual question index based on partner
+      let actualQuestionIndex = currentQuestionIndex;
+      let totalQuestionsForPartner = currentQuiz.questions.length;
+      
+      if (currentQuiz.title.includes('Love Language')) {
+        totalQuestionsForPartner = 10; // Each partner gets 10 questions
+        if (currentPartner === 'B') {
+          actualQuestionIndex = currentQuestionIndex + 10; // Partner B gets questions 10-19
+        }
+        // Partner A gets questions 0-9 (currentQuestionIndex stays the same)
+      }
+      
+      const question = currentQuiz.questions[actualQuestionIndex];
+      document.getElementById('questionText').textContent = question.question;
+
+      // Update progress
+      const progress = ((currentQuestionIndex + 1) / totalQuestionsForPartner) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+      document.getElementById('progressText').textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestionsForPartner}`;
+
+      // Clear and populate answers
+      const answersContainer = document.getElementById('answersContainer');
+      answersContainer.innerHTML = '';
+
+      if (currentQuiz.title.includes('Health Score')) {
+        // Scale answers for health score quiz
+        for (let i = 1; i <= 5; i++) {
+          const answerDiv = document.createElement('div');
+          answerDiv.className = 'answer-option';
+          answerDiv.innerHTML = `
+            <span>${getScaleText(i)}</span>
+            <div class="scale-number">${i}</div>
+          `;
+          answerDiv.onclick = () => selectAnswer(i);
+          answersContainer.appendChild(answerDiv);
+        }
+      } else {
+        // Multiple choice answers
+        question.answers.forEach((answer, index) => {
+          const answerDiv = document.createElement('div');
+          answerDiv.className = 'answer-option';
+          answerDiv.textContent = answer.text;
+          answerDiv.onclick = () => selectAnswer(index);
+          answersContainer.appendChild(answerDiv);
+        });
+      }
+
+      // Update navigation buttons
+      document.getElementById('backBtn').style.display = currentQuestionIndex > 0 ? 'inline-flex' : 'none';
+      document.getElementById('nextBtn').disabled = true;
+    }
+
+    function getScaleText(value) {
+      const scaleTexts = {
+        1: 'Strongly Disagree',
+        2: 'Disagree',
+        3: 'Neutral',
+        4: 'Agree',
+        5: 'Strongly Agree'
+      };
+      return scaleTexts[value];
+    }
+
+    function selectAnswer(answerIndex) {
+      // Remove previous selection
+      document.querySelectorAll('.answer-option').forEach(answer => {
+        answer.classList.remove('selected');
+      });
+
+      // Mark new selection
+      document.querySelectorAll('.answer-option')[answerIndex].classList.add('selected');
+      selectedAnswer = answerIndex;
+
+      // Enable next button
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextQuestion() {
+      if (selectedAnswer === null) return;
+
+      // Store answer with actual question index
+      let actualQuestionIndex = currentQuestionIndex;
+      if (currentQuiz.title.includes('Love Language') && currentPartner === 'B') {
+        actualQuestionIndex = currentQuestionIndex + 10; // Partner B answers questions 10-19
+      }
+
+      if (currentQuiz.dualPartner) {
+        if (!answers[currentPartner][actualQuestionIndex]) {
+          answers[currentPartner][actualQuestionIndex] = selectedAnswer;
+        }
+      } else {
+        answers.A[currentQuestionIndex] = selectedAnswer;
+      }
+
+      selectedAnswer = null;
+
+      // Determine max questions for current partner
+      let maxQuestionsForPartner = currentQuiz.questions.length;
+      if (currentQuiz.title.includes('Love Language')) {
+        maxQuestionsForPartner = 10; // Each partner gets 10 questions
+      }
+
+      if (currentQuestionIndex < maxQuestionsForPartner - 1) {
+        currentQuestionIndex++;
+        displayQuestion();
+      } else {
+        // Quiz complete for this partner
+        if (currentQuiz.dualPartner && currentPartner === 'A') {
+          // Switch to partner B
+          currentPartner = 'B';
+          currentQuestionIndex = 0;
+          document.querySelector('[data-partner="B"]').classList.add('active');
+          document.querySelector('[data-partner="A"]').classList.remove('active');
+          displayQuestion();
+        } else {
+          // Show results
+          showResults();
+        }
+      }
+    }
+
+    function previousQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        displayQuestion();
+      }
+    }
+
+    function showResults() {
+      document.getElementById('quizInterface').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+      document.getElementById('resultsTitle').textContent = 'Your Results';
+
+      const resultsContent = document.getElementById('resultsContent');
+      resultsContent.innerHTML = generateResults();
+    }
+
+    function generateResults() {
+      if (currentQuiz.title.includes('Love Language')) {
+        return generateLoveLanguageResults();
+      } else if (currentQuiz.title.includes('Health Score')) {
+        return generateHealthScoreResults();
+      } else if (currentQuiz.title.includes('Conflict Style')) {
+        return generateConflictStyleResults();
+      }
+    }
+
+    function generateLoveLanguageResults() {
+      const partnerA = { words: 0, service: 0, gifts: 0, time: 0, touch: 0 };
+      const partnerB = { words: 0, service: 0, gifts: 0, time: 0, touch: 0 };
+
+      // Count answers for Partner A (questions 0-9)
+      Object.entries(answers.A).forEach(([questionIndex, answerIndex]) => {
+        const question = currentQuiz.questions[parseInt(questionIndex)];
+        const answer = question.answers[answerIndex];
+        partnerA[answer.type]++;
+      });
+
+      // Count answers for Partner B (questions 10-19)  
+      Object.entries(answers.B).forEach(([questionIndex, answerIndex]) => {
+        const question = currentQuiz.questions[parseInt(questionIndex)];
+        const answer = question.answers[answerIndex];
+        partnerB[answer.type]++;
+      });
+
+      // Get primary love languages
+      const primaryA = Object.keys(partnerA).reduce((a, b) => partnerA[a] > partnerA[b] ? a : b);
+      const primaryB = Object.keys(partnerB).reduce((a, b) => partnerB[a] > partnerB[b] ? a : b);
+
+      const languageNames = {
+        words: 'Words of Affirmation',
+        service: 'Acts of Service',
+        gifts: 'Receiving Gifts',
+        time: 'Quality Time',
+        touch: 'Physical Touch'
+      };
+
+      return `
+        <div class="partner-results">
+          <div class="love-language-result">
+            <h3>Partner A</h3>
+            <div class="score">${languageNames[primaryA]}</div>
+            <p class="description">Your primary love language is ${languageNames[primaryA].toLowerCase()}. You feel most loved when your partner expresses affection this way.</p>
+          </div>
+          <div class="love-language-result">
+            <h3>Partner B</h3>
+            <div class="score">${languageNames[primaryB]}</div>
+            <p class="description">Your primary love language is ${languageNames[primaryB].toLowerCase()}. You feel most loved when your partner expresses affection this way.</p>
+          </div>
+        </div>
+        <div class="love-language-result">
+          <h3>Understanding Each Other</h3>
+          <p class="description">Now that you know each other's love languages, focus on expressing love in the way your partner receives it best. This understanding can transform your relationship!</p>
+        </div>
+      `;
+    }
+
+    function generateHealthScoreResults() {
+      const categories = currentQuiz.categories;
+      const scores = {};
+      let totalScore = 0;
+
+      categories.forEach(category => {
+        scores[category] = 0;
+      });
+
+      Object.values(answers.A).forEach((score, index) => {
+        const question = currentQuiz.questions[index];
+        scores[question.category] += score + 1; // Convert 0-4 to 1-5 scale
+        totalScore += score + 1;
+      });
+
+      const overallScore = Math.round((totalScore / (currentQuiz.questions.length * 5)) * 100);
+
+      return `
+        <div class="love-language-result">
+          <h3>Overall Relationship Health: ${overallScore}%</h3>
+          <p class="description">Your relationship shows ${overallScore >= 80 ? 'excellent' : overallScore >= 60 ? 'good' : 'room for improvement'} health across key areas. Focus on communication, trust, and quality time together to strengthen your bond.</p>
+        </div>
+      `;
+    }
+
+    function generateConflictStyleResults() {
+      const partnerA = { avoider: 0, compromiser: 0, fighter: 0, peacemaker: 0 };
+      const partnerB = { avoider: 0, compromiser: 0, fighter: 0, peacemaker: 0 };
+
+      // Count answers for each partner
+      Object.values(answers.A).forEach((answerIndex, questionIndex) => {
+        const answer = currentQuiz.questions[questionIndex].answers[answerIndex];
+        partnerA[answer.type]++;
+      });
+
+      Object.values(answers.B).forEach((answerIndex, questionIndex) => {
+        const answer = currentQuiz.questions[questionIndex].answers[answerIndex];
+        partnerB[answer.type]++;
+      });
+
+      // Get primary conflict styles
+      const primaryA = Object.keys(partnerA).reduce((a, b) => partnerA[a] > partnerA[b] ? a : b);
+      const primaryB = Object.keys(partnerB).reduce((a, b) => partnerB[a] > partnerB[b] ? a : b);
+
+      const styleNames = {
+        avoider: 'The Avoider',
+        compromiser: 'The Compromiser',
+        fighter: 'The Fighter',
+        peacemaker: 'The Peacemaker'
+      };
+
+      const styleDescriptions = {
+        avoider: 'You tend to avoid conflicts and hope they resolve themselves.',
+        compromiser: 'You look for middle ground and win-win solutions.',
+        fighter: 'You address conflicts head-on and stand firm on your positions.',
+        peacemaker: 'You prioritize harmony and understanding in conflicts.'
+      };
+
+      return `
+        <div class="partner-results">
+          <div class="love-language-result">
+            <h3>Partner A</h3>
+            <div class="score">${styleNames[primaryA]}</div>
+            <p class="description">${styleDescriptions[primaryA]}</p>
+          </div>
+          <div class="love-language-result">
+            <h3>Partner B</h3>
+            <div class="score">${styleNames[primaryB]}</div>
+            <p class="description">${styleDescriptions[primaryB]}</p>
+          </div>
+        </div>
+        <div class="love-language-result">
+          <h3>Working Together</h3>
+          <p class="description">Understanding your conflict styles helps you approach disagreements more effectively. Each style has strengths—the key is knowing when and how to use them together.</p>
+        </div>
+      `;
+    }
+
+    function showQuizSelection() {
+      document.getElementById('quizSelection').style.display = 'block';
+      document.getElementById('quizInterface').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'none';
+      
+      // Reset quiz state
+      currentQuiz = null;
+      currentQuestionIndex = 0;
+      currentPartner = 'A';
+      answers = { A: {}, B: {} };
+      selectedAnswer = null;
+    }
+
+    function exitQuiz() {
+      if (confirm('Are you sure you want to exit this quiz? Your progress will be lost.')) {
+        showQuizSelection();
+      }
+    }
+
+    // Partner tab switching
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('partner-tab')) {
+        const newPartner = e.target.dataset.partner;
+        if (newPartner !== currentPartner) {
+          // Save current progress and switch
+          currentPartner = newPartner;
+          document.querySelectorAll('.partner-tab').forEach(tab => {
+            tab.classList.remove('active');
+          });
+          e.target.classList.add('active');
+          currentQuestionIndex = 0;
+          selectedAnswer = null;
+          displayQuestion();
+        }
+      }
+    });
   </script>
 </body>
 </html>
