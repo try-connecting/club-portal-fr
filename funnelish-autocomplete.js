@@ -14,15 +14,21 @@
     // Auto-detect country from user location (try multiple APIs)
     var countrySelect = document.querySelector('select[data-type="country"]');
     function setCountry(code) {
-      if (!countrySelect || countrySelect.value === code) return;
+      if (!countrySelect) return;
+      // Set via Alpine data (Funnelish uses Alpine.js)
+      var alpineEl = countrySelect.closest('[x-data]');
+      if (alpineEl && alpineEl._x_dataStack && alpineEl._x_dataStack[0]) {
+        alpineEl._x_dataStack[0].customer.country = code;
+      }
+      // Also set native select
       for (var i = 0; i < countrySelect.options.length; i++) {
         if (countrySelect.options[i].value === code) {
           countrySelect.selectedIndex = i;
-          countrySelect.dispatchEvent(new Event('input', { bubbles: true }));
-          countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
-          return;
+          break;
         }
       }
+      countrySelect.dispatchEvent(new Event('input', { bubbles: true }));
+      countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
     }
     if (countrySelect && (!countrySelect.value || countrySelect.selectedIndex === 0)) {
       fetch('https://ipapi.co/country_code/')
