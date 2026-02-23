@@ -11,51 +11,7 @@
     }
     if (document.getElementById('gac-dropdown')) return;
 
-    // Auto-detect country from user location (try multiple APIs)
     var countrySelect = document.querySelector('select[data-type="country"]');
-    function setCountry(code) {
-      if (!countrySelect) return;
-      var countryName = '';
-      for (var i = 0; i < countrySelect.options.length; i++) {
-        if (countrySelect.options[i].value === code) {
-          countryName = countrySelect.options[i].text;
-          countrySelect.selectedIndex = i;
-          countrySelect.options[i].selected = true;
-          break;
-        }
-      }
-      // Update placeholder text to show selected country (iOS Safari fix)
-      if (countrySelect.options[0] && countrySelect.options[0].disabled) {
-        countrySelect.options[0].text = countryName || code;
-        countrySelect.options[0].value = code;
-        countrySelect.options[0].disabled = false;
-        countrySelect.selectedIndex = 0;
-      }
-      // Set via Alpine data
-      var alpineEl = countrySelect.closest('[x-data]');
-      if (alpineEl && alpineEl._x_dataStack && alpineEl._x_dataStack[0]) {
-        alpineEl._x_dataStack[0].customer.country = code;
-      }
-      countrySelect.dispatchEvent(new Event('input', { bubbles: true }));
-      countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-    if (countrySelect && (!countrySelect.value || countrySelect.selectedIndex === 0)) {
-      fetch('https://ipapi.co/country_code/')
-        .then(function(r) { return r.text(); })
-        .then(function(code) {
-          code = code.trim();
-          if (code && code.length === 2) setCountry(code);
-        })
-        .catch(function() {
-          // Fallback API
-          fetch('https://ip2c.org/s')
-            .then(function(r) { return r.text(); })
-            .then(function(t) {
-              var parts = t.split(';');
-              if (parts[0] === '1' && parts[1]) setCountry(parts[1]);
-            }).catch(function() {});
-        });
-    }
 
     // Find the form wrapper for the address input
     var formWrapper = addressInput.closest('.form-element') || addressInput.parentElement;
@@ -64,7 +20,6 @@
     var dd = document.createElement('div');
     dd.id = 'gac-dropdown';
     dd.style.cssText = 'background:#fff;border:1px solid #ddd;border-top:none;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;margin-top:-2px;width:100%;';
-    // Insert AFTER the form wrapper element (not inside it)
     formWrapper.parentNode.insertBefore(dd, formWrapper.nextSibling);
 
     // Styles
@@ -76,12 +31,24 @@
     var placesService = new google.maps.places.PlacesService(document.createElement('div'));
     var debounce;
 
+    // Get selected country code for biasing results
+    function getSelectedCountry() {
+      if (!countrySelect || !countrySelect.value || countrySelect.selectedIndex === 0) return null;
+      return countrySelect.value;
+    }
+
     addressInput.addEventListener('input', function() {
       clearTimeout(debounce);
       var val = this.value;
       if (val.length < 3) { dd.style.display = 'none'; return; }
+
+      // Only activate if a country is already selected
+      var country = getSelectedCountry();
+      if (!country) { dd.style.display = 'none'; return; }
+
       debounce = setTimeout(function() {
-        service.getPlacePredictions({ input: val, types: ['address'] }, function(predictions, status) {
+        var opts = { input: val, types: ['address'], componentRestrictions: { country: country } };
+        service.getPlacePredictions(opts, function(predictions, status) {
           dd.innerHTML = '';
           if (status !== 'OK' || !predictions) { dd.style.display = 'none'; return; }
           predictions.forEach(function(p) {
@@ -90,19 +57,16 @@
             item.innerHTML = '<strong>' + p.structured_formatting.main_text + '</strong><br><span style="color:#888;font-size:12px">' + (p.structured_formatting.secondary_text || '') + '</span>';
             item.onclick = function() {
               addressInput.value = p.structured_formatting.main_text;
+              addressInput.dispatchEvent(new Event('input', { bubbles: true }));
               dd.style.display = 'none';
               placesService.getDetails({ placeId: p.place_id, fields: ['address_components'] }, function(place) {
                 if (!place) return;
-                var city = '', state = '', stateLong = '', zip = '', countryCode = '';
+                var city = '', state = '', stateLong = '', zip = '';
                 place.address_components.forEach(function(c) {
                   if (c.types.includes('locality') || c.types.includes('sublocality_level_1')) city = c.long_name;
                   if (c.types.includes('administrative_area_level_1')) { state = c.short_name; stateLong = c.long_name; }
                   if (c.types.includes('postal_code')) zip = c.long_name;
-                  if (c.types.includes('country')) countryCode = c.short_name;
                 });
-
-                // Set country
-                if (countryCode) setCountry(countryCode);
 
                 // Fill city
                 var cityIn = document.querySelector('.el-940269 input[data-type="city"]');
@@ -149,7 +113,6 @@
     });
   }
 
-  // Start polling
   setTimeout(init, 500);
   document.addEventListener('DOMContentLoaded', function() { setTimeout(init, 500); });
   window.addEventListener('load', function() { setTimeout(init, 500); });
