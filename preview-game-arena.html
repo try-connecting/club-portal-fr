@@ -867,6 +867,22 @@
       padding: 2rem;
       box-sizing: border-box;
       overflow-y: auto;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .game-instructions {
+      background: rgba(231, 76, 111, 0.1);
+      border: 1px solid rgba(231, 76, 111, 0.25);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .game-instructions strong {
+      color: #e74c6f;
     }
     
     .game-header {
@@ -5166,6 +5182,9 @@
         <button class="close-game" onclick="closeGame()">✕</button>
       </div>
       <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> Pick an intensity level, then take turns choosing <strong>Truth</strong> or <strong>Dare</strong>. Be honest, be brave — no chickening out! Use <strong>Skip</strong> if it's too much, or <strong>Next</strong> for a new prompt.
+        </div>
         <div class="category-selector">
           <h3>Choose Your Adventure Level:</h3>
           <div class="category-buttons">
@@ -5196,6 +5215,9 @@
         <button class="close-game" onclick="closeGame()">✕</button>
       </div>
       <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> Read the scenario, then each partner picks their choice <strong>without peeking</strong>. Reveal together and discuss — you might be surprised what your partner chooses! 😏
+        </div>
         <div class="scenario-display">
           <h3 id="wyr-question">Loading scenario...</h3>
           <div class="wyr-options">
@@ -5218,6 +5240,9 @@
         <button class="close-game" onclick="closeGame()">✕</button>
       </div>
       <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> One partner starts telling a story based on the prompt for <strong>60 seconds</strong>. When the timer runs out, the other partner takes over and continues the story. Get creative — the weirder, the better! 🎭
+        </div>
         <div class="story-prompt">
           <h3 id="story-prompt">Your story prompt will appear here!</h3>
         </div>
@@ -5240,6 +5265,9 @@
         <button class="close-game" onclick="closeGame()">✕</button>
       </div>
       <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> Answer questions about your relationship together. Pick the answer you both agree on. See how well you really know each other — aim for a perfect <strong>15/15</strong>! 🏆
+        </div>
         <div class="trivia-score">
           <span>Score: <span id="trivia-score">0</span>/15</span>
         </div>
@@ -5264,6 +5292,9 @@
         <button class="close-game" onclick="closeGame()">✕</button>
       </div>
       <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> Can't decide on something? Type in your options (dinner spots, date ideas, movies...), add them to the wheel, then <strong>spin</strong> and let fate decide! No take-backs. 🎲
+        </div>
         <div class="roulette-setup">
           <h3>Add Your Options:</h3>
           <input type="text" id="roulette-input" placeholder="Enter an option...">
@@ -5286,6 +5317,9 @@
         <button class="close-game" onclick="closeGame()">✕</button>
       </div>
       <div class="game-content">
+        <div class="game-instructions">
+          <strong>How to play:</strong> You have <strong>30 seconds</strong> each to shower your partner with genuine compliments. Hit "Give Compliment" for each one. Most compliments wins — but really, you both win. 💕
+        </div>
         <div class="battle-score">
           <div class="player-score">Player 1: <span id="p1-compliments">0</span></div>
           <div class="player-score">Player 2: <span id="p2-compliments">0</span></div>
