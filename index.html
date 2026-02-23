@@ -6731,7 +6731,7 @@
       const sectionContent = document.getElementById('section-content');
       sectionContent.style.display = 'block';
       sectionContent.innerHTML = getSectionContent(sectionType);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      sectionContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (sectionType === 'desire-discovery') initDesireQuiz();
       if (sectionType === 'couple-chemistry') initChemistryQuiz();
     }
