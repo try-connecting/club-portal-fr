@@ -4688,6 +4688,16 @@
               { text: "A romantic getaway focused entirely on being together", type: "time" },
               { text: "An evening of intimate physical connection and closeness", type: "touch" }
             ]
+          },
+          {
+            question: "In your ideal relationship, which of these would happen most frequently?",
+            answers: [
+              { text: "Daily expressions of love and appreciation through words", type: "words" },
+              { text: "Regular acts of service that make life easier for both of you", type: "service" },
+              { text: "Frequent small gifts and thoughtful surprises", type: "gifts" },
+              { text: "Consistent quality time and undivided attention", type: "time" },
+              { text: "Ongoing physical affection and touch throughout each day", type: "touch" }
+            ]
           }
         ]
       },
@@ -4774,13 +4784,25 @@
     }
 
     function displayQuestion() {
-      const question = currentQuiz.questions[currentQuestionIndex];
+      // For Love Language Assessment, calculate actual question index based on partner
+      let actualQuestionIndex = currentQuestionIndex;
+      let totalQuestionsForPartner = currentQuiz.questions.length;
+      
+      if (currentQuiz.title.includes('Love Language')) {
+        totalQuestionsForPartner = 10; // Each partner gets 10 questions
+        if (currentPartner === 'B') {
+          actualQuestionIndex = currentQuestionIndex + 10; // Partner B gets questions 10-19
+        }
+        // Partner A gets questions 0-9 (currentQuestionIndex stays the same)
+      }
+      
+      const question = currentQuiz.questions[actualQuestionIndex];
       document.getElementById('questionText').textContent = question.question;
 
       // Update progress
-      const progress = ((currentQuestionIndex + 1) / currentQuiz.questions.length) * 100;
+      const progress = ((currentQuestionIndex + 1) / totalQuestionsForPartner) * 100;
       document.getElementById('progressBar').style.width = progress + '%';
-      document.getElementById('progressText').textContent = `Question ${currentQuestionIndex + 1} of ${currentQuiz.questions.length}`;
+      document.getElementById('progressText').textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestionsForPartner}`;
 
       // Clear and populate answers
       const answersContainer = document.getElementById('answersContainer');
@@ -4842,10 +4864,15 @@
     function nextQuestion() {
       if (selectedAnswer === null) return;
 
-      // Store answer
+      // Store answer with actual question index
+      let actualQuestionIndex = currentQuestionIndex;
+      if (currentQuiz.title.includes('Love Language') && currentPartner === 'B') {
+        actualQuestionIndex = currentQuestionIndex + 10; // Partner B answers questions 10-19
+      }
+
       if (currentQuiz.dualPartner) {
-        if (!answers[currentPartner][currentQuestionIndex]) {
-          answers[currentPartner][currentQuestionIndex] = selectedAnswer;
+        if (!answers[currentPartner][actualQuestionIndex]) {
+          answers[currentPartner][actualQuestionIndex] = selectedAnswer;
         }
       } else {
         answers.A[currentQuestionIndex] = selectedAnswer;
@@ -4853,7 +4880,13 @@
 
       selectedAnswer = null;
 
-      if (currentQuestionIndex < currentQuiz.questions.length - 1) {
+      // Determine max questions for current partner
+      let maxQuestionsForPartner = currentQuiz.questions.length;
+      if (currentQuiz.title.includes('Love Language')) {
+        maxQuestionsForPartner = 10; // Each partner gets 10 questions
+      }
+
+      if (currentQuestionIndex < maxQuestionsForPartner - 1) {
         currentQuestionIndex++;
         displayQuestion();
       } else {
@@ -4899,18 +4932,20 @@
     }
 
     function generateLoveLanguageResults() {
-      const loveLanguages = { words: 0, service: 0, gifts: 0, time: 0, touch: 0 };
       const partnerA = { words: 0, service: 0, gifts: 0, time: 0, touch: 0 };
       const partnerB = { words: 0, service: 0, gifts: 0, time: 0, touch: 0 };
 
-      // Count answers for each partner
-      Object.values(answers.A).forEach(answerIndex => {
-        const answer = currentQuiz.questions[Object.keys(answers.A).indexOf(answerIndex.toString())].answers[answerIndex];
+      // Count answers for Partner A (questions 0-9)
+      Object.entries(answers.A).forEach(([questionIndex, answerIndex]) => {
+        const question = currentQuiz.questions[parseInt(questionIndex)];
+        const answer = question.answers[answerIndex];
         partnerA[answer.type]++;
       });
 
-      Object.values(answers.B).forEach(answerIndex => {
-        const answer = currentQuiz.questions[Object.keys(answers.B).indexOf(answerIndex.toString())].answers[answerIndex];
+      // Count answers for Partner B (questions 10-19)  
+      Object.entries(answers.B).forEach(([questionIndex, answerIndex]) => {
+        const question = currentQuiz.questions[parseInt(questionIndex)];
+        const answer = question.answers[answerIndex];
         partnerB[answer.type]++;
       });
 
