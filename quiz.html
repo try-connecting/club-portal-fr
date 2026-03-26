@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Quiz Engine - The Connection Club™</title>
+    <title>Quiz Interactif — The Connection Club™</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             margin: 0;
@@ -707,44 +707,44 @@
         <div class="logo">
             <img src="https://tryconnecting.com/cdn/shop/files/Connecting_red_logo_rights.png?v=1736502003&width=500" alt="Connecting™ Logo">
         </div>
-        <a href="index.html" class="back-to-portal">Back to Portal</a>
+        <a href="index.html" class="back-to-portal">Retour au portail</a>
     </header>
 
     <!-- Main Container -->
     <div class="container">
         <!-- Quiz Selection Screen -->
         <div class="quiz-selection" id="quizSelection">
-            <h1>Relationship Quiz Engine</h1>
-            <p>Discover deeper insights about your relationship with our research-backed assessment tools. Take these quizzes together to strengthen your connection.</p>
-            
+            <h1>Moteur de Quiz Relationnel</h1>
+            <p>Explorez votre relation en profondeur grâce à nos outils d'évaluation fondés sur la recherche. Faites ces quiz ensemble pour renforcer votre connexion.</p>
+
             <div class="quiz-cards">
                 <div class="quiz-card" onclick="startQuiz('love-language')">
-                    <h3>💕 Love Language Assessment</h3>
-                    <p>Discover how you and your partner prefer to give and receive love. Understanding each other's primary love language creates deeper intimacy and connection.</p>
+                    <h3>💕 Évaluation des Langages de l'Amour</h3>
+                    <p>Découvrez comment vous et votre partenaire préférez exprimer et recevoir l'amour. Comprendre le langage amoureux de l'autre crée une intimité et une connexion plus profondes.</p>
                     <div class="quiz-stats">
                         <span>20 Questions</span>
-                        <span>Both Partners</span>
-                        <span>10 mins</span>
+                        <span>Deux partenaires</span>
+                        <span>10 min</span>
                     </div>
                 </div>
-                
+
                 <div class="quiz-card" onclick="startQuiz('health-score')">
-                    <h3>💪 Relationship Health Score</h3>
-                    <p>Get a comprehensive evaluation of your relationship across key areas: communication, intimacy, trust, fun, and emotional support.</p>
+                    <h3>💪 Score de Santé Relationnelle</h3>
+                    <p>Obtenez une évaluation complète de votre relation dans les domaines clés : communication, intimité, confiance, plaisir et soutien émotionnel.</p>
                     <div class="quiz-stats">
                         <span>30 Questions</span>
-                        <span>Single Quiz</span>
-                        <span>8 mins</span>
+                        <span>Quiz unique</span>
+                        <span>8 min</span>
                     </div>
                 </div>
-                
+
                 <div class="quiz-card" onclick="startQuiz('conflict-style')">
-                    <h3>⚖️ Conflict Style Finder</h3>
-                    <p>Learn how you and your partner handle disagreements. Discover your conflict styles and get personalized tips for healthier resolution.</p>
+                    <h3>⚖️ Révélateur de Style de Conflit</h3>
+                    <p>Découvrez comment vous et votre partenaire gérez les désaccords. Identifiez vos styles de conflit et recevez des conseils personnalisés pour une résolution plus saine.</p>
                     <div class="quiz-stats">
                         <span>15 Questions</span>
-                        <span>Both Partners</span>
-                        <span>6 mins</span>
+                        <span>Deux partenaires</span>
+                        <span>6 min</span>
                     </div>
                 </div>
             </div>
@@ -762,8 +762,8 @@
 
             <!-- Partner Selection (for dual quizzes) -->
             <div class="partner-selection hidden" id="partnerSelection">
-                <div class="partner-tab active" data-partner="A">Partner A</div>
-                <div class="partner-tab" data-partner="B">Partner B</div>
+                <div class="partner-tab active" data-partner="A">Partenaire A</div>
+                <div class="partner-tab" data-partner="B">Partenaire B</div>
             </div>
 
             <!-- Question Container -->
@@ -774,8 +774,8 @@
 
             <!-- Navigation -->
             <div class="quiz-navigation">
-                <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()">← Previous</button>
-                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+                <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()">← Précédent</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Suivant →</button>
             </div>
         </div>
 
@@ -785,10 +785,10 @@
                 <h2 id="resultsTitle"></h2>
             </div>
             <div id="resultsContent"></div>
-            
+
             <div class="quiz-navigation">
-                <button class="btn btn-secondary" onclick="showQuizSelection()">← Take Another Quiz</button>
-                <button class="btn btn-primary" onclick="showQuizSelection()">Back to Quizzes</button>
+                <button class="btn btn-secondary" onclick="showQuizSelection()">← Faire un autre quiz</button>
+                <button class="btn btn-primary" onclick="showQuizSelection()">Retour aux quiz</button>
             </div>
         </div>
     </div>
@@ -802,397 +802,397 @@
         // Global Quiz Data
         const quizData = {
             'love-language': {
-                title: '💕 Love Language Assessment',
-                description: 'Discover how you and your partner prefer to give and receive love',
+                title: '💕 Évaluation des Langages de l\'Amour',
+                description: 'Découvrez comment vous et votre partenaire préférez exprimer et recevoir l\'amour',
                 dualPartner: true,
                 questions: [
                     {
-                        question: "When your partner does something special for you, what means the most?",
+                        question: "Lorsque votre partenaire fait quelque chose de spécial pour vous, qu'est-ce qui compte le plus ?",
                         answers: [
-                            { text: "They tell you how much they love and appreciate you", type: "words" },
-                            { text: "They help you with something you've been putting off", type: "service" },
-                            { text: "They surprise you with a thoughtful gift", type: "gifts" },
-                            { text: "They plan quality time together doing something you enjoy", type: "time" },
-                            { text: "They give you a long, loving hug or hold your hand", type: "touch" }
+                            { text: "Il ou elle vous dit combien il ou elle vous aime et vous apprécie", type: "words" },
+                            { text: "Il ou elle vous aide pour quelque chose que vous remettiez à plus tard", type: "service" },
+                            { text: "Il ou elle vous surprend avec un cadeau attentionné", type: "gifts" },
+                            { text: "Il ou elle planifie un moment de qualité ensemble autour de ce que vous aimez", type: "time" },
+                            { text: "Il ou elle vous offre un long câlin chaleureux ou vous tient la main", type: "touch" }
                         ]
                     },
                     {
-                        question: "What makes you feel most loved in your relationship?",
+                        question: "Qu'est-ce qui vous fait vous sentir le plus aimé(e) dans votre relation ?",
                         answers: [
-                            { text: "Hearing 'I love you' and other affirming words regularly", type: "words" },
-                            { text: "Your partner helping with chores or tasks without being asked", type: "service" },
-                            { text: "Receiving surprise gifts or tokens of love", type: "gifts" },
-                            { text: "Having your partner's full attention during conversations", type: "time" },
-                            { text: "Physical closeness, cuddling, and intimate touch", type: "touch" }
+                            { text: "Entendre « je t'aime » et des paroles encourageantes régulièrement", type: "words" },
+                            { text: "Votre partenaire qui aide aux tâches sans qu'on le lui demande", type: "service" },
+                            { text: "Recevoir des cadeaux surprises ou des petits gestes d'amour", type: "gifts" },
+                            { text: "Avoir toute l'attention de votre partenaire lors de vos échanges", type: "time" },
+                            { text: "La proximité physique, les câlins et le contact intime", type: "touch" }
                         ]
                     },
                     {
-                        question: "When you want to show love to your partner, you're most likely to:",
+                        question: "Lorsque vous souhaitez montrer votre amour à votre partenaire, vous avez tendance à :",
                         answers: [
-                            { text: "Write them a heartfelt note or give genuine compliments", type: "words" },
-                            { text: "Do something helpful that makes their day easier", type: "service" },
-                            { text: "Pick up something you know they'd love", type: "gifts" },
-                            { text: "Plan a special date or set aside uninterrupted time together", type: "time" },
-                            { text: "Give them a massage or be physically affectionate", type: "touch" }
+                            { text: "Lui écrire un mot sincère ou lui faire de vrais compliments", type: "words" },
+                            { text: "Faire quelque chose d'utile pour lui faciliter la journée", type: "service" },
+                            { text: "Lui rapporter quelque chose que vous savez qui lui ferait plaisir", type: "gifts" },
+                            { text: "Planifier un rendez-vous spécial ou réserver du temps rien que pour vous deux", type: "time" },
+                            { text: "Lui offrir un massage ou être physiquement affectueux(se)", type: "touch" }
                         ]
                     },
                     {
-                        question: "What would hurt your feelings most in a relationship?",
+                        question: "Qu'est-ce qui vous blesserait le plus dans une relation ?",
                         answers: [
-                            { text: "Your partner rarely says loving or encouraging words", type: "words" },
-                            { text: "Your partner never offers to help when you're overwhelmed", type: "service" },
-                            { text: "Your partner forgets important occasions and never gives gifts", type: "gifts" },
-                            { text: "Your partner is always distracted when you're together", type: "time" },
-                            { text: "Your partner avoids physical affection and intimacy", type: "touch" }
+                            { text: "Que votre partenaire exprime rarement des mots d'amour ou d'encouragement", type: "words" },
+                            { text: "Que votre partenaire ne propose jamais son aide quand vous êtes dépassé(e)", type: "service" },
+                            { text: "Que votre partenaire oublie les occasions importantes et ne fasse jamais de cadeaux", type: "gifts" },
+                            { text: "Que votre partenaire soit constamment distrait(e) quand vous êtes ensemble", type: "time" },
+                            { text: "Que votre partenaire évite les marques d'affection physique et l'intimité", type: "touch" }
                         ]
                     },
                     {
-                        question: "During a difficult time, what would comfort you most?",
+                        question: "Dans un moment difficile, qu'est-ce qui vous réconforterait le plus ?",
                         answers: [
-                            { text: "Your partner telling you they believe in you and offering encouragement", type: "words" },
-                            { text: "Your partner taking care of practical things so you can focus on healing", type: "service" },
-                            { text: "Your partner bringing you something thoughtful to cheer you up", type: "gifts" },
-                            { text: "Your partner clearing their schedule to be with you", type: "time" },
-                            { text: "Your partner holding you close and offering physical comfort", type: "touch" }
+                            { text: "Que votre partenaire vous dise qu'il ou elle croit en vous et vous encourage", type: "words" },
+                            { text: "Que votre partenaire gère les choses pratiques pour que vous puissiez vous ressourcer", type: "service" },
+                            { text: "Que votre partenaire vous apporte quelque chose d'attentionné pour vous remonter le moral", type: "gifts" },
+                            { text: "Que votre partenaire libère son emploi du temps pour être avec vous", type: "time" },
+                            { text: "Que votre partenaire vous serre dans ses bras et vous offre un réconfort physique", type: "touch" }
                         ]
                     },
                     {
-                        question: "What's your ideal way to spend a weekend with your partner?",
+                        question: "Comment aimeriez-vous passer un week-end idéal avec votre partenaire ?",
                         answers: [
-                            { text: "Talking for hours about your dreams, feelings, and experiences", type: "words" },
-                            { text: "Working together on a project or organizing your home", type: "service" },
-                            { text: "Going shopping together and picking out things for each other", type: "gifts" },
-                            { text: "Having a technology-free day focused entirely on each other", type: "time" },
-                            { text: "Being physically close - cuddling, massages, and intimacy", type: "touch" }
+                            { text: "Parler pendant des heures de vos rêves, ressentis et vécus", type: "words" },
+                            { text: "Travailler ensemble sur un projet ou organiser votre chez-vous", type: "service" },
+                            { text: "Faire du shopping ensemble et se choisir des choses mutuellement", type: "gifts" },
+                            { text: "Passer une journée sans écrans, entièrement consacrée l'un à l'autre", type: "time" },
+                            { text: "Être proches physiquement — câlins, massages et intimité", type: "touch" }
                         ]
                     },
                     {
-                        question: "When your partner has been away, what do you miss most?",
+                        question: "Quand votre partenaire est absent(e), qu'est-ce qui vous manque le plus ?",
                         answers: [
-                            { text: "Not hearing their voice and the conversations you'd usually have", type: "words" },
-                            { text: "Having to handle all the daily responsibilities alone", type: "service" },
-                            { text: "The little surprises and thoughtful gestures they usually do", type: "gifts" },
-                            { text: "Not having their company and shared experiences", type: "time" },
-                            { text: "The physical closeness and affection you share", type: "touch" }
+                            { text: "Ne plus entendre sa voix ni les conversations que vous auriez habituellement", type: "words" },
+                            { text: "Devoir gérer seul(e) toutes les responsabilités du quotidien", type: "service" },
+                            { text: "Les petites surprises et les gestes attentionnés qu'il ou elle fait habituellement", type: "gifts" },
+                            { text: "Sa compagnie et les expériences partagées", type: "time" },
+                            { text: "La proximité physique et les marques d'affection que vous partagez", type: "touch" }
                         ]
                     },
                     {
-                        question: "What type of anniversary gift would mean the most to you?",
+                        question: "Quel type de cadeau d'anniversaire vous toucherait le plus ?",
                         answers: [
-                            { text: "A handwritten letter expressing their love and memories together", type: "words" },
-                            { text: "Something practical that would make your life easier", type: "service" },
-                            { text: "Something you've mentioned wanting or that shows they pay attention", type: "gifts" },
-                            { text: "A planned experience or trip you can enjoy together", type: "time" },
-                            { text: "Something sensual or that enhances your physical connection", type: "touch" }
+                            { text: "Une lettre manuscrite exprimant son amour et vos souvenirs communs", type: "words" },
+                            { text: "Quelque chose de pratique qui vous faciliterait la vie", type: "service" },
+                            { text: "Quelque chose que vous avez mentionné vouloir ou qui montre qu'il ou elle fait attention", type: "gifts" },
+                            { text: "Une expérience planifiée ou un voyage à vivre ensemble", type: "time" },
+                            { text: "Quelque chose de sensuel ou qui enrichit votre connexion physique", type: "touch" }
                         ]
                     },
                     {
-                        question: "How do you prefer to resolve conflicts in your relationship?",
+                        question: "Comment préférez-vous résoudre les conflits dans votre relation ?",
                         answers: [
-                            { text: "Through open, honest conversation with reassuring words", type: "words" },
-                            { text: "By focusing on solutions and what actions need to be taken", type: "service" },
-                            { text: "With a peace offering or gesture to show you care", type: "gifts" },
-                            { text: "By setting aside dedicated time to work through it together", type: "time" },
-                            { text: "With physical comfort and affection to reconnect", type: "touch" }
+                            { text: "Par une conversation ouverte et honnête, avec des mots rassurants", type: "words" },
+                            { text: "En se concentrant sur les solutions et les actions à entreprendre", type: "service" },
+                            { text: "Avec un geste de réconciliation pour montrer que vous tenez l'un à l'autre", type: "gifts" },
+                            { text: "En réservant du temps dédié pour traverser ça ensemble", type: "time" },
+                            { text: "Avec du réconfort physique et de l'affection pour se retrouver", type: "touch" }
                         ]
                     },
                     {
-                        question: "What makes you feel most secure in your relationship?",
+                        question: "Qu'est-ce qui vous apporte le plus de sécurité dans votre relation ?",
                         answers: [
-                            { text: "Regular verbal affirmations of love and commitment", type: "words" },
-                            { text: "Your partner consistently following through on their promises", type: "service" },
-                            { text: "Thoughtful gestures that show you're always on their mind", type: "gifts" },
-                            { text: "Having regular one-on-one time that's protected and prioritized", type: "time" },
-                            { text: "Physical intimacy and affectionate touch throughout the day", type: "touch" }
+                            { text: "Des affirmations verbales régulières d'amour et d'engagement", type: "words" },
+                            { text: "Que votre partenaire tienne constamment ses promesses", type: "service" },
+                            { text: "Des gestes attentionnés qui montrent que vous êtes toujours dans ses pensées", type: "gifts" },
+                            { text: "Du temps en tête-à-tête régulier, protégé et prioritaire", type: "time" },
+                            { text: "L'intimité physique et les marques d'affection tout au long de la journée", type: "touch" }
                         ]
                     },
                     {
-                        question: "When you're feeling disconnected from your partner, what would help most?",
+                        question: "Quand vous vous sentez déconnecté(e) de votre partenaire, qu'est-ce qui vous aiderait le plus ?",
                         answers: [
-                            { text: "Having a heart-to-heart conversation about your feelings", type: "words" },
-                            { text: "Working together on something meaningful for your relationship", type: "service" },
-                            { text: "Receiving a thoughtful surprise that shows they've been thinking of you", type: "gifts" },
-                            { text: "Planning dedicated time together without any distractions", type: "time" },
-                            { text: "Physical closeness and intimate moments to reconnect", type: "touch" }
+                            { text: "Avoir une conversation de fond sur vos ressentis", type: "words" },
+                            { text: "Travailler ensemble sur quelque chose de meaningful pour votre relation", type: "service" },
+                            { text: "Recevoir une surprise attentionnée qui montre qu'il ou elle pensait à vous", type: "gifts" },
+                            { text: "Planifier un moment dédié ensemble, sans distractions", type: "time" },
+                            { text: "Des moments de proximité physique et d'intimité pour vous retrouver", type: "touch" }
                         ]
                     },
                     {
-                        question: "What's the most romantic gesture your partner could make?",
+                        question: "Quel serait le geste le plus romantique de votre partenaire ?",
                         answers: [
-                            { text: "Writing you a love poem or expressing their feelings beautifully", type: "words" },
-                            { text: "Surprising you by completing a task you've been dreading", type: "service" },
-                            { text: "Giving you something that perfectly represents their love for you", type: "gifts" },
-                            { text: "Planning a surprise date that's all about your favorite activities", type: "time" },
-                            { text: "Creating a sensual, intimate evening focused on physical connection", type: "touch" }
+                            { text: "Vous écrire un poème d'amour ou exprimer ses sentiments avec beauté", type: "words" },
+                            { text: "Vous surprendre en accomplissant une tâche que vous redoutiez", type: "service" },
+                            { text: "Vous offrir quelque chose qui représente parfaitement son amour pour vous", type: "gifts" },
+                            { text: "Organiser un rendez-vous surprise autour de vos activités préférées", type: "time" },
+                            { text: "Créer une soirée sensuelle et intime axée sur la connexion physique", type: "touch" }
                         ]
                     },
                     {
-                        question: "How do you know your partner is thinking about you when you're apart?",
+                        question: "Comment savez-vous que votre partenaire pense à vous quand vous êtes séparés ?",
                         answers: [
-                            { text: "They send sweet messages or call to tell you they love you", type: "words" },
-                            { text: "They handle something for you or prepare for your return", type: "service" },
-                            { text: "They pick up something for you while they're out", type: "gifts" },
-                            { text: "They plan something special for when you're back together", type: "time" },
-                            { text: "They greet you with enthusiastic physical affection", type: "touch" }
+                            { text: "Il ou elle vous envoie des messages tendres ou vous appelle pour vous dire qu'il ou elle vous aime", type: "words" },
+                            { text: "Il ou elle gère quelque chose pour vous ou prépare votre retour", type: "service" },
+                            { text: "Il ou elle vous rapporte quelque chose en passant", type: "gifts" },
+                            { text: "Il ou elle planifie quelque chose de spécial pour vos retrouvailles", type: "time" },
+                            { text: "Il ou elle vous accueille avec une affection physique débordante", type: "touch" }
                         ]
                     },
                     {
-                        question: "What's your favorite memory of feeling deeply loved?",
+                        question: "Quel est votre meilleur souvenir de vous sentir profondément aimé(e) ?",
                         answers: [
-                            { text: "When they expressed exactly how they felt about you in words", type: "words" },
-                            { text: "When they went out of their way to help you during a challenging time", type: "service" },
-                            { text: "When they surprised you with something incredibly thoughtful", type: "gifts" },
-                            { text: "When they gave you their complete, undivided attention", type: "time" },
-                            { text: "When they held you close during an emotional moment", type: "touch" }
+                            { text: "Quand il ou elle a exprimé exactement ce qu'il ou elle ressentait pour vous en mots", type: "words" },
+                            { text: "Quand il ou elle a fait l'impossible pour vous aider dans une période difficile", type: "service" },
+                            { text: "Quand il ou elle vous a surpris(e) avec quelque chose d'incroyablement attentionné", type: "gifts" },
+                            { text: "Quand il ou elle vous a accordé toute son attention, sans réserve", type: "time" },
+                            { text: "Quand il ou elle vous a serré(e) fort dans un moment d'émotion", type: "touch" }
                         ]
                     },
                     {
-                        question: "What would make an ordinary day feel special?",
+                        question: "Qu'est-ce qui rendrait une journée ordinaire vraiment spéciale ?",
                         answers: [
-                            { text: "Your partner taking time to tell you what they appreciate about you", type: "words" },
-                            { text: "Your partner handling your responsibilities so you can relax", type: "service" },
-                            { text: "Finding a small, unexpected gift or note from your partner", type: "gifts" },
-                            { text: "Your partner suggesting you do something fun together spontaneously", type: "time" },
-                            { text: "Extra hugs, kisses, and physical affection throughout the day", type: "touch" }
+                            { text: "Que votre partenaire prenne le temps de vous dire ce qu'il ou elle apprécie chez vous", type: "words" },
+                            { text: "Que votre partenaire gère vos responsabilités pour que vous puissiez souffler", type: "service" },
+                            { text: "Trouver un petit cadeau ou un mot inattendu de votre partenaire", type: "gifts" },
+                            { text: "Que votre partenaire vous propose spontanément de faire quelque chose d'amusant ensemble", type: "time" },
+                            { text: "Des câlins, des baisers et des marques d'affection supplémentaires tout au long de la journée", type: "touch" }
                         ]
                     },
                     {
-                        question: "When you're proud of an achievement, how do you want your partner to respond?",
+                        question: "Quand vous êtes fier(fière) d'une réussite, comment souhaitez-vous que votre partenaire réagisse ?",
                         answers: [
-                            { text: "With enthusiastic praise and verbal recognition of your success", type: "words" },
-                            { text: "By taking care of other things so you can savor the moment", type: "service" },
-                            { text: "With a celebratory gift or gesture to mark the occasion", type: "gifts" },
-                            { text: "By dedicating time to celebrate together and hear all about it", type: "time" },
-                            { text: "With physical celebration - hugs, kisses, and joyful affection", type: "touch" }
+                            { text: "Avec des félicitations enthousiastes et une reconnaissance verbale de votre succès", type: "words" },
+                            { text: "En s'occupant d'autres choses pour que vous puissiez savourer l'instant", type: "service" },
+                            { text: "Avec un cadeau ou un geste festif pour marquer l'occasion", type: "gifts" },
+                            { text: "En réservant du temps pour fêter ensemble et tout vous écouter raconter", type: "time" },
+                            { text: "Avec une célébration physique — câlins, baisers et joie affectueuse", type: "touch" }
                         ]
                     },
                     {
-                        question: "What's the best way for your partner to show support during stress?",
+                        question: "Quelle est la meilleure façon pour votre partenaire de vous soutenir en période de stress ?",
                         answers: [
-                            { text: "Offering words of encouragement and reminding you of your strengths", type: "words" },
-                            { text: "Taking practical action to reduce your stress and workload", type: "service" },
-                            { text: "Bringing you comfort items or small things to brighten your day", type: "gifts" },
-                            { text: "Being present and available to talk whenever you need them", type: "time" },
-                            { text: "Providing physical comfort through touch and closeness", type: "touch" }
+                            { text: "En vous offrant des paroles d'encouragement et en vous rappelant vos forces", type: "words" },
+                            { text: "En agissant concrètement pour alléger votre stress et votre charge", type: "service" },
+                            { text: "En vous apportant des petites douceurs ou des attentions pour égayer votre journée", type: "gifts" },
+                            { text: "En étant présent(e) et disponible pour vous parler quand vous en avez besoin", type: "time" },
+                            { text: "En vous offrant un réconfort physique par le toucher et la proximité", type: "touch" }
                         ]
                     },
                     {
-                        question: "What makes you feel most appreciated in your relationship?",
+                        question: "Qu'est-ce qui vous fait vous sentir le plus apprécié(e) dans votre relation ?",
                         answers: [
-                            { text: "When your partner verbally acknowledges your efforts and contributions", type: "words" },
-                            { text: "When your partner notices what you do and helps without being asked", type: "service" },
-                            { text: "When your partner surprises you with tokens of appreciation", type: "gifts" },
-                            { text: "When your partner prioritizes spending quality time with you", type: "time" },
-                            { text: "When your partner shows appreciation through loving touch", type: "touch" }
+                            { text: "Quand votre partenaire reconnaît verbalement vos efforts et vos contributions", type: "words" },
+                            { text: "Quand votre partenaire remarque ce que vous faites et aide sans qu'on le lui demande", type: "service" },
+                            { text: "Quand votre partenaire vous surprend avec des petits gestes de gratitude", type: "gifts" },
+                            { text: "Quand votre partenaire fait du temps de qualité avec vous une priorité", type: "time" },
+                            { text: "Quand votre partenaire exprime sa reconnaissance par un toucher aimant", type: "touch" }
                         ]
                     },
                     {
-                        question: "How do you prefer to express gratitude to your partner?",
+                        question: "Comment préférez-vous exprimer votre gratitude à votre partenaire ?",
                         answers: [
-                            { text: "By telling them specifically what you're grateful for", type: "words" },
-                            { text: "By doing something helpful for them in return", type: "service" },
-                            { text: "By giving them something that shows your appreciation", type: "gifts" },
-                            { text: "By planning special time together to show you value them", type: "time" },
-                            { text: "Through affectionate touch and physical closeness", type: "touch" }
+                            { text: "En lui disant précisément ce pour quoi vous êtes reconnaissant(e)", type: "words" },
+                            { text: "En faisant quelque chose d'utile pour lui en retour", type: "service" },
+                            { text: "En lui offrant quelque chose qui témoigne de votre appréciation", type: "gifts" },
+                            { text: "En planifiant un moment spécial ensemble pour lui montrer sa valeur", type: "time" },
+                            { text: "Par un toucher affectueux et une proximité physique", type: "touch" }
                         ]
                     },
                     {
-                        question: "What's the most important element of a strong relationship to you?",
+                        question: "Quel est l'élément le plus important d'une relation solide à vos yeux ?",
                         answers: [
-                            { text: "Open, encouraging communication and emotional expression", type: "words" },
-                            { text: "Mutual support and partnership in daily life responsibilities", type: "service" },
-                            { text: "Thoughtfulness and gestures that show ongoing care", type: "gifts" },
-                            { text: "Protected time together and shared experiences", type: "time" },
-                            { text: "Physical intimacy and affectionate connection", type: "touch" }
+                            { text: "Une communication ouverte, encourageante et une expression émotionnelle sincère", type: "words" },
+                            { text: "Le soutien mutuel et le partenariat dans les responsabilités du quotidien", type: "service" },
+                            { text: "L'attention et les gestes qui témoignent d'un soin constant", type: "gifts" },
+                            { text: "Du temps protégé ensemble et des expériences partagées", type: "time" },
+                            { text: "L'intimité physique et la connexion affectueuse", type: "touch" }
                         ]
                     }
                 ]
             },
             'health-score': {
-                title: '💪 Relationship Health Score',
-                description: 'Comprehensive evaluation of your relationship across key areas',
+                title: '💪 Score de Santé Relationnelle',
+                description: 'Évaluation complète de votre relation dans les domaines clés',
                 dualPartner: false,
-                categories: ['Communication', 'Intimacy', 'Trust', 'Fun & Adventure', 'Emotional Support'],
+                categories: ['Communication', 'Intimité', 'Confiance', 'Plaisir & Aventure', 'Soutien émotionnel'],
                 questions: [
                     // Communication (6 questions)
-                    { question: "We communicate openly about our feelings and concerns", category: "Communication" },
-                    { question: "We listen to each other without interrupting or getting defensive", category: "Communication" },
-                    { question: "We can discuss difficult topics without it turning into an argument", category: "Communication" },
-                    { question: "We express appreciation and gratitude to each other regularly", category: "Communication" },
-                    { question: "We understand each other's communication styles and adapt accordingly", category: "Communication" },
-                    { question: "We check in with each other about our relationship regularly", category: "Communication" },
-                    
-                    // Intimacy (6 questions)
-                    { question: "We maintain physical affection and intimacy that satisfies both of us", category: "Intimacy" },
-                    { question: "We feel comfortable being vulnerable and open with each other", category: "Intimacy" },
-                    { question: "We prioritize romantic connection and keep the spark alive", category: "Intimacy" },
-                    { question: "We're both satisfied with the frequency and quality of our intimate moments", category: "Intimacy" },
-                    { question: "We create opportunities for emotional and physical closeness", category: "Intimacy" },
-                    { question: "We maintain our individual identity while growing closer as a couple", category: "Intimacy" },
-                    
-                    // Trust (6 questions)
-                    { question: "We trust each other completely and feel secure in our relationship", category: "Trust" },
-                    { question: "We keep our promises and follow through on commitments to each other", category: "Trust" },
-                    { question: "We're honest about our thoughts, feelings, and experiences", category: "Trust" },
-                    { question: "We give each other the benefit of the doubt in uncertain situations", category: "Trust" },
-                    { question: "We respect each other's boundaries and personal space", category: "Trust" },
-                    { question: "We handle money, decisions, and responsibilities transparently", category: "Trust" },
-                    
-                    // Fun & Adventure (6 questions)
-                    { question: "We regularly have fun together and enjoy each other's company", category: "Fun & Adventure" },
-                    { question: "We try new experiences and adventures together", category: "Fun & Adventure" },
-                    { question: "We maintain shared interests and hobbies that bring us joy", category: "Fun & Adventure" },
-                    { question: "We laugh together often and maintain our sense of humor", category: "Fun & Adventure" },
-                    { question: "We create positive memories and look forward to future plans", category: "Fun & Adventure" },
-                    { question: "We balance routine with spontaneity and excitement", category: "Fun & Adventure" },
-                    
-                    // Emotional Support (6 questions)
-                    { question: "We provide comfort and support during difficult times", category: "Emotional Support" },
-                    { question: "We celebrate each other's successes and achievements genuinely", category: "Emotional Support" },
-                    { question: "We help each other grow and become better versions of ourselves", category: "Emotional Support" },
-                    { question: "We're patient and understanding with each other's flaws and mistakes", category: "Emotional Support" },
-                    { question: "We make decisions together and support each other's goals", category: "Emotional Support" },
-                    { question: "We create a safe emotional space where we can be completely ourselves", category: "Emotional Support" }
+                    { question: "Nous communiquons ouvertement sur nos ressentis et nos préoccupations", category: "Communication" },
+                    { question: "Nous nous écoutons sans nous couper la parole ni nous mettre sur la défensive", category: "Communication" },
+                    { question: "Nous pouvons aborder des sujets difficiles sans que ça tourne à la dispute", category: "Communication" },
+                    { question: "Nous nous exprimons régulièrement notre appréciation et notre gratitude", category: "Communication" },
+                    { question: "Nous comprenons les styles de communication de l'autre et nous adaptons en conséquence", category: "Communication" },
+                    { question: "Nous prenons régulièrement des nouvelles l'un de l'autre sur notre relation", category: "Communication" },
+
+                    // Intimité (6 questions)
+                    { question: "Nous maintenons une affection physique et une intimité qui nous satisfait tous les deux", category: "Intimité" },
+                    { question: "Nous nous sentons à l'aise pour être vulnérables et ouverts l'un envers l'autre", category: "Intimité" },
+                    { question: "Nous cultivons la connexion romantique et entretenons la flamme", category: "Intimité" },
+                    { question: "Nous sommes tous les deux satisfaits de la fréquence et de la qualité de nos moments intimes", category: "Intimité" },
+                    { question: "Nous créons des occasions de rapprochement émotionnel et physique", category: "Intimité" },
+                    { question: "Nous préservons notre identité individuelle tout en grandissant ensemble en tant que couple", category: "Intimité" },
+
+                    // Confiance (6 questions)
+                    { question: "Nous nous faisons entièrement confiance et nous nous sentons en sécurité dans notre relation", category: "Confiance" },
+                    { question: "Nous tenons nos promesses et respectons nos engagements mutuels", category: "Confiance" },
+                    { question: "Nous sommes honnêtes sur nos pensées, nos ressentis et nos expériences", category: "Confiance" },
+                    { question: "Nous accordons le bénéfice du doute à l'autre dans les situations incertaines", category: "Confiance" },
+                    { question: "Nous respectons les limites et l'espace personnel de l'autre", category: "Confiance" },
+                    { question: "Nous gérons l'argent, les décisions et les responsabilités en toute transparence", category: "Confiance" },
+
+                    // Plaisir & Aventure (6 questions)
+                    { question: "Nous nous amusons régulièrement ensemble et apprécions la compagnie l'un de l'autre", category: "Plaisir & Aventure" },
+                    { question: "Nous vivons de nouvelles expériences et aventures ensemble", category: "Plaisir & Aventure" },
+                    { question: "Nous entretenons des intérêts et des loisirs communs qui nous apportent de la joie", category: "Plaisir & Aventure" },
+                    { question: "Nous rions souvent ensemble et conservons notre sens de l'humour", category: "Plaisir & Aventure" },
+                    { question: "Nous créons de beaux souvenirs et nous réjouissons de nos projets futurs", category: "Plaisir & Aventure" },
+                    { question: "Nous trouvons l'équilibre entre routine et spontanéité", category: "Plaisir & Aventure" },
+
+                    // Soutien émotionnel (6 questions)
+                    { question: "Nous nous apportons réconfort et soutien dans les moments difficiles", category: "Soutien émotionnel" },
+                    { question: "Nous célébrons sincèrement les succès et les réussites de l'autre", category: "Soutien émotionnel" },
+                    { question: "Nous nous aidons mutuellement à grandir et à devenir de meilleures versions de nous-mêmes", category: "Soutien émotionnel" },
+                    { question: "Nous sommes patients et compréhensifs face aux défauts et aux erreurs de l'autre", category: "Soutien émotionnel" },
+                    { question: "Nous prenons nos décisions ensemble et soutenons les objectifs de l'autre", category: "Soutien émotionnel" },
+                    { question: "Nous créons un espace émotionnel sûr où nous pouvons être entièrement nous-mêmes", category: "Soutien émotionnel" }
                 ]
             },
             'conflict-style': {
-                title: '⚖️ Conflict Style Finder',
-                description: 'Learn how you and your partner handle disagreements',
+                title: '⚖️ Révélateur de Style de Conflit',
+                description: 'Découvrez comment vous et votre partenaire gérez les désaccords',
                 dualPartner: true,
                 questions: [
                     {
-                        question: "When you and your partner disagree about something important, you typically:",
+                        question: "Quand vous et votre partenaire n'êtes pas d'accord sur quelque chose d'important, vous avez tendance à :",
                         answers: [
-                            { text: "Try to avoid the conflict and hope it resolves itself", type: "avoider" },
-                            { text: "Look for a middle ground that both of you can accept", type: "compromiser" },
-                            { text: "Stand firm on your position and argue your point strongly", type: "fighter" },
-                            { text: "Focus on understanding their perspective and finding harmony", type: "peacemaker" }
+                            { text: "Éviter le conflit en espérant qu'il se résolve de lui-même", type: "avoider" },
+                            { text: "Chercher un terrain commun acceptable pour vous deux", type: "compromiser" },
+                            { text: "Rester ferme sur votre position et défendre votre point de vue avec conviction", type: "fighter" },
+                            { text: "Vous concentrer sur la compréhension de l'autre et chercher l'harmonie", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "During a heated argument, your first instinct is to:",
+                        question: "Lors d'une dispute tendue, votre premier réflexe est de :",
                         answers: [
-                            { text: "Walk away or suggest talking about it later", type: "avoider" },
-                            { text: "Propose a solution that gives both of you something you want", type: "compromiser" },
-                            { text: "Present your evidence and reasons why you're right", type: "fighter" },
-                            { text: "Acknowledge their feelings and try to calm the situation", type: "peacemaker" }
+                            { text: "Partir ou proposer d'en reparler plus tard", type: "avoider" },
+                            { text: "Proposer une solution qui donne quelque chose à chacun", type: "compromiser" },
+                            { text: "Présenter vos arguments et les raisons pour lesquelles vous avez raison", type: "fighter" },
+                            { text: "Reconnaître les émotions de l'autre et tenter de calmer la situation", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "When you feel hurt by your partner's actions, you:",
+                        question: "Quand vous vous sentez blessé(e) par les actions de votre partenaire, vous :",
                         answers: [
-                            { text: "Keep it to yourself to avoid creating more problems", type: "avoider" },
-                            { text: "Explain what hurt you and ask for what you need going forward", type: "compromiser" },
-                            { text: "Tell them directly how their actions affected you", type: "fighter" },
-                            { text: "Try to understand why they acted that way before addressing your hurt", type: "peacemaker" }
+                            { text: "Gardez ça pour vous pour éviter de créer davantage de problèmes", type: "avoider" },
+                            { text: "Expliquez ce qui vous a blessé(e) et demandez ce dont vous avez besoin", type: "compromiser" },
+                            { text: "Lui dites directement comment ses actions vous ont affecté(e)", type: "fighter" },
+                            { text: "Essayez de comprendre pourquoi il ou elle a agi ainsi avant d'aborder votre douleur", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "Your partner brings up a complaint about your behavior. You:",
+                        question: "Votre partenaire soulève une critique sur votre comportement. Vous :",
                         answers: [
-                            { text: "Feel overwhelmed and wish you could escape the conversation", type: "avoider" },
-                            { text: "Listen to their concern and suggest ways to improve together", type: "compromiser" },
-                            { text: "Defend your actions and explain your reasoning", type: "fighter" },
-                            { text: "Apologize if you've hurt them and ask how you can do better", type: "peacemaker" }
+                            { text: "Vous sentez submergé(e) et aimeriez pouvoir fuir la conversation", type: "avoider" },
+                            { text: "Écoutez sa préoccupation et proposez des pistes pour vous améliorer ensemble", type: "compromiser" },
+                            { text: "Défendez vos actes et expliquez votre raisonnement", type: "fighter" },
+                            { text: "Vous excusez si vous l'avez blessé(e) et demandez comment faire mieux", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "When making a major decision together, if you disagree, you:",
+                        question: "Quand vous prenez une décision importante ensemble et n'êtes pas d'accord, vous :",
                         answers: [
-                            { text: "Defer to their preference to avoid ongoing tension", type: "avoider" },
-                            { text: "Negotiate until you find a solution that works for both", type: "compromiser" },
-                            { text: "Present logical arguments for why your approach is better", type: "fighter" },
-                            { text: "Focus on what's best for your relationship overall", type: "peacemaker" }
+                            { text: "Cédez à sa préférence pour éviter une tension durable", type: "avoider" },
+                            { text: "Négociez jusqu'à trouver une solution qui convienne aux deux", type: "compromiser" },
+                            { text: "Présentez des arguments logiques pour démontrer que votre approche est meilleure", type: "fighter" },
+                            { text: "Vous concentrez sur ce qui est le mieux pour votre relation dans son ensemble", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "After an argument, you typically:",
+                        question: "Après une dispute, vous avez généralement tendance à :",
                         answers: [
-                            { text: "Pretend everything is fine and avoid bringing it up again", type: "avoider" },
-                            { text: "Discuss what you both learned and how to handle it better next time", type: "compromiser" },
-                            { text: "Feel satisfied if you made your point clear", type: "fighter" },
-                            { text: "Make extra effort to reconnect and restore harmony", type: "peacemaker" }
+                            { text: "Faire comme si tout allait bien et éviter d'y revenir", type: "avoider" },
+                            { text: "Discuter de ce que vous avez appris et comment mieux gérer ça la prochaine fois", type: "compromiser" },
+                            { text: "Vous sentir satisfait(e) si vous avez fait passer votre message", type: "fighter" },
+                            { text: "Faire un effort supplémentaire pour vous retrouver et restaurer l'harmonie", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "When your partner is angry with you, your emotional response is:",
+                        question: "Quand votre partenaire est en colère contre vous, votre réaction émotionnelle est :",
                         answers: [
-                            { text: "Anxiety and a strong desire to get away from the conflict", type: "avoider" },
-                            { text: "Determination to work through it and find a solution", type: "compromiser" },
-                            { text: "Frustration or anger that they're not seeing your side", type: "fighter" },
-                            { text: "Sadness that you've upset them and urgency to make it right", type: "peacemaker" }
+                            { text: "De l'anxiété et une forte envie de fuir le conflit", type: "avoider" },
+                            { text: "La détermination de traverser ça et de trouver une solution", type: "compromiser" },
+                            { text: "De la frustration ou de la colère parce qu'il ou elle ne voit pas votre point de vue", type: "fighter" },
+                            { text: "De la tristesse de l'avoir peiné(e) et l'urgence d'arranger les choses", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "Your approach to preventing future conflicts is to:",
+                        question: "Votre approche pour prévenir les futurs conflits consiste à :",
                         answers: [
-                            { text: "Avoid topics or situations that might cause disagreement", type: "avoider" },
-                            { text: "Establish clear agreements and expectations together", type: "compromiser" },
-                            { text: "Make sure your partner understands your boundaries and needs", type: "fighter" },
-                            { text: "Focus on building emotional connection and understanding", type: "peacemaker" }
+                            { text: "Éviter les sujets ou situations susceptibles de provoquer un désaccord", type: "avoider" },
+                            { text: "Établir ensemble des accords clairs et des attentes mutuelles", type: "compromiser" },
+                            { text: "Vous assurer que votre partenaire comprend vos limites et vos besoins", type: "fighter" },
+                            { text: "Vous concentrer sur le renforcement de la connexion émotionnelle et de la compréhension mutuelle", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "When you're both stressed and tensions are high, you:",
+                        question: "Quand vous êtes tous les deux stressés et que les tensions montent, vous :",
                         answers: [
-                            { text: "Try to give each other space until things calm down", type: "avoider" },
-                            { text: "Acknowledge the stress and work together to manage it", type: "compromiser" },
-                            { text: "Address issues directly, even if it creates temporary conflict", type: "fighter" },
-                            { text: "Prioritize emotional support and reassurance for both of you", type: "peacemaker" }
+                            { text: "Essayez de vous accorder de l'espace jusqu'à ce que les choses se calment", type: "avoider" },
+                            { text: "Reconnaissez le stress et travaillez ensemble à le gérer", type: "compromiser" },
+                            { text: "Abordez les problèmes directement, même si ça crée temporairement un conflit", type: "fighter" },
+                            { text: "Priorisez le soutien émotionnel et le réconfort mutuel", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "Your biggest fear during relationship conflicts is:",
+                        question: "Votre plus grande crainte lors des conflits relationnels est :",
                         answers: [
-                            { text: "That the conflict will escalate and damage your relationship", type: "avoider" },
-                            { text: "That you won't be able to find a solution that works", type: "compromiser" },
-                            { text: "That important issues won't get properly addressed", type: "fighter" },
-                            { text: "That you or your partner will feel hurt or disconnected", type: "peacemaker" }
+                            { text: "Que le conflit s'emballe et abîme votre relation", type: "avoider" },
+                            { text: "Que vous ne parveniez pas à trouver une solution qui convienne", type: "compromiser" },
+                            { text: "Que des problèmes importants ne soient pas correctement traités", type: "fighter" },
+                            { text: "Que vous ou votre partenaire vous sentiez blessé(e) ou déconnecté(e)", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "When discussing a sensitive topic, you prefer to:",
+                        question: "Quand vous abordez un sujet sensible, vous préférez :",
                         answers: [
-                            { text: "Keep the conversation brief and surface-level", type: "avoider" },
-                            { text: "Have a structured discussion with clear goals", type: "compromiser" },
-                            { text: "Be direct and honest about your thoughts and feelings", type: "fighter" },
-                            { text: "Create a safe, supportive environment for sharing", type: "peacemaker" }
+                            { text: "Garder la conversation brève et en surface", type: "avoider" },
+                            { text: "Avoir une discussion structurée avec des objectifs clairs", type: "compromiser" },
+                            { text: "Être direct(e) et honnête sur vos pensées et ressentis", type: "fighter" },
+                            { text: "Créer un environnement sûr et bienveillant pour partager", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "Your partner says something that triggers your insecurities. You:",
+                        question: "Votre partenaire dit quelque chose qui touche à vos insécurités. Vous :",
                         answers: [
-                            { text: "Withdraw emotionally and avoid discussing it", type: "avoider" },
-                            { text: "Ask for clarification and express how it affected you", type: "compromiser" },
-                            { text: "Respond strongly to defend yourself", type: "fighter" },
-                            { text: "Assume they didn't mean to hurt you and give them the benefit of the doubt", type: "peacemaker" }
+                            { text: "Vous repliez émotionnellement et évitez d'en parler", type: "avoider" },
+                            { text: "Demandez des éclaircissements et exprimez comment ça vous a affecté(e)", type: "compromiser" },
+                            { text: "Réagissez fermement pour vous défendre", type: "fighter" },
+                            { text: "Supposez qu'il ou elle ne voulait pas vous blesser et lui accordez le bénéfice du doute", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "Your ideal outcome from any conflict is:",
+                        question: "Le résultat idéal de tout conflit pour vous est :",
                         answers: [
-                            { text: "For the conflict to be over as quickly as possible", type: "avoider" },
-                            { text: "A practical solution that addresses both of your concerns", type: "compromiser" },
-                            { text: "Clear understanding and resolution of the core issue", type: "fighter" },
-                            { text: "Feeling more connected and understanding each other better", type: "peacemaker" }
+                            { text: "Que le conflit se termine le plus vite possible", type: "avoider" },
+                            { text: "Une solution concrète qui tient compte des préoccupations de chacun", type: "compromiser" },
+                            { text: "Une compréhension claire et une résolution du problème central", type: "fighter" },
+                            { text: "Se sentir plus proches et mieux se comprendre l'un l'autre", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "When you need to bring up a problem with your partner, you:",
+                        question: "Quand vous devez soulever un problème avec votre partenaire, vous :",
                         answers: [
-                            { text: "Wait for the right moment or hope they'll notice on their own", type: "avoider" },
-                            { text: "Plan what you want to say and propose potential solutions", type: "compromiser" },
-                            { text: "Address it directly and clearly", type: "fighter" },
-                            { text: "Choose your words carefully to avoid hurting their feelings", type: "peacemaker" }
+                            { text: "Attendez le bon moment ou espérez qu'il ou elle le remarque de lui/elle-même", type: "avoider" },
+                            { text: "Préparez ce que vous voulez dire et proposez des solutions potentielles", type: "compromiser" },
+                            { text: "L'abordez directement et clairement", type: "fighter" },
+                            { text: "Choisissez vos mots avec soin pour ne pas blesser ses sentiments", type: "peacemaker" }
                         ]
                     },
                     {
-                        question: "Your strength during conflicts is that you:",
+                        question: "Votre force lors des conflits est que vous :",
                         answers: [
-                            { text: "Keep things from escalating unnecessarily", type: "avoider" },
-                            { text: "Stay focused on finding workable solutions", type: "compromiser" },
-                            { text: "Ensure important issues don't get swept under the rug", type: "fighter" },
-                            { text: "Maintain care and compassion even during disagreements", type: "peacemaker" }
+                            { text: "Empêchez les choses de s'envenimer inutilement", type: "avoider" },
+                            { text: "Restez concentré(e) sur la recherche de solutions viables", type: "compromiser" },
+                            { text: "Veillez à ce que les problèmes importants ne soient pas balayés sous le tapis", type: "fighter" },
+                            { text: "Maintenez soin et compassion même en plein désaccord", type: "peacemaker" }
                         ]
                     }
                 ]
@@ -1261,17 +1261,17 @@
         function showQuestion() {
             const question = currentQuiz.questions[currentQuestionIndex];
             const container = document.getElementById('questionContainer');
-            
+
             // Update progress
             const progress = ((currentQuestionIndex + 1) / currentQuiz.questions.length) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
-            
+
             let progressText;
             if (currentQuiz.dualPartner) {
                 const totalForPartner = answers[currentPartner].length;
-                progressText = `Partner ${currentPartner}: Question ${currentQuestionIndex + 1} of ${currentQuiz.questions.length}`;
+                progressText = `Partenaire ${currentPartner} : Question ${currentQuestionIndex + 1} sur ${currentQuiz.questions.length}`;
             } else {
-                progressText = `Question ${currentQuestionIndex + 1} of ${currentQuiz.questions.length}`;
+                progressText = `Question ${currentQuestionIndex + 1} sur ${currentQuiz.questions.length}`;
             }
             document.getElementById('progressText').textContent = progressText;
 
@@ -1282,9 +1282,9 @@
             const answersContainer = document.getElementById('answersContainer');
             answersContainer.innerHTML = '';
 
-            if (currentQuiz.title.includes('Health Score')) {
+            if (currentQuiz.title.includes('Santé Relationnelle')) {
                 // Rating scale questions
-                const scaleLabels = ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'];
+                const scaleLabels = ['Pas du tout d\'accord', 'Pas d\'accord', 'Neutre', 'D\'accord', 'Tout à fait d\'accord'];
                 for (let i = 1; i <= 5; i++) {
                     const answerDiv = document.createElement('div');
                     answerDiv.className = 'answer scale-answer';
@@ -1340,7 +1340,7 @@
 
             if (savedAnswer) {
                 const answerElements = document.querySelectorAll('.answer');
-                if (currentQuiz.title.includes('Health Score')) {
+                if (currentQuiz.title.includes('Santé Relationnelle')) {
                     // Find the element with matching scale number
                     answerElements.forEach(el => {
                         const scaleNumber = el.querySelector('.scale-number');
@@ -1370,12 +1370,12 @@
                 if (currentQuiz.dualPartner && currentPartner === 'A') {
                     currentPartner = 'B';
                     currentQuestionIndex = 0;
-                    
+
                     // Update partner tab
                     document.querySelectorAll('.partner-tab').forEach(tab => {
                         tab.classList.toggle('active', tab.dataset.partner === 'B');
                     });
-                    
+
                     animateQuestionTransition();
                 } else {
                     showResults();
@@ -1391,12 +1391,12 @@
                 // Go back to Partner A's last question
                 currentPartner = 'A';
                 currentQuestionIndex = currentQuiz.questions.length - 1;
-                
+
                 // Update partner tab
                 document.querySelectorAll('.partner-tab').forEach(tab => {
                     tab.classList.toggle('active', tab.dataset.partner === 'A');
                 });
-                
+
                 animateQuestionTransition();
             }
         }
@@ -1404,12 +1404,12 @@
         function animateQuestionTransition() {
             const container = document.getElementById('questionContainer');
             container.classList.add('slide-out');
-            
+
             setTimeout(() => {
                 showQuestion();
                 container.classList.remove('slide-out');
                 container.classList.add('slide-in');
-                
+
                 setTimeout(() => {
                     container.classList.remove('slide-in');
                 }, 300);
@@ -1419,16 +1419,16 @@
         function showResults() {
             document.getElementById('quizInterface').style.display = 'none';
             document.getElementById('resultsScreen').style.display = 'block';
-            document.getElementById('resultsTitle').textContent = currentQuiz.title.replace('💕', '🎉').replace('💪', '🎉').replace('⚖️', '🎉') + ' Results';
+            document.getElementById('resultsTitle').textContent = currentQuiz.title.replace('💕', '🎉').replace('💪', '🎉').replace('⚖️', '🎉') + ' — Résultats';
 
             const resultsContainer = document.getElementById('resultsContent');
             resultsContainer.innerHTML = '';
 
-            if (currentQuiz.title.includes('Love Language')) {
+            if (currentQuiz.title.includes('Langages de l\'Amour')) {
                 showLoveLanguageResults(resultsContainer);
-            } else if (currentQuiz.title.includes('Health Score')) {
+            } else if (currentQuiz.title.includes('Santé Relationnelle')) {
                 showHealthScoreResults(resultsContainer);
-            } else if (currentQuiz.title.includes('Conflict Style')) {
+            } else if (currentQuiz.title.includes('Style de Conflit')) {
                 showConflictStyleResults(resultsContainer);
             }
 
@@ -1441,11 +1441,11 @@
             const resultB = calculateLoveLanguage(answers.B);
 
             const loveLanguageNames = {
-                'words': 'Words of Affirmation',
-                'service': 'Acts of Service', 
-                'gifts': 'Receiving Gifts',
-                'time': 'Quality Time',
-                'touch': 'Physical Touch'
+                'words': 'Paroles valorisantes',
+                'service': 'Services rendus',
+                'gifts': 'Cadeaux',
+                'time': 'Temps de qualité',
+                'touch': 'Contact physique'
             };
 
             // Partner Results
@@ -1453,14 +1453,14 @@
             partnersDiv.className = 'love-language-results';
             partnersDiv.innerHTML = `
                 <div class="partner-result">
-                    <h4>Partner A</h4>
+                    <h4>Partenaire A</h4>
                     <div class="love-language">${loveLanguageNames[resultA.primary]}</div>
-                    <p>Primary Love Language</p>
+                    <p>Langage amoureux principal</p>
                 </div>
                 <div class="partner-result">
-                    <h4>Partner B</h4>
+                    <h4>Partenaire B</h4>
                     <div class="love-language">${loveLanguageNames[resultB.primary]}</div>
-                    <p>Primary Love Language</p>
+                    <p>Langage amoureux principal</p>
                 </div>
             `;
             container.appendChild(partnersDiv);
@@ -1469,7 +1469,7 @@
             const compatibilityDiv = document.createElement('div');
             compatibilityDiv.className = 'compatibility-section';
             compatibilityDiv.innerHTML = `
-                <h4>💕 Compatibility Insights</h4>
+                <h4>💕 Analyse de compatibilité</h4>
                 <p>${getLoveLanguageCompatibility(resultA.primary, resultB.primary)}</p>
             `;
             container.appendChild(compatibilityDiv);
@@ -1478,7 +1478,7 @@
             const tipsDiv = document.createElement('div');
             tipsDiv.className = 'tips-section';
             tipsDiv.innerHTML = `
-                <h4>💡 How to Love Each Other Better</h4>
+                <h4>💡 Comment mieux vous aimer l'un l'autre</h4>
                 <ul>
                     ${getLoveLanguageTips(resultA.primary, resultB.primary).map(tip => `<li>${tip}</li>`).join('')}
                 </ul>
@@ -1488,7 +1488,7 @@
 
         function showHealthScoreResults(container) {
             const result = calculateHealthScore(singleAnswers);
-            
+
             // Score Card
             const scoreCard = document.createElement('div');
             scoreCard.className = 'score-card';
@@ -1506,7 +1506,7 @@
                     </svg>
                     <div class="score-number">${result.overall}%</div>
                 </div>
-                <h3>Overall Relationship Strength</h3>
+                <h3>Solidité globale de votre relation</h3>
             `;
             container.appendChild(scoreCard);
 
@@ -1546,13 +1546,13 @@
             strengthsDiv.className = 'strengths-areas';
             strengthsDiv.innerHTML = `
                 <div class="strength-area strengths">
-                    <h4>✨ Your Strengths</h4>
+                    <h4>✨ Vos points forts</h4>
                     <ul>
                         ${result.strengths.map(strength => `<li>${strength}</li>`).join('')}
                     </ul>
                 </div>
                 <div class="strength-area growth">
-                    <h4>🎯 Growth Areas</h4>
+                    <h4>🎯 Axes de progression</h4>
                     <ul>
                         ${result.growthAreas.map(area => `<li>${area}</li>`).join('')}
                     </ul>
@@ -1564,7 +1564,7 @@
             const tipsDiv = document.createElement('div');
             tipsDiv.className = 'tips-section';
             tipsDiv.innerHTML = `
-                <h4>💡 Improvement Tips</h4>
+                <h4>💡 Conseils pour progresser</h4>
                 <ul>
                     ${getHealthScoreTips(result).map(tip => `<li>${tip}</li>`).join('')}
                 </ul>
@@ -1577,10 +1577,10 @@
             const resultB = calculateConflictStyle(answers.B);
 
             const styleNames = {
-                'avoider': 'The Avoider',
-                'compromiser': 'The Compromiser',
-                'fighter': 'The Fighter', 
-                'peacemaker': 'The Peacemaker'
+                'avoider': 'L\'Évitant(e)',
+                'compromiser': 'Le/La Compromis(e)',
+                'fighter': 'Le/La Combatif(ve)',
+                'peacemaker': 'Le/La Pacificateur/trice'
             };
 
             // Partner Results
@@ -1588,14 +1588,14 @@
             partnersDiv.className = 'love-language-results';
             partnersDiv.innerHTML = `
                 <div class="partner-result">
-                    <h4>Partner A</h4>
+                    <h4>Partenaire A</h4>
                     <div class="love-language">${styleNames[resultA.primary]}</div>
-                    <p>Conflict Resolution Style</p>
+                    <p>Style de résolution des conflits</p>
                 </div>
                 <div class="partner-result">
-                    <h4>Partner B</h4>
+                    <h4>Partenaire B</h4>
                     <div class="love-language">${styleNames[resultB.primary]}</div>
-                    <p>Conflict Resolution Style</p>
+                    <p>Style de résolution des conflits</p>
                 </div>
             `;
             container.appendChild(partnersDiv);
@@ -1604,7 +1604,7 @@
             const compatibilityDiv = document.createElement('div');
             compatibilityDiv.className = 'compatibility-section';
             compatibilityDiv.innerHTML = `
-                <h4>⚖️ Compatibility Analysis</h4>
+                <h4>⚖️ Analyse de compatibilité</h4>
                 <p>${getConflictCompatibility(resultA.primary, resultB.primary)}</p>
             `;
             container.appendChild(compatibilityDiv);
@@ -1613,7 +1613,7 @@
             const tipsDiv = document.createElement('div');
             tipsDiv.className = 'tips-section';
             tipsDiv.innerHTML = `
-                <h4>💡 Tips for Better Conflict Resolution</h4>
+                <h4>💡 Conseils pour mieux gérer vos conflits</h4>
                 <ul>
                     ${getConflictTips(resultA.primary, resultB.primary).map(tip => `<li>${tip}</li>`).join('')}
                 </ul>
@@ -1638,12 +1638,12 @@
         }
 
         function calculateHealthScore(answers) {
-            const categories = ['Communication', 'Intimacy', 'Trust', 'Fun & Adventure', 'Emotional Support'];
+            const categories = ['Communication', 'Intimité', 'Confiance', 'Plaisir & Aventure', 'Soutien émotionnel'];
             const categoryScores = {};
             let totalScore = 0;
 
             categories.forEach(category => {
-                const categoryAnswers = answers.filter((_, index) => 
+                const categoryAnswers = answers.filter((_, index) =>
                     currentQuiz.questions[index].category === category
                 );
                 const categorySum = categoryAnswers.reduce((sum, answer) => sum + answer, 0);
@@ -1653,7 +1653,7 @@
             });
 
             const overallScore = Math.round(totalScore / categories.length);
-            
+
             const categoryResults = categories.map(cat => ({
                 name: cat,
                 score: categoryScores[cat]
@@ -1688,65 +1688,65 @@
         // Compatibility and Tips Functions
         function getLoveLanguageCompatibility(styleA, styleB) {
             if (styleA === styleB) {
-                return "You both share the same primary love language! This creates natural understanding and makes it easier to meet each other's needs. You'll likely feel deeply understood by your partner's expressions of love.";
+                return "Vous partagez tous les deux le même langage amoureux principal ! Cela crée une compréhension naturelle et facilite la satisfaction des besoins de chacun. Vous vous sentirez probablement profondément compris(e) par les expressions d'amour de votre partenaire.";
             }
 
             const compatibilityMap = {
-                'words_service': "One of you thrives on verbal affirmation while the other values helpful actions. This creates a beautiful balance - combine encouraging words with thoughtful deeds for maximum impact.",
-                'words_gifts': "Combining heartfelt words with meaningful gifts creates powerful expressions of love. Written notes accompanying gifts can speak to both of your love languages simultaneously.",
-                'words_time': "Quality conversation is where your love languages intersect. Set aside dedicated time for deep, affirming discussions that meet both of your needs for connection.",
-                'words_touch': "Physical affection paired with loving words creates incredibly intimate moments. Whisper sweet words during hugs and express your feelings through both touch and speech.",
-                'service_gifts': "You both appreciate tangible expressions of love, though in different forms. Consider gifts that are also helpful, or frame acts of service as gifts of time and care.",
-                'service_time': "Both love languages involve giving your partner your personal resources. Plan quality time around helpful activities you can do together, combining service with presence.",
-                'service_touch': "These hands-on love languages complement each other beautifully. Physical affection during helpful activities or a massage after your partner serves you can speak to both languages.",
-                'gifts_time': "Both involve intentional planning and thoughtfulness. Create experiences together and give the gift of your undivided attention and presence.",
-                'gifts_touch': "Physical gifts and physical affection both involve tangible expressions of love. Consider gifts that enhance physical connection or combine gift-giving with affectionate touch.",
-                'time_touch': "These love languages naturally complement each other. Quality time often includes physical closeness, creating opportunities to meet both needs simultaneously."
+                'words_service': "L'un d'entre vous s'épanouit dans les affirmations verbales tandis que l'autre valorise les actes concrets. Cela crée un bel équilibre — combinez paroles encourageantes et gestes attentionnés pour un impact maximal.",
+                'words_gifts': "Associer des mots sincères à des cadeaux significatifs crée de puissantes expressions d'amour. Les mots écrits accompagnant un cadeau peuvent parler simultanément à vos deux langages amoureux.",
+                'words_time': "La conversation de qualité est là où vos langages amoureux se rejoignent. Réservez du temps dédié à des échanges profonds et valorisants qui répondent à vos deux besoins de connexion.",
+                'words_touch': "L'affection physique associée aux mots d'amour crée des moments d'une intimité exceptionnelle. Murmurez des mots tendres pendant les câlins et exprimez vos sentiments à travers le toucher et la parole.",
+                'service_gifts': "Vous appréciez tous les deux les expressions tangibles de l'amour, sous des formes différentes. Pensez à des cadeaux qui sont aussi utiles, ou envisagez les services rendus comme des cadeaux de temps et d'attention.",
+                'service_time': "Ces deux langages amoureux impliquent d'offrir à votre partenaire vos ressources personnelles. Planifiez des moments de qualité autour d'activités utiles à faire ensemble, alliant service et présence.",
+                'service_touch': "Ces langages amoureux très concrets se complètent à merveille. Un toucher affectueux pendant une aide pratique, ou un massage après que votre partenaire vous a rendu service, peut parler aux deux langages.",
+                'gifts_time': "Tous deux impliquent une planification intentionnelle et de l'attention. Créez des expériences ensemble et offrez le cadeau de votre attention pleine et entière.",
+                'gifts_touch': "Les cadeaux physiques et l'affection physique sont tous deux des expressions tangibles de l'amour. Pensez à des cadeaux qui enrichissent la connexion physique, ou combinez les cadeaux avec un toucher affectueux.",
+                'time_touch': "Ces langages amoureux se complètent naturellement. Le temps de qualité inclut souvent une proximité physique, créant des occasions de répondre aux deux besoins simultanément."
             };
 
             const key1 = `${styleA}_${styleB}`;
             const key2 = `${styleB}_${styleA}`;
-            
-            return compatibilityMap[key1] || compatibilityMap[key2] || "Your different love languages create opportunities to show love in diverse, meaningful ways.";
+
+            return compatibilityMap[key1] || compatibilityMap[key2] || "Vos langages amoureux différents créent des occasions de vous montrer votre amour de manières diverses et significatives.";
         }
 
         function getLoveLanguageTips(styleA, styleB) {
             const tipMap = {
                 'words': [
-                    "Leave heartfelt notes in unexpected places",
-                    "Give specific compliments about their character and actions",
-                    "Send encouraging texts throughout the day",
-                    "Verbally express gratitude for the little things they do"
+                    "Laissez des mots tendres dans des endroits inattendus",
+                    "Faites des compliments précis sur leur caractère et leurs actions",
+                    "Envoyez des messages encourageants tout au long de la journée",
+                    "Exprimez verbalement votre gratitude pour les petites choses qu'il ou elle fait"
                 ],
                 'service': [
-                    "Handle their least favorite chores without being asked",
-                    "Prepare their morning coffee or favorite meal",
-                    "Take care of tasks that reduce their stress",
-                    "Offer help before they have to ask for it"
+                    "Prenez en charge leur corvée préférée sans qu'on vous le demande",
+                    "Préparez leur café du matin ou leur plat favori",
+                    "Gérez des tâches qui allègent leur stress",
+                    "Proposez votre aide avant qu'il ou elle ait à la demander"
                 ],
                 'gifts': [
-                    "Remember things they mention wanting and surprise them later",
-                    "Give thoughtful gifts that show you pay attention to their interests",
-                    "Create personalized gifts that reflect your unique relationship",
-                    "Celebrate small moments with meaningful tokens of love"
+                    "Mémorisez ce qu'il ou elle mentionne vouloir et surprenez-le/la plus tard",
+                    "Offrez des cadeaux attentionnés qui montrent que vous êtes attentif(ve) à ses intérêts",
+                    "Créez des cadeaux personnalisés qui reflètent votre relation unique",
+                    "Célébrez les petits moments avec de beaux gestes symboliques"
                 ],
                 'time': [
-                    "Put away phones and devices during conversations",
-                    "Plan regular date nights focused on connection",
-                    "Create rituals for quality time, like evening walks or morning coffee together",
-                    "Ask open-ended questions and really listen to their answers"
+                    "Rangez les téléphones et appareils pendant vos conversations",
+                    "Planifiez des soirées régulières axées sur la connexion",
+                    "Créez des rituels de temps de qualité, comme des promenades en soirée ou un café ensemble le matin",
+                    "Posez des questions ouvertes et écoutez vraiment les réponses"
                 ],
                 'touch': [
-                    "Hold hands while walking or watching movies",
-                    "Give shoulder rubs or back scratches without being asked",
-                    "Hug hello and goodbye every day",
-                    "Create opportunities for cuddling and physical closeness"
+                    "Tenez-vous la main en marchant ou en regardant des films",
+                    "Offrez des massages des épaules ou des caresses dans le dos sans qu'on vous le demande",
+                    "Faites une accolade à l'arrivée et au départ chaque jour",
+                    "Créez des occasions de câlins et de proximité physique"
                 ]
             };
 
             const tipsA = tipMap[styleA] || [];
             const tipsB = tipMap[styleB] || [];
-            
+
             // Combine and shuffle tips
             const allTips = [...tipsA, ...tipsB];
             return allTips.slice(0, 6);
@@ -1754,60 +1754,60 @@
 
         function getConflictCompatibility(styleA, styleB) {
             const compatibilityMap = {
-                'avoider_avoider': "You both prefer to avoid conflict, which can create harmony but may leave issues unresolved. Make sure to schedule regular check-ins to address concerns before they build up.",
-                'compromiser_compromiser': "You both value finding middle ground, which is excellent for resolution. Your strength is working together toward solutions that satisfy both partners.",
-                'fighter_fighter': "You both approach conflict directly and intensely. While this ensures issues get addressed, focus on staying respectful and taking breaks when emotions run high.",
-                'peacemaker_peacemaker': "You both prioritize harmony and understanding. This creates a loving environment, but ensure that important issues don't get overlooked in the desire to keep peace.",
-                'avoider_compromiser': "One of you prefers to step back while the other seeks solutions. The compromiser can help gently guide discussions, while the avoider can help prevent unnecessary conflict.",
-                'avoider_fighter': "This combination can be challenging - one wants to engage while the other withdraws. The fighter should give space initially, while the avoider should commit to returning to discuss issues.",
-                'avoider_peacemaker': "You both dislike conflict but for different reasons. The peacemaker can help create safe spaces for difficult conversations that the avoider needs.",
-                'compromiser_fighter': "One focuses on solutions while the other on being heard. The fighter should listen to proposed compromises, while the compromiser should ensure both perspectives are fully expressed first.",
-                'compromiser_peacemaker': "You both want positive outcomes and care about each other's feelings. This is an excellent combination for healthy conflict resolution.",
-                'fighter_peacemaker': "One is direct while the other is gentle. The fighter should soften their approach, while the peacemaker should be willing to address tough issues directly when needed."
+                'avoider_avoider': "Vous préférez tous les deux éviter les conflits, ce qui peut créer une harmonie mais laisser des problèmes non résolus. Veillez à planifier des points réguliers pour aborder les préoccupations avant qu'elles ne s'accumulent.",
+                'compromiser_compromiser': "Vous valorisez tous les deux la recherche d'un terrain commun, ce qui est excellent pour la résolution. Votre force est de travailler ensemble vers des solutions qui satisfont les deux partenaires.",
+                'fighter_fighter': "Vous abordez tous les deux les conflits de manière directe et intense. Cela garantit que les problèmes sont traités, mais veillez à rester respectueux(ses) et à faire des pauses quand les émotions montent.",
+                'peacemaker_peacemaker': "Vous priorisez tous les deux l'harmonie et la compréhension. Cela crée un environnement bienveillant, mais assurez-vous que des problèmes importants ne soient pas négligés dans le désir de maintenir la paix.",
+                'avoider_compromiser': "L'un préfère prendre du recul tandis que l'autre cherche des solutions. Le/la compromis(e) peut guider doucement les discussions, tandis que l'évitant(e) peut aider à prévenir les conflits inutiles.",
+                'avoider_fighter': "Cette combinaison peut être challengeante — l'un veut s'engager tandis que l'autre se retire. Le/la combatif(ve) devrait accorder de l'espace au départ, tandis que l'évitant(e) devrait s'engager à revenir pour discuter des problèmes.",
+                'avoider_peacemaker': "Vous n'aimez ni l'un ni l'autre les conflits, mais pour des raisons différentes. Le/la pacificateur/trice peut aider à créer des espaces sécurisants pour les conversations difficiles dont l'évitant(e) a besoin.",
+                'compromiser_fighter': "L'un se concentre sur les solutions tandis que l'autre a besoin d'être entendu(e). Le/la combatif(ve) devrait être réceptif(ve) aux compromis proposés, tandis que le/la compromis(e) devrait s'assurer que les deux perspectives sont pleinement exprimées d'abord.",
+                'compromiser_peacemaker': "Vous voulez tous les deux des résultats positifs et vous souciez des sentiments de l'autre. C'est une excellente combinaison pour une résolution saine des conflits.",
+                'fighter_peacemaker': "L'un est direct tandis que l'autre est doux/douce. Le/la combatif(ve) devrait adoucir son approche, tandis que le/la pacificateur/trice devrait être prêt(e) à aborder directement les sujets difficiles si nécessaire."
             };
 
             const key1 = `${styleA}_${styleB}`;
             const key2 = `${styleB}_${styleA}`;
-            
-            return compatibilityMap[key1] || compatibilityMap[key2] || "Your different conflict styles can complement each other with understanding and practice.";
+
+            return compatibilityMap[key1] || compatibilityMap[key2] || "Vos styles de conflit différents peuvent se compléter avec compréhension et pratique.";
         }
 
         function getConflictTips(styleA, styleB) {
             const tipMap = {
                 'avoider': [
-                    "Practice bringing up small issues to build confidence with conflict",
-                    "Schedule specific times to discuss relationship topics",
-                    "Use 'I' statements to express your feelings safely",
-                    "Remember that addressing issues early prevents bigger conflicts later"
+                    "Entraînez-vous à soulever de petits problèmes pour gagner confiance face aux conflits",
+                    "Planifiez des moments spécifiques pour aborder les sujets relationnels",
+                    "Utilisez des formulations en « je » pour exprimer vos ressentis en sécurité",
+                    "Rappelez-vous qu'aborder les problèmes tôt évite des conflits plus importants par la suite"
                 ],
                 'compromiser': [
-                    "Make sure both partners feel fully heard before jumping to solutions",
-                    "Check that compromises don't leave either person feeling resentful",
-                    "Celebrate successful compromises to reinforce positive conflict resolution",
-                    "Be patient with partners who need more time to process"
+                    "Assurez-vous que les deux partenaires se sentent pleinement écoutés avant de passer aux solutions",
+                    "Vérifiez que les compromis ne laissent personne avec de la rancœur",
+                    "Célébrez les compromis réussis pour renforcer la résolution positive des conflits",
+                    "Soyez patient(e) avec les partenaires qui ont besoin de plus de temps pour intégrer les choses"
                 ],
                 'fighter': [
-                    "Take breaks when emotions get too intense",
-                    "Focus on the issue at hand rather than bringing up past conflicts",
-                    "Practice active listening and summarizing your partner's perspective",
-                    "Use a softer tone and gentler language to prevent defensiveness"
+                    "Faites des pauses quand les émotions deviennent trop intenses",
+                    "Concentrez-vous sur le problème en cours plutôt que de ressortir des conflits passés",
+                    "Pratiquez l'écoute active en résumant le point de vue de votre partenaire",
+                    "Adoptez un ton plus doux et un langage plus bienveillant pour éviter les réactions défensives"
                 ],
                 'peacemaker': [
-                    "Don't sacrifice important needs just to avoid conflict",
-                    "Practice expressing disagreement in loving but clear ways",
-                    "Remember that healthy conflict can strengthen relationships",
-                    "Set boundaries around what compromises you're willing to make"
+                    "Ne sacrifiez pas des besoins importants juste pour éviter un conflit",
+                    "Entraînez-vous à exprimer votre désaccord de manière aimante mais claire",
+                    "Rappelez-vous qu'un conflit sain peut renforcer les relations",
+                    "Fixez des limites sur les compromis que vous êtes prêt(e) à faire"
                 ]
             };
 
             const tipsA = tipMap[styleA] || [];
             const tipsB = tipMap[styleB] || [];
-            
+
             const generalTips = [
-                "Set ground rules for discussions (no name-calling, no bringing up the past, etc.)",
-                "Take breaks if emotions get too intense and return when calmer",
-                "Focus on solving the problem together rather than winning",
-                "Appreciate your partner's conflict style and adapt your approach accordingly"
+                "Établissez des règles de base pour vos discussions (pas d'insultes, ne pas ressortir le passé, etc.)",
+                "Faites des pauses si les émotions deviennent trop intenses et reprenez quand vous êtes plus calmes",
+                "Concentrez-vous sur la résolution du problème ensemble plutôt que sur le fait de gagner",
+                "Appréciez le style de conflit de votre partenaire et adaptez votre approche en conséquence"
             ];
 
             // Combine tips
@@ -1818,29 +1818,29 @@
         function getHealthScoreTips(result) {
             const categoryTips = {
                 'Communication': [
-                    "Schedule weekly relationship check-ins to discuss feelings and concerns",
-                    "Practice active listening by summarizing what your partner says before responding",
-                    "Express appreciation daily for small things your partner does"
+                    "Planifiez des points relationnels hebdomadaires pour partager vos ressentis et préoccupations",
+                    "Pratiquez l'écoute active en résumant ce que dit votre partenaire avant de répondre",
+                    "Exprimez votre appréciation quotidiennement pour les petites choses que fait votre partenaire"
                 ],
-                'Intimacy': [
-                    "Plan regular date nights without phones or distractions",
-                    "Share something vulnerable with each other weekly",
-                    "Create physical intimacy through non-sexual touch throughout the day"
+                'Intimité': [
+                    "Planifiez des soirées régulières sans téléphones ni distractions",
+                    "Partagez quelque chose de vulnérable l'un avec l'autre chaque semaine",
+                    "Créez de l'intimité physique par des gestes affectueux non sexuels tout au long de la journée"
                 ],
-                'Trust': [
-                    "Follow through consistently on promises, both big and small",
-                    "Be transparent about your feelings, even when it's difficult",
-                    "Give your partner the benefit of the doubt in uncertain situations"
+                'Confiance': [
+                    "Tenez systématiquement vos promesses, grandes et petites",
+                    "Soyez transparent(e) sur vos ressentis, même quand c'est difficile",
+                    "Accordez à votre partenaire le bénéfice du doute dans les situations incertaines"
                 ],
-                'Fun & Adventure': [
-                    "Try one new activity together each month",
-                    "Recreate your favorite early relationship memories",
-                    "Laugh together daily - share jokes, funny stories, or watch comedy"
+                'Plaisir & Aventure': [
+                    "Essayez une nouvelle activité ensemble chaque mois",
+                    "Recréez vos souvenirs préférés du début de votre relation",
+                    "Riez ensemble chaque jour — partagez des blagues, des anecdotes amusantes ou regardez une comédie"
                 ],
-                'Emotional Support': [
-                    "Celebrate each other's wins, no matter how small",
-                    "Offer comfort during stress without trying to immediately fix problems",
-                    "Encourage each other's personal growth and individual goals"
+                'Soutien émotionnel': [
+                    "Célébrez les victoires de l'autre, aussi petites soient-elles",
+                    "Offrez du réconfort dans les moments de stress sans chercher à résoudre immédiatement les problèmes",
+                    "Encouragez la croissance personnelle et les objectifs individuels de l'autre"
                 ]
             };
 
@@ -1853,9 +1853,9 @@
 
             // Add general tips if we don't have enough specific ones
             const generalTips = [
-                "Practice gratitude by sharing three things you appreciate about your partner weekly",
-                "Create rituals that strengthen your connection (morning coffee, evening walks, etc.)",
-                "Work together toward shared goals and dreams for your future"
+                "Pratiquez la gratitude en partageant trois choses que vous appréciez chez votre partenaire chaque semaine",
+                "Créez des rituels qui renforcent votre connexion (café du matin, promenades en soirée, etc.)",
+                "Avancez ensemble vers des objectifs et des rêves communs pour votre avenir"
             ];
 
             return [...tips, ...generalTips].slice(0, 6);
@@ -1866,7 +1866,7 @@
             document.getElementById('quizSelection').style.display = 'block';
             document.getElementById('quizInterface').style.display = 'none';
             document.getElementById('resultsScreen').style.display = 'none';
-            
+
             // Reset quiz state
             currentQuiz = null;
             currentQuestionIndex = 0;
