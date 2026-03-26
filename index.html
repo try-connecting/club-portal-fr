@@ -6711,18 +6711,8 @@
       document.querySelector('[data-tab="trending"]').click();
     }
 
-    // Intercept adults-only tab clicks for age verification
-    document.addEventListener('DOMContentLoaded', function() {
-      const adultsTab = document.querySelector('[data-tab="adults-only"]');
-      if (adultsTab) {
-        adultsTab.addEventListener('click', function(e) {
-          if (!ageVerified) {
-            e.stopImmediatePropagation();
-            document.getElementById('ageVerificationGate').style.display = 'flex';
-          }
-        }, true);
-      }
-    });
+
+    // Age gate handled in js/app.js
 
     // Adults Only Section Content  
     function openSection(sectionType) {

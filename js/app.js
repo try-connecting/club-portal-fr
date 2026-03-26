@@ -121,7 +121,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   tabButtons.forEach(function(button) {
     button.addEventListener('click', function() {
-      switchTab(button.getAttribute('data-tab'));
+      var targetTab = button.getAttribute('data-tab');
+
+      // Adults Only — check age verification first
+      if (targetTab === 'adults-only') {
+        var ageVerified = localStorage.getItem('ageVerified') === 'true';
+        if (!ageVerified) {
+          var gate = document.getElementById('ageVerificationGate');
+          if (gate) gate.style.display = 'flex';
+          return; // don't switch tab yet
+        }
+      }
+
+      switchTab(targetTab);
     });
   });
 });
